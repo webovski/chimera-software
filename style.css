@@ -45,7 +45,8 @@
 
 .tabs-left > .nav-tabs > li,
 .tabs-right > .nav-tabs > li {
-    float: none;
+    width: 100%;
+    text-align: center;
 }
 
 .tabs-left > .nav-tabs > li > a,
