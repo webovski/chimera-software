@@ -1,79 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Left Sidebar Menu</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome -->
-    <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            rel="stylesheet"
-    />
-    <!-- Google Fonts -->
-    <link
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            rel="stylesheet"
-    />
-    <!-- MDB -->
-    <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
-            rel="stylesheet"
-    />
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Gautam">
+
+    <title>Gautam Sidebar with Toggle click</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
 </head>
-<body>
-<h3>Left Menu</h3>
 
-<!-- tabs left -->
-<div class="tabbable tabs-left">
-    <ul class="nav nav-tabs">
-        <li><a href="#a" data-toggle="tab">One</a></li>
-        <li class="active"><a href="#b" data-toggle="tab">Two</a></li>
-        <li><a href="#c" data-toggle="tab">Twee</a></li>
-    </ul>
+<body>
+
+<div id="wrapper">
+    <div id="sidebar-wrapper" class="text-uppercase">
+        <ul class="sidebar-nav nav nav-tabs" id="sidebar-nav" role="tablist">
+            <li class="sidebar-brand" style="letter-spacing: 4px;">
+                CHIMERA
+            </li>
+            <li class="nav-item">
+                <a href="#accounts-content" class="active" id="tab-accounts" role="tab" data-mdb-toggle="tab">
+                    Аккаунты
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#inviter-content" id="tab-inviter" role="tab" data-mdb-toggle="tab">
+                    Инвайтер
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#sender-content" id="tab-sender" role="tab" data-mdb-toggle="tab">
+                    Рассылка
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="tab-content">
-        <div class="tab-pane active" id="a">
-            <table class="table">
-                <tr>
-                    <th> H1 </th>
-                    <th> H2 </th>
-                    <th> H3 </th>
-                </tr>
-                <tr>
-                    <td>
-                        ABC
-                    </td>
-                    <td>
-                        XYZ
-                    </td>
-                    <td>
-                        123
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        One
-                    </td>
-                    <td>
-                        Two
-                    </td>
-                    <td>
-                        Twee
-                    </td>
-                </tr>
-            </table>
+        <div class="tab-pane fade show active" id="accounts-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h1>Accounts Tab</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tab-pane" id="b">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</div>
-        <div class="tab-pane" id="c">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+        <div class="tab-pane fade" id="inviter-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h1>Inviter Tab</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="sender-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h1>Sender Tab</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="js/mdb.min.js"></script>
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
 </body>
-<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
-></script>
 
 </html>
