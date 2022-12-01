@@ -1,0 +1,18 @@
+.badge-custom {
+    padding-bottom: 2px;
+}
+.accounts-info-pan {
+    font-size: 20px;
+}
+
+.card-header {
+    --mdb-card-header-border-color: none;
+}
+
+body {
+    background: ghostwhite;
+}
+
+.icon-padding-5 {
+    padding-right: 5px;
+}
