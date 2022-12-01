@@ -16,8 +16,12 @@
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d17938427b.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
 
 </head>
 
@@ -108,7 +112,7 @@
                                 </button>
                             </div>
                         </div>
-                        <table class="table align-middle mb-0 bg-white shadow-4-strong">
+                        <table id="accountsTable" class="table align-middle mb-0 bg-white shadow-4-strong">
                             <thead class="bg-light">
                             <tr>
                                 <th>Аккаунт</th>
@@ -184,23 +188,6 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="6" class="list-inline">
-                                    <ul class="pagination text-center m-0 mx-auto justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a class="page-link">Назад</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Вперёд</a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
                             </tbody>
 
                         </table>
@@ -247,9 +234,11 @@
     </div>
 </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="js/mdb.min.js"></script>
 <script>
+    $(document).ready( function () {
+        $('#accountsTable').DataTable();
+    } );
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
