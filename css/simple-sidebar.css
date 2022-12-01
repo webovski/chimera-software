@@ -36,7 +36,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: #fff;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -82,8 +82,8 @@
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
+    color: white;
+    background: rgba(76, 162, 190, 0.77);
 }
 
 .sidebar-nav li a:active,
@@ -108,7 +108,7 @@
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 250px;
+        padding-left: 180px;
     }
 
     #wrapper.toggled {
@@ -116,7 +116,7 @@
     }
 
     #sidebar-wrapper {
-        width: 250px;
+        width: 180px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
