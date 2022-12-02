@@ -20,3 +20,10 @@ body {
 .m-style {
     color: #63bbd6;
 }
+.page-link {
+    transition: none;
+}
+
+.list-inline>ul>li {
+    padding: 0 3px 0 3px;
+}
