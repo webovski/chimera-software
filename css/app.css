@@ -27,3 +27,8 @@ body {
 .list-inline>ul>li {
     padding: 0 3px 0 3px;
 }
+
+#sidebar-nav>li>a>i {
+    margin-left: -20px;
+    margin-right: 10px;
+}
