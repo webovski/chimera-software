@@ -35,5 +35,9 @@ body {
 
 #pro-li, #base-li {
     line-height: 0;
-    margin-left: 12px;
+    margin-left: 20px;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 38px;
 }
