@@ -29,16 +29,10 @@
             <li class="sidebar-brand" style="letter-spacing: 4px;">
                 <b>CHI<span class="m-style">M</span>ERA</b>
             </li>
-            <li>
-                <hr class="hr"/>
-            </li>
             <li id="base-li">
                 <b>
                     <i id="base-i" class="fas fa-users"></i><span>СТАНДАРТ</span>
                 </b>
-            </li>
-            <li>
-                <hr class="hr"/>
             </li>
             <li class="nav-item">
                 <a href="#accounts-content" class="active" id="tab-accounts" role="tab" data-mdb-toggle="tab">
@@ -60,58 +54,54 @@
                     <i class="fas fa-plus"></i>Инвайтер
                 </a>
             </li>
-            <li>
-                <hr class="hr"/>
-            </li>
-            <li id="pro-li">
+            <div id="pro-li">
                 <b>
-                    <i id="pro-i" class="fas fa-crown"></i><span>ПРО МОДУЛИ</span>
+                    <i id="pro-i" class="fas fa-crown"></i><span class="pro-menu-btn">ПРО МОДУЛИ <span></span></span>
                 </b>
-            </li>
-            <li>
-                <hr class="hr"/>
-            </li>
-            <li class="nav-item">
-                <a href="#farmer-content" class="active" id="tab-farmer" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-clock"></i>Фармер
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#parser-channel-parser-content" class="active" id="tab-channel-chat" role="tab"
-                   data-mdb-toggle="tab">
-                    <i class="fas fa-bullhorn"></i>Парсер Каналов
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#geo-parser-content" id="tab-geo-parser" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-compass"></i>Гео Парсер
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#check-numbers-content" id="tab-check-numbers" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-mobile-alt"></i>Чекер номеров
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#searcher-content" id="tab-search" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-search"></i>Поиск чатов
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#smm-content" class="active" id="tab-smm" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-signal"></i>Накрутка
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#registrator-content" id="tab-registrator" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-user-plus"></i>Реггер
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#converter-content" id="tab-converter" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-sync-alt"></i>Конвертер
-                </a>
-            </li>
+            </div>
+            <span id="pro-menu-list">
+                <li class="nav-item">
+                    <a href="#farmer-content" class="active" id="tab-farmer" role="tab" data-mdb-toggle="tab">
+                        <i class="fas fa-clock"></i>Фармер
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#parser-channel-parser-content" class="active" id="tab-channel-chat" role="tab"
+                       data-mdb-toggle="tab">
+                        <i class="fas fa-bullhorn"></i>Парсер Каналов
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#geo-parser-content" id="tab-geo-parser" role="tab" data-mdb-toggle="tab">
+                        <i class="fas fa-compass"></i>Гео Парсер
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#check-numbers-content" id="tab-check-numbers" role="tab" data-mdb-toggle="tab">
+                        <i class="fas fa-mobile-alt"></i>Чекер номеров
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#searcher-content" id="tab-search" role="tab" data-mdb-toggle="tab">
+                        <i class="fas fa-search"></i>Поиск чатов
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#smm-content" class="active" id="tab-smm" role="tab" data-mdb-toggle="tab">
+                        <i class="fas fa-signal"></i>Накрутка
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#registrator-content" id="tab-registrator" role="tab" data-mdb-toggle="tab">
+                        <i class="fas fa-user-plus"></i>Реггер
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#converter-content" id="tab-converter" role="tab" data-mdb-toggle="tab">
+                        <i class="fas fa-sync-alt"></i>Конвертер
+                    </a>
+                </li>
+            </span>
             <li class="nav-item">
                 <a href="#settings-content" id="tab-settings" role="tab" data-mdb-toggle="tab">
                     <i class="fas fa-cog"></i>Настройки
@@ -346,6 +336,16 @@
     $('[rel="tooltip"]').on('click', function () {
         $(this).tooltip('hide')
     })
+</script>
+<script>
+    $('#pro-li').click(function(){
+        let proMenu = document.getElementById('pro-menu-list')
+        if (proMenu.style.display === 'block') {
+            proMenu.style.display = 'none'
+        } else {
+            proMenu.style.display = 'block'
+        }
+    });
 </script>
 </body>
 

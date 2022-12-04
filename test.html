@@ -1,0 +1,172 @@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffc371;
+        background: linear-gradient(to right, #ff5f6d, #ffc371);
+        font-family: 'Quicksand', sans-serif;
+        color: #262626;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .logo {
+        display: flex;
+        margin: 10px;
+        flex-direction: row;
+        z-index: 1000;
+    }
+
+    .logo a {
+        display: block;
+        height: 30px;
+        width: auto;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .logo a img {
+        height: 100%;
+        width: auto;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 10px 10px 100px 10px;
+    }
+
+    .container h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 500;
+    }
+
+    .container h2 {
+        font-weight: 500;
+    }
+
+    .accordion {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .accordion .a-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-bottom: 5px;
+    }
+
+    .accordion .a-container .a-btn {
+        margin: 0;
+        position: relative;
+        padding: 15px 30px;
+        width: 100%;
+        color: #bdbdbd;
+        font-weight: 400;
+        display: block;
+        font-weight: 500;
+        background-color: #262626;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+        border-radius: 5px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .15), 0 10px 10px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+    .accordion .a-container .a-btn span {
+        display: block;
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        right: 20px;
+        top: 18px;
+    }
+
+    .accordion .a-container .a-btn span:after {
+        content: '';
+        width: 14px;
+        height: 3px;
+        border-radius: 2px;
+        background-color: #fff;
+        position: absolute;
+        top: 6px;
+    }
+
+    .accordion .a-container .a-btn span:before {
+        content: '';
+        width: 14px;
+        height: 3px;
+        border-radius: 2px;
+        background-color: #fff;
+        position: absolute;
+        top: 6px;
+        transform: rotate(90deg);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .accordion .a-container .a-panel {
+        width: 100%;
+        color: #262626;
+        transition: all 0.1s ease-in-out;
+        opacity: 0;
+        height: auto;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0px 10px;
+    }
+
+    .accordion .a-container.active .a-btn {
+        color: #fff;
+    }
+
+    .accordion .a-container.active .a-btn span::before {
+        transform: rotate(0deg);
+    }
+
+    .accordion .a-container.active .a-panel {
+        padding: 15px 10px 10px 10px;
+        opacity: 1;
+        max-height: 500px;
+    }
+
+</style>
+<div class="container">
+    <div class="accordion v2">
+        <div class="a-container">
+            <p class="a-btn">Profile <span></span></p>
+            <div class="a-panel">
+                <h4>Lorem ipsum dolor sit amet.</h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium minima dolores assumenda id.
+                    Porro consequuntur at dolor eum, neque labore!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur non sint sequi ipsa laudantium, a
+                    iure rem vel nemo soluta temporibus, consectetur at corrupti aspernatur maxime, iusto neque
+                    blanditiis deleniti.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function initAcc(elem) {
+        document.addEventListener('click', function (e) {
+            if (!e.target.matches(elem + ' .a-btn')) return;
+            else {
+                if (!e.target.parentElement.classList.contains('active')) {
+                    e.target.parentElement.classList.add('active');
+                } else {
+                    e.target.parentElement.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    initAcc('.accordion.v2');
+</script>
+

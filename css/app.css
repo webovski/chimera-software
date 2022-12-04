@@ -23,21 +23,69 @@ body {
 .page-link {
     transition: none;
 }
-
+#pro-li {
+    width: 100%;
+    line-height: 50px;
+}
 .list-inline>ul>li {
     padding: 0 3px 0 3px;
 }
 
-#sidebar-nav>li>a>i, #pro-i, #base-i {
+#sidebar-nav>li>a>i, #sidebar-nav>span>li>a>i, #base-i{
     margin-left: -20px;
     margin-right: 10px;
 }
 
 #pro-li, #base-li {
-    line-height: 0;
-    margin-left: 20px;
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+}
+
+#base-li {
+    line-height: 45px;
 }
 
 .sidebar-nav > .sidebar-brand {
-    height: 38px;
+    height: 55px;
+}
+
+#pro-menu-li {
+    display: none;
+}
+
+.pro-menu-btn>span:after{
+    content: '';
+    width: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #4f4f4f;
+    position: absolute;
+    margin-top: 23px;
+    margin-left: 50px;
+}
+
+.pro-menu-btn>span:before {
+    content: '';
+    width: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #4f4f4f;
+    position: absolute;
+    margin-top: 23px;
+    margin-left: 50px;
+    transform: rotate(90deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.pro-menu-btn span::after {
+    transform: rotate(0deg);
+}
+
+#pro-menu-list {
+    display: none;
+}
+
+#pro-i {
+    margin-right: 7px;
+    margin-left: 18px;
 }
