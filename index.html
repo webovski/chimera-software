@@ -29,14 +29,20 @@
             <li class="sidebar-brand" style="letter-spacing: 4px;">
                 <b>CHI<span class="m-style">M</span>ERA</b>
             </li>
+            <li>
+                <hr class="hr"/>
+            </li>
+            <li id="base-li">
+                <b>
+                    <i id="base-i" class="fas fa-users"></i><span>СТАНДАРТ</span>
+                </b>
+            </li>
+            <li>
+                <hr class="hr"/>
+            </li>
             <li class="nav-item">
                 <a href="#accounts-content" class="active" id="tab-accounts" role="tab" data-mdb-toggle="tab">
                     <i class="fas fa-user"></i>Аккаунты
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#farmer-content" class="active" id="tab-farmer" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-clock"></i>Фармер
                 </a>
             </li>
             <li class="nav-item">
@@ -45,8 +51,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#parser-channel-parser-content" class="active" id="tab-channel-chat" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-bullhorn"></i>Парсер Каналов
+                <a href="#sender-content" id="tab-sender" role="tab" data-mdb-toggle="tab">
+                    <i class="fas fa-comment"></i>Рассылка
                 </a>
             </li>
             <li class="nav-item">
@@ -54,9 +60,26 @@
                     <i class="fas fa-plus"></i>Инвайтер
                 </a>
             </li>
+            <li>
+                <hr class="hr"/>
+            </li>
+            <li id="pro-li">
+                <b>
+                    <i id="pro-i" class="fas fa-crown"></i><span>ПРО МОДУЛИ</span>
+                </b>
+            </li>
+            <li>
+                <hr class="hr"/>
+            </li>
             <li class="nav-item">
-                <a href="#sender-content" id="tab-sender" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-comment"></i>Рассылка
+                <a href="#farmer-content" class="active" id="tab-farmer" role="tab" data-mdb-toggle="tab">
+                    <i class="fas fa-clock"></i>Фармер
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#parser-channel-parser-content" class="active" id="tab-channel-chat" role="tab"
+                   data-mdb-toggle="tab">
+                    <i class="fas fa-bullhorn"></i>Парсер Каналов
                 </a>
             </li>
             <li class="nav-item">
@@ -103,23 +126,27 @@
                     <div class="col-lg-12 mt-2">
                         <h3>
                             <div class="card text-center accounts-info-pan">
-                                <div class="card-header">Управление Аккаунтами <span class="badge badge-success badge-custom">796</span></div>
+                                <div class="card-header">Управление Аккаунтами <span
+                                        class="badge badge-success badge-custom">796</span></div>
                             </div>
                         </h3>
                         <div class="row mb-2">
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Доступно <span class="badge badge-success badge-custom">18</span></div>
+                                    <div class="card-header">Доступно <span
+                                            class="badge badge-success badge-custom">18</span></div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Не проверено <span class="badge badge-info badge-custom">777</span></div>
+                                    <div class="card-header">Не проверено <span class="badge badge-info badge-custom">777</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Спам-Блок <span class="badge badge-danger badge-custom">1</span></div>
+                                    <div class="card-header">Спам-Блок <span
+                                            class="badge badge-danger badge-custom">1</span></div>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +189,7 @@
                             <thead class="bg-light">
                             <tr>
                                 <th>Аккаунт</th>
-                                <th>Телефон</th>
+                                <th>Дополнительно</th>
                                 <th>Статус</th>
                                 <th>Прокси</th>
                                 <th>Возраст</th>
@@ -187,21 +214,30 @@
                                 </td>
                                 <td>
                                     <p class="fw-normal mb-1">+7928375839</p>
-                                    <p class="text-muted mb-0">Открыт</p>
+                                    <p class="text-muted mb-0">Мужчина</p>
                                 </td>
                                 <td>
-                                    <span class="badge badge-success rounded-pill d-inline">Доступен</span>
+                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                        Доступен
+                                    </span>
                                 </td>
                                 <td>
-                                    <span class="badge badge-success rounded-pill d-inline">199.82.1.253</span>
+                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                        199.82.1.253
+                                    </span>
                                 </td>
-                                <td>47 дней</td>
+                                <td>
+                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                        47 дней
+                                    </span>
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
                                             data-mdb-toggle="tooltip" title="Проверить аккаунт">
                                         <i class="fas fa-sync"></i>
                                     </button>
-                                    <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip" data-mdb-toggle="tooltip" title="Сменить прокси">
+                                    <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
+                                            data-mdb-toggle="tooltip" title="Сменить прокси">
                                         <i class="fas fa-wifi"></i>
                                     </button>
                                 </td>
@@ -223,7 +259,7 @@
                                 </td>
                                 <td>
                                     <p class="fw-normal mb-1">+7928374818</p>
-                                    <p class="text-muted mb-0">Закрыт</p>
+                                    <p class="text-muted mb-0">Женщина</p>
                                 </td>
                                 <td>
                                     <span class="badge badge-danger rounded-pill d-inline">Спам-Блок</span>
@@ -245,7 +281,8 @@
                                             <a class="page-link">Назад</a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item" aria-current="page"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item" aria-current="page"><a class="page-link" href="#">2</a>
+                                        </li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">Далее</a>

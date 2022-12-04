@@ -28,7 +28,12 @@ body {
     padding: 0 3px 0 3px;
 }
 
-#sidebar-nav>li>a>i {
+#sidebar-nav>li>a>i, #pro-i, #base-i {
     margin-left: -20px;
     margin-right: 10px;
+}
+
+#pro-li, #base-li {
+    line-height: 0;
+    margin-left: 12px;
 }
