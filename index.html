@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Gautam">
 
-    <title>Gautam Sidebar with Toggle click</title>
+    <title>Chimera Software</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/mdb.min.css" rel="stylesheet">
@@ -37,6 +37,16 @@
             <li class="nav-item">
                 <a href="#farmer-content" class="active" id="tab-farmer" role="tab" data-mdb-toggle="tab">
                     <i class="fas fa-clock"></i>Фармер
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#parser-chat-content" class="active" id="tab-parser-chat" role="tab" data-mdb-toggle="tab">
+                    <i class="fas fa-user-friends"></i>Парсер Чатов
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#parser-channel-parser-content" class="active" id="tab-channel-chat" role="tab" data-mdb-toggle="tab">
+                    <i class="fas fa-bullhorn"></i>Парсер Каналов
                 </a>
             </li>
             <li class="nav-item">
@@ -126,7 +136,7 @@
                             <div class="col-3">
                                 <button class="btn btn-info shadow-4-strong">
                                     <span class="icon-padding-5">
-                                        Подключить прокси
+                                        Установить прокси
                                     </span>
                                     <i class="fas fa-wifi"></i>
                                 </button>
@@ -142,9 +152,9 @@
                             <div class="col-3">
                                 <button class="btn btn-info shadow-4-strong">
                                     <span class="icon-padding-5">
-                                        Заполнить аккаунты
+                                        Добавить аккаунт вручную
                                     </span>
-                                    <i class="fas fa-images"></i>
+                                    <i class="fas fa-phone"></i>
                                 </button>
                             </div>
                         </div>
@@ -187,8 +197,12 @@
                                 </td>
                                 <td>47 дней</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm btn-rounded">
-                                        Изменить
+                                    <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
+                                            data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <i class="fas fa-sync"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip" data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <i class="fas fa-wifi"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -220,7 +234,7 @@
                                 <td>3 дня</td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm btn-rounded">
-                                        Изменить
+                                        Проверить
                                     </button>
                                 </td>
                             </tr>
@@ -292,6 +306,9 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    $('[rel="tooltip"]').on('click', function () {
+        $(this).tooltip('hide')
+    })
 </script>
 </body>
 
