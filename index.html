@@ -56,7 +56,7 @@
             </li>
             <div id="pro-li">
                 <b>
-                    <i id="pro-i" class="fas fa-crown"></i><span class="pro-menu-btn">ПРО МОДУЛИ <span></span></span>
+                    <i id="pro-i" class="fas fa-crown"></i><span class="pro-menu-btn">ПРО МОДУЛИ <span id="menu-item-span"></span></span>
                 </b>
             </div>
             <span id="pro-menu-list">
@@ -102,7 +102,7 @@
                     </a>
                 </li>
             </span>
-            <li class="nav-item">
+            <li class="nav-item" id="settings-li">
                 <a href="#settings-content" id="tab-settings" role="tab" data-mdb-toggle="tab">
                     <i class="fas fa-cog"></i>Настройки
                 </a>
@@ -340,10 +340,16 @@
 <script>
     $('#pro-li').click(function(){
         let proMenu = document.getElementById('pro-menu-list')
-        if (proMenu.style.display === 'block') {
-            proMenu.style.display = 'none'
+        let proAnimation = document.getElementById('menu-item-span')
+        let settingsLi = document.getElementById('settings-li')
+        if (proMenu.style.maxHeight) {
+            proMenu.style.maxHeight = null;
+            proAnimation.classList.remove('opened')
+            settingsLi.style.borderTop = '0px solid #f4f4f4'
         } else {
-            proMenu.style.display = 'block'
+            proMenu.style.maxHeight = proMenu.scrollHeight + "px";
+            proAnimation.classList.add('opened')
+            settingsLi.style.borderTop = '2px solid #f4f4f4'
         }
     });
 </script>
