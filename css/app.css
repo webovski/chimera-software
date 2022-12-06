@@ -73,7 +73,7 @@ body {
     margin-top: 23px;
     margin-left: 50px;
     transform: rotate(90deg);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 #pro-menu-list {
@@ -89,5 +89,5 @@ body {
 }
 
 .opened::before {
-    transform: rotate(0deg)!important;
+    transform: rotate(450deg)!important;
 }
