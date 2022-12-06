@@ -91,3 +91,10 @@ body {
 .opened::before {
     transform: rotate(450deg)!important;
 }
+
+.fixed-table-height {
+    position: relative;
+    height: 550px;
+    overflow: auto;
+    border-radius: 15px;
+}
