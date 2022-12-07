@@ -10,7 +10,7 @@ if (devMode) {
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 1200, height: 800, resizable: false, show: false, webPreferences: {
+        width: 1200, height: 800, resizable: true, show: false, webPreferences: {
             preload: path.join(__dirname, 'preloader.js')
         },
         icon: path.join(__dirname, 'app.ico')
@@ -19,10 +19,11 @@ function createWindow() {
     const splash = new BrowserWindow({
         width: 800, height: 630, transparent: true, frame: false, alwaysOnTop: true, icon: path.join(__dirname, 'app.ico')
     });
-
+    splash.setMenuBarVisibility(false)
+    win.setMenuBarVisibility(false)
     splash.loadFile('splash.html');
     splash.center();
-
+    win.maximize();
     if (devMode) {
         win.loadFile('web/app.html')
     } else {
@@ -33,8 +34,9 @@ function createWindow() {
         splash.close();
         win.center();
         win.show();
+        win.maximize();
         // win.webContents.openDevTools()
-        win.setMenuBarVisibility(false)
+        //win.setMenuBarVisibility(false)
     });
 }
 
