@@ -4,10 +4,10 @@
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Gautam">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="Gautam" name="author">
 
     <title>Chimera Software</title>
 
@@ -24,93 +24,94 @@
 <body>
 
 <div id="wrapper">
-    <div id="sidebar-wrapper" class="text-uppercase shadow-5-strong">
+    <div class="text-uppercase shadow-5-strong" id="sidebar-wrapper">
         <ul class="sidebar-nav nav nav-tabs" id="sidebar-nav" role="tablist">
             <li class="sidebar-brand" style="letter-spacing: 4px;">
                 <b>CHI<span class="m-style">M</span>ERA</b>
             </li>
             <li id="base-li">
                 <b>
-                    <i id="base-i" class="fas fa-users"></i><span>СТАНДАРТ</span>
+                    <i class="fas fa-users" id="base-i"></i><span>СТАНДАРТ CОФТ</span>
                 </b>
             </li>
             <li class="nav-item">
-                <a href="#accounts-content" class="active" id="tab-accounts" role="tab" data-mdb-toggle="tab">
+                <a data-mdb-toggle="tab" href="#accounts-content" id="tab-accounts" role="tab">
                     <i class="fas fa-user"></i>Аккаунты
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#parser-chat-content" class="active" id="tab-parser-chat" role="tab" data-mdb-toggle="tab">
+                <a class="active" data-mdb-toggle="tab" href="#chats-parser-content" id="tab-parser-chat" role="tab">
                     <i class="fas fa-user-friends"></i>Парсер Чатов
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#sender-content" id="tab-sender" role="tab" data-mdb-toggle="tab">
+                <a data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
                     <i class="fas fa-comment"></i>Рассылка
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#inviter-content" id="tab-inviter" role="tab" data-mdb-toggle="tab">
+                <a data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
                     <i class="fas fa-plus"></i>Инвайтер
                 </a>
             </li>
-            <div id="pro-li">
+            <li class="nav-item" id="settings-li" style="border-top: 2px solid #f5f5f5">
+                <a data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
+                    <i class="fas fa-cog"></i>Настройки
+                </a>
+            </li>
+            <div id="pro-li" style="display: none">
                 <b>
-                    <i id="pro-i" class="fas fa-crown"></i><span class="pro-menu-btn">ПРО МОДУЛИ <span id="menu-item-span"></span></span>
+                    <i class="fas fa-crown" id="pro-i"></i><span class="pro-menu-btn">ПРО МОДУЛИ <span
+                        id="menu-item-span"></span></span>
                 </b>
             </div>
-            <span id="pro-menu-list">
+            <span id="pro-menu-list" style="display: none">
                 <li class="nav-item">
-                    <a href="#farmer-content" class="active" id="tab-farmer" role="tab" data-mdb-toggle="tab">
+                    <a class="active" data-mdb-toggle="tab" href="#farmer-content" id="tab-farmer" role="tab">
                         <i class="fas fa-clock"></i>Фармер
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#parser-channel-parser-content" class="active" id="tab-channel-chat" role="tab"
-                       data-mdb-toggle="tab">
+                    <a class="active" data-mdb-toggle="tab" href="#parser-channel-parser-content" id="tab-channel-chat"
+                       role="tab">
                         <i class="fas fa-bullhorn"></i>Парсер Каналов
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#geo-parser-content" id="tab-geo-parser" role="tab" data-mdb-toggle="tab">
+                    <a data-mdb-toggle="tab" href="#geo-parser-content" id="tab-geo-parser" role="tab">
                         <i class="fas fa-compass"></i>Гео Парсер
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#check-numbers-content" id="tab-check-numbers" role="tab" data-mdb-toggle="tab">
+                    <a data-mdb-toggle="tab" href="#check-numbers-content" id="tab-check-numbers" role="tab">
                         <i class="fas fa-mobile-alt"></i>Чекер номеров
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#searcher-content" id="tab-search" role="tab" data-mdb-toggle="tab">
+                    <a data-mdb-toggle="tab" href="#searcher-content" id="tab-search" role="tab">
                         <i class="fas fa-search"></i>Поиск чатов
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#smm-content" class="active" id="tab-smm" role="tab" data-mdb-toggle="tab">
+                    <a class="active" data-mdb-toggle="tab" href="#smm-content" id="tab-smm" role="tab">
                         <i class="fas fa-signal"></i>Накрутка
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#registrator-content" id="tab-registrator" role="tab" data-mdb-toggle="tab">
+                    <a data-mdb-toggle="tab" href="#registrator-content" id="tab-registrator" role="tab">
                         <i class="fas fa-user-plus"></i>Реггер
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#converter-content" id="tab-converter" role="tab" data-mdb-toggle="tab">
+                    <a data-mdb-toggle="tab" href="#converter-content" id="tab-converter" role="tab">
                         <i class="fas fa-sync-alt"></i>Конвертер
                     </a>
                 </li>
             </span>
-            <li class="nav-item" id="settings-li">
-                <a href="#settings-content" id="tab-settings" role="tab" data-mdb-toggle="tab">
-                    <i class="fas fa-cog"></i>Настройки
-                </a>
-            </li>
         </ul>
     </div>
     <div class="tab-content">
-        <div class="tab-pane fade show active" id="accounts-content" role="tabpanel">
+        <div class="tab-pane fade" id="accounts-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
@@ -181,7 +182,8 @@
                                 <tr>
                                     <th>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                            <input class="form-check-input" id="flexCheckDefault" type="checkbox"
+                                                   value=""/>
                                         </div>
                                     </th>
                                     <th>Аккаунт</th>
@@ -202,10 +204,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -218,27 +220,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -252,10 +258,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -268,27 +274,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -302,10 +312,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -318,27 +328,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -352,10 +366,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -368,27 +382,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -402,10 +420,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -418,27 +436,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -452,10 +474,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -468,27 +490,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -502,10 +528,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -518,27 +544,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -552,10 +582,10 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
                                                     alt=""
-                                                    style="width: 45px; height: 45px"
                                                     class="rounded-circle"
+                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                    style="width: 45px; height: 45px"
                                             />
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
@@ -568,27 +598,31 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Готов к работе">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Готов к работе">
                                         Доступен
                                     </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" rel="tooltip" data-mdb-toggle="tooltip" title="Прокси валидное">
+                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
+                                          rel="tooltip" title="Прокси валидное">
                                         199.82.1.253
                                     </span>
                                     </td>
                                     <td>
-                                    <span rel="tooltip" data-mdb-toggle="tooltip" title="Возраст взят из .json файла">
+                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
                                         47 дней
                                     </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Проверить аккаунт">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info btn-sm btn-rounded" rel="tooltip"
-                                                data-mdb-toggle="tooltip" title="Сменить прокси">
+                                        <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
+                                                rel="tooltip"
+                                                title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -601,43 +635,230 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="inviter-content" role="tabpanel">
+        <div class="tab-pane fade show active" id="chats-parser-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
-                        <h1>Inviter Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="sender-content" role="tabpanel">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h1>Sender Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum
+                        <h3>
+                            <div class="row text-center mb-3">
+                                <div class="col-sm-6">
+                                    <a class="half"
+                                       href="https://fbstore.ru/?utm_source=rents.page&amp;utm_medium=cpc&amp;utm_campaign=gifkasgifius.ru&amp;utm_term=fb"
+                                       target="_blank"><img src="https://rents.ws/ru/image/a/90002543.jpg?9557"></a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="half"
+                                       href="https://fbstore.ru/?utm_source=rents.page&amp;utm_medium=cpc&amp;utm_campaign=gifkasgifius.ru&amp;utm_term=fb"
+                                       target="_blank"><img src="https://rents.ws/ru/image/a/90002604.jpg?6019"></a>
+                                </div>
+                            </div>
+                            <div class="card text-center accounts-info-pan">
+                                <div class="card-header">Парсер чатов</div>
+                            </div>
+                        </h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="form-outline mb-3">
+                                                            <input class="form-control form-select" id="chat-link"
+                                                                   type="text"/>
+                                                            <label class="form-label" for="chat-link"
+                                                                   id='chat-link-label'>
+                                                                Ссылка на чат
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-outline">
+                                                            <select aria-label="Default select example"
+                                                                    class="form-select"
+                                                                    id="accounts-dropdown">
+                                                                <option disabled selected>Выбор аккаунта</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="btn btn-info w-100" id='start-parsing-btn'
+                                                             onclick="runScraping()">
+                                                            <span class="icon-padding-5">Начать парсинг</span>
+                                                            <i class="fas fa-search" id="icon-search"></i>
+                                                            <span class="spinner-border spinner-border-sm spinner-loading"
+                                                                  id="start-btn-loading-animation"
+                                                                  role="status" style="display: none;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="mb-3 form-check">
+                                                            <input class="form-check-input" id="parse-dialogs"
+                                                                   onclick="parseDialogs()"
+                                                                   type="checkbox"/>
+                                                            <label class="form-check-label" for="parse-dialogs">Парсинг
+                                                                по диалогам</label>
+                                                        </div>
+                                                        <div class="mb-3 form-check">
+                                                            <input class="form-check-input" id="parse-fast"
+                                                                   type="checkbox"/>
+                                                            <label class="form-check-label" for="parse-fast">Быстрый
+                                                                парсинг</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="mb-3 form-check">
+                                                            <input class="form-check-input" id="parse-multi"
+                                                                   type="checkbox"/>
+                                                            <label class="form-check-label" for="parse-multi">Сбор
+                                                                премиум</label>
+                                                        </div>
+                                                        <div class="mb-3 form-check">
+                                                            <input class="form-check-input" id="parse-phones"
+                                                                   type="checkbox"/>
+                                                            <label class="form-check-label" for="parse-phones">Сбор
+                                                                телефонов</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="mb-3 form-check">
+                                                            <input class="form-check-input" id="parse-no-admins"
+                                                                   type="checkbox"/>
+                                                            <label class="form-check-label" for="parse-no-admins">Без
+                                                                админов</label>
+                                                        </div>
+                                                        <div class="mb-3 form-check">
+                                                            <input class="form-check-input" id="parse-no-bots"
+                                                                   type="checkbox"/>
+                                                            <label class="form-check-label" for="parse-no-bots">Без
+                                                                ботов</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                    <textarea class="form-control rounded" disabled id="system-result-users-text-area"
+                                              rows="10" style="resize: none;">Системные логи</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="form-group">
+                                    <textarea class="form-control rounded" disabled id="result-users-text-area"
+                                              rows="10" style="resize: none;">История парсинга</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="tab-pane fade" id="sender-content" role="tabpanel">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 mt-2">
+                    <h1>Sender Tab</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="inviter-content" role="tabpanel">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 mt-2">
+                    <h1>Inviter Tab</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="settings-content" role="tabpanel">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 mt-2">
+                    <h1>Settings Tab</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="sender3-content" role="tabpanel">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 mt-2">
+                    <h1>Sender Tab</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="sender4-content" role="tabpanel">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 mt-2">
+                    <h1>Sender Tab</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -652,7 +873,7 @@
     })
 </script>
 <script>
-    $('#pro-li').click(function(){
+    $('#pro-li').click(function () {
         let proMenu = document.getElementById('pro-menu-list')
         let proAnimation = document.getElementById('menu-item-span')
         let settingsLi = document.getElementById('settings-li')
@@ -666,6 +887,17 @@
             settingsLi.style.borderTop = '2px solid #f4f4f4'
         }
     });
+</script>
+<script>
+    async function parseDialogs() {
+        let parseDialogsCheckboxIsChecked = document.getElementById('parse-dialogs').checked
+
+        if (parseDialogsCheckboxIsChecked) {
+            document.getElementById('chat-link-label').innerText = 'Название чата';
+        } else {
+            document.getElementById('chat-link-label').innerText = 'Ссылка на чат';
+        }
+    }
 </script>
 </body>
 

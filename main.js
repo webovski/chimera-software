@@ -1,6 +1,6 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
-const devMode = false
+const devMode = true
 
 if (devMode) {
     require('electron-reload')(__dirname, {
@@ -35,8 +35,7 @@ function createWindow() {
         win.center();
         win.show();
         win.maximize();
-        // win.webContents.openDevTools()
-        //win.setMenuBarVisibility(false)
+        win.webContents.openDevTools()
     });
 }
 
