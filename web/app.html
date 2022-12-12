@@ -18,6 +18,8 @@
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d17938427b.js"></script>
+    <script src="js/mdb.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 </head>
 
@@ -40,12 +42,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="active" data-mdb-toggle="tab" href="#chats-parser-content" id="tab-parser-chat" role="tab">
+                <a data-mdb-toggle="tab" href="#chats-parser-content" id="tab-parser-chat" role="tab">
                     <i class="fas fa-user-friends"></i>Парсер Чатов
                 </a>
             </li>
             <li class="nav-item">
-                <a data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
+                <a class="active" data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
                     <i class="fas fa-comment"></i>Рассылка
                 </a>
             </li>
@@ -635,23 +637,11 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade show active" id="chats-parser-content" role="tabpanel">
+        <div class="tab-pane fade" id="chats-parser-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
                         <h3>
-                            <div class="row text-center mb-3">
-                                <div class="col-sm-6">
-                                    <a class="half"
-                                       href="https://fbstore.ru/?utm_source=rents.page&amp;utm_medium=cpc&amp;utm_campaign=gifkasgifius.ru&amp;utm_term=fb"
-                                       target="_blank"><img src="https://rents.ws/ru/image/a/90002543.jpg?9557"></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="half"
-                                       href="https://fbstore.ru/?utm_source=rents.page&amp;utm_medium=cpc&amp;utm_campaign=gifkasgifius.ru&amp;utm_term=fb"
-                                       target="_blank"><img src="https://rents.ws/ru/image/a/90002604.jpg?6019"></a>
-                                </div>
-                            </div>
                             <div class="card text-center accounts-info-pan">
                                 <div class="card-header">Парсер чатов</div>
                             </div>
@@ -678,8 +668,8 @@
                                                             <select aria-label="Default select example"
                                                                     class="form-select"
                                                                     id="accounts-dropdown">
-                                                                <option disabled selected>Выбор аккаунта</option>
-
+                                                                <option disabled selected>+6285229164278</option>
+                                                                <option disabled>Выберите во вкладке Аккаунты</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -688,11 +678,6 @@
                                                              onclick="runScraping()">
                                                             <span class="icon-padding-5">Начать парсинг</span>
                                                             <i class="fas fa-search" id="icon-search"></i>
-                                                            <span class="spinner-border spinner-border-sm spinner-loading"
-                                                                  id="start-btn-loading-animation"
-                                                                  role="status" style="display: none;">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -716,13 +701,13 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="mb-3 form-check">
-                                                            <input class="form-check-input" id="parse-multi"
+                                                            <input checked class="form-check-input" id="parse-multi"
                                                                    type="checkbox"/>
                                                             <label class="form-check-label" for="parse-multi">Сбор
                                                                 премиум</label>
                                                         </div>
                                                         <div class="mb-3 form-check">
-                                                            <input class="form-check-input" id="parse-phones"
+                                                            <input checked class="form-check-input" id="parse-phones"
                                                                    type="checkbox"/>
                                                             <label class="form-check-label" for="parse-phones">Сбор
                                                                 телефонов</label>
@@ -730,13 +715,13 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="mb-3 form-check">
-                                                            <input class="form-check-input" id="parse-no-admins"
+                                                            <input checked class="form-check-input" id="parse-no-admins"
                                                                    type="checkbox"/>
                                                             <label class="form-check-label" for="parse-no-admins">Без
                                                                 админов</label>
                                                         </div>
                                                         <div class="mb-3 form-check">
-                                                            <input class="form-check-input" id="parse-no-bots"
+                                                            <input checked class="form-check-input" id="parse-no-bots"
                                                                    type="checkbox"/>
                                                             <label class="form-check-label" for="parse-no-bots">Без
                                                                 ботов</label>
@@ -767,93 +752,191 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="sender-content" role="tabpanel">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 mt-2">
-                    <h1>Sender Tab</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                        laborum
+        <div class="tab-pane fade show active" id="sender-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h3>
+                            <div class="card text-center accounts-info-pan">
+                                <div class="card-header">Рассылка</div>
+                            </div>
+                        </h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="container">
+                                                <div class="row mt-2">
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control rounded" id="sms-text-area"
+                                                                      placeholder="Текст сообщения" rows="5"
+                                                                      style="resize: none;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3 mt-1">
+                                                        <div class="mb-4 form-check">
+                                                            <input checked class="form-check-input" id="forward-post"
+                                                                   type="checkbox"/>
+                                                            <label class="form-check-label" for="forward-post">Пересылка
+                                                                поста</label>
+                                                        </div>
+                                                        <div class="mb-4 form-check">
+                                                            <input checked class="form-check-input" id="use-secret-chat"
+                                                                   type="checkbox"/>
+                                                            <label class="use-secret-chat-label" for="use-secret-chat">Секретные чаты</label>
+                                                        </div>
+                                                         <div class="form-check mb-4">
+                                                            <input checked class="form-check-input" id="use-dialog-chats"
+                                                                   type="checkbox"/>
+                                                            <label class="use-dialog-chats-label" for="use-dialog-chats">Только по диалогам</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <div class="form-outline mb-1">
+                                                            <input class="form-control form-select"
+                                                                   id="post-forward-link"
+                                                                   type="text">
+                                                            <label class="form-label" for="post-forward-link"
+                                                                   id="post-forward-link-label"
+                                                                   style="margin-left: 0px;">
+                                                                Ссылка на пост
+                                                            </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3 mb-2">
+                                                            <div class="col-6">
+                                                                <div class="form-outline mb-1">
+                                                            <input class="form-control form-select"
+                                                                   id="post-forward-link"
+                                                                   type="text">
+                                                            <label class="form-label" for="post-forward-link"
+                                                                   id="post-forward-link-label"
+                                                                   style="margin-left: 0px;">
+                                                                Задержка ОТ
+                                                            </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing"></div>
+                                                            </div>
+                                                        </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="form-outline mb-1">
+                                                            <input class="form-control form-select"
+                                                                   id="post-forward-link"
+                                                                   type="text">
+                                                            <label class="form-label" for="post-forward-link"
+                                                                   id="post-forward-link-label"
+                                                                   style="margin-left: 0px;">
+                                                                Задержка ДО
+                                                            </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing"></div>
+                                                            </div>
+                                                        </div>
+                                                            </div>
+                                                        </div>
+                                                         <div class="btn btn-info w-100" id='start-sending-btn'
+                                                             onclick="runSending()">
+                                                            <span class="icon-padding-5">Начать рассылку в ЛС</span>
+                                                            <i class="fas fa-share-square"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="inviter-content" role="tabpanel">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 mt-2">
-                    <h1>Inviter Tab</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                        laborum
+        <div class="tab-pane fade" id="inviter-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h1>Inviter Tab</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="settings-content" role="tabpanel">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 mt-2">
-                    <h1>Settings Tab</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                        laborum
+        <div class="tab-pane fade" id="settings-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h1>Settings Tab</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="sender3-content" role="tabpanel">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 mt-2">
-                    <h1>Sender Tab</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                        laborum
+        <div class="tab-pane fade" id="sender3-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h1>Sender Tab</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="sender4-content" role="tabpanel">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 mt-2">
-                    <h1>Sender Tab</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                        laborum
+        <div class="tab-pane fade" id="sender4-content" role="tabpanel">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <h1>Sender Tab</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum
+                    </div>
                 </div>
             </div>
         </div>
@@ -861,9 +944,14 @@
 </div>
 </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="js/mdb.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>-->
 <script>
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+    });
+    document.querySelectorAll('.form-select').forEach((fromSelect) => {
+        new mdb.Input(fromSelect).init();
+    });
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");

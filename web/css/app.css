@@ -98,3 +98,8 @@ body {
     overflow: auto;
     border-radius: 15px;
 }
+
+li>a.active {
+    font-weight: bold;
+}
+
