@@ -1,6 +1,7 @@
 .badge-custom {
     padding-bottom: 2px;
 }
+
 .accounts-info-pan {
     font-size: 20px;
 }
@@ -12,6 +13,7 @@
 body {
     background: ghostwhite;
 }
+
 .icon-padding-5 {
     padding-right: 5px;
 }
@@ -19,18 +21,21 @@ body {
 .m-style {
     color: #63bbd6;
 }
+
 .page-link {
     transition: none;
 }
+
 #pro-li {
     width: 100%;
     line-height: 50px;
 }
-.list-inline>ul>li {
+
+.list-inline > ul > li {
     padding: 0 3px 0 3px;
 }
 
-#sidebar-nav>li>a>i, #sidebar-nav>span>li>a>i, #base-i{
+#sidebar-nav > li > a > i, #sidebar-nav > span > li > a > i, #base-i {
     margin-left: -20px;
     margin-right: 10px;
 }
@@ -52,7 +57,7 @@ body {
     display: none;
 }
 
-.pro-menu-btn>span:after{
+.pro-menu-btn > span:after {
     content: '';
     width: 14px;
     height: 3px;
@@ -63,7 +68,7 @@ body {
     margin-left: 50px;
 }
 
-.pro-menu-btn>span:before {
+.pro-menu-btn > span:before {
     content: '';
     width: 14px;
     height: 3px;
@@ -89,7 +94,7 @@ body {
 }
 
 .opened::before {
-    transform: rotate(450deg)!important;
+    transform: rotate(450deg) !important;
 }
 
 .fixed-table-height {
@@ -99,7 +104,58 @@ body {
     border-radius: 15px;
 }
 
-li>a.active {
+li > a.active {
     font-weight: bold;
 }
 
+.sending-card-header {
+    padding-top: 10px !important;
+    padding-left: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.logs-card-header {
+    padding-top: 10px !important;
+    padding-left: 10px !important;
+    padding-bottom: 10px !important;
+    padding-right: 10px !important;
+}
+
+.margin-right-input {
+    margin-right: 8px !important;
+}
+
+#link-forward-input {
+    margin-top: 11px;
+    width: 103% !important;
+}
+
+#add-file-button {
+    margin-top: 11px;
+}
+
+.delays {
+    margin-bottom: 14px !important;
+}
+
+#start-sending-dm {
+    width: 100% !important;
+}
+
+.form-outline .form-control.disabled, .form-outline .form-control:disabled, .form-outline .form-control[readonly] {
+    background-color: #e9ecef;
+    width: 97.5%;
+}
+
+.textarea-actions {
+    position: absolute;
+    margin-top: 15px;
+}
+
+#download-sending-history {
+    right: 2%;
+}
+
+#copy-sending-history {
+    right: 8%;
+}

@@ -1,115 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="Gautam" name="author">
-
     <title>Chimera Software</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/mdb.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d17938427b.js"></script>
     <script src="js/mdb.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
 </head>
-
 <body>
-
 <div id="wrapper">
     <div class="text-uppercase shadow-5-strong" id="sidebar-wrapper">
         <ul class="sidebar-nav nav nav-tabs" id="sidebar-nav" role="tablist">
             <li class="sidebar-brand" style="letter-spacing: 4px;">
-                <b>CHI<span class="m-style">M</span>ERA</b>
+                <b>CHI<span class="m-style">M</span>ERA </b>
             </li>
             <li id="base-li">
                 <b>
-                    <i class="fas fa-users" id="base-i"></i><span>СТАНДАРТ CОФТ</span>
+                    <i class="fas fa-users" id="base-i"></i>
+                    <span>СТАНДАРТ CОФТ</span>
                 </b>
             </li>
             <li class="nav-item">
                 <a data-mdb-toggle="tab" href="#accounts-content" id="tab-accounts" role="tab">
-                    <i class="fas fa-user"></i>Аккаунты
-                </a>
+                    <i class="fas fa-user"></i>Аккаунты </a>
             </li>
             <li class="nav-item">
                 <a data-mdb-toggle="tab" href="#chats-parser-content" id="tab-parser-chat" role="tab">
-                    <i class="fas fa-user-friends"></i>Парсер Чатов
-                </a>
+                    <i class="fas fa-user-friends"></i>Парсер Чатов </a>
             </li>
             <li class="nav-item">
                 <a class="active" data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
-                    <i class="fas fa-comment"></i>Рассылка
-                </a>
+                    <i class="fas fa-comment"></i>Рассылка </a>
             </li>
             <li class="nav-item">
                 <a data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
-                    <i class="fas fa-plus"></i>Инвайтер
-                </a>
+                    <i class="fas fa-plus"></i>Инвайтер </a>
             </li>
             <li class="nav-item" id="settings-li" style="border-top: 2px solid #f5f5f5">
                 <a data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
-                    <i class="fas fa-cog"></i>Настройки
-                </a>
+                    <i class="fas fa-cog"></i>Настройки </a>
             </li>
             <div id="pro-li" style="display: none">
                 <b>
-                    <i class="fas fa-crown" id="pro-i"></i><span class="pro-menu-btn">ПРО МОДУЛИ <span
-                        id="menu-item-span"></span></span>
+                    <i class="fas fa-crown" id="pro-i"></i>
+                    <span class="pro-menu-btn">ПРО МОДУЛИ <span id="menu-item-span"></span>
+              </span>
                 </b>
             </div>
             <span id="pro-menu-list" style="display: none">
-                <li class="nav-item">
-                    <a class="active" data-mdb-toggle="tab" href="#farmer-content" id="tab-farmer" role="tab">
-                        <i class="fas fa-clock"></i>Фармер
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="active" data-mdb-toggle="tab" href="#parser-channel-parser-content" id="tab-channel-chat"
-                       role="tab">
-                        <i class="fas fa-bullhorn"></i>Парсер Каналов
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a data-mdb-toggle="tab" href="#geo-parser-content" id="tab-geo-parser" role="tab">
-                        <i class="fas fa-compass"></i>Гео Парсер
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a data-mdb-toggle="tab" href="#check-numbers-content" id="tab-check-numbers" role="tab">
-                        <i class="fas fa-mobile-alt"></i>Чекер номеров
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a data-mdb-toggle="tab" href="#searcher-content" id="tab-search" role="tab">
-                        <i class="fas fa-search"></i>Поиск чатов
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="active" data-mdb-toggle="tab" href="#smm-content" id="tab-smm" role="tab">
-                        <i class="fas fa-signal"></i>Накрутка
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a data-mdb-toggle="tab" href="#registrator-content" id="tab-registrator" role="tab">
-                        <i class="fas fa-user-plus"></i>Реггер
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a data-mdb-toggle="tab" href="#converter-content" id="tab-converter" role="tab">
-                        <i class="fas fa-sync-alt"></i>Конвертер
-                    </a>
-                </li>
-            </span>
+            <li class="nav-item">
+              <a class="active" data-mdb-toggle="tab" href="#farmer-content" id="tab-farmer" role="tab">
+                <i class="fas fa-clock"></i>Фармер </a>
+            </li>
+            <li class="nav-item">
+              <a class="active" data-mdb-toggle="tab" href="#parser-channel-parser-content" id="tab-channel-chat"
+                 role="tab">
+                <i class="fas fa-bullhorn"></i>Парсер Каналов </a>
+            </li>
+            <li class="nav-item">
+              <a data-mdb-toggle="tab" href="#geo-parser-content" id="tab-geo-parser" role="tab">
+                <i class="fas fa-compass"></i>Гео Парсер </a>
+            </li>
+            <li class="nav-item">
+              <a data-mdb-toggle="tab" href="#check-numbers-content" id="tab-check-numbers" role="tab">
+                <i class="fas fa-mobile-alt"></i>Чекер номеров </a>
+            </li>
+            <li class="nav-item">
+              <a data-mdb-toggle="tab" href="#searcher-content" id="tab-search" role="tab">
+                <i class="fas fa-search"></i>Поиск чатов </a>
+            </li>
+            <li class="nav-item">
+              <a class="active" data-mdb-toggle="tab" href="#smm-content" id="tab-smm" role="tab">
+                <i class="fas fa-signal"></i>Накрутка </a>
+            </li>
+            <li class="nav-item">
+              <a data-mdb-toggle="tab" href="#registrator-content" id="tab-registrator" role="tab">
+                <i class="fas fa-user-plus"></i>Реггер </a>
+            </li>
+            <li class="nav-item">
+              <a data-mdb-toggle="tab" href="#converter-content" id="tab-converter" role="tab">
+                <i class="fas fa-sync-alt"></i>Конвертер </a>
+            </li>
+          </span>
         </ul>
     </div>
     <div class="tab-content">
@@ -120,14 +101,16 @@
                         <h3>
                             <div class="card text-center accounts-info-pan">
                                 <div class="card-header">Управление Аккаунтами <span
-                                        class="badge badge-success badge-custom">796</span></div>
+                                        class="badge badge-success badge-custom">796</span>
+                                </div>
                             </div>
                         </h3>
                         <div class="row mb-2">
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
                                     <div class="card-header">Доступно <span
-                                            class="badge badge-success badge-custom">18</span></div>
+                                            class="badge badge-success badge-custom">18</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -139,41 +122,33 @@
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
                                     <div class="card-header">Спам-Блок <span
-                                            class="badge badge-danger badge-custom">1</span></div>
+                                            class="badge badge-danger badge-custom">1</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3 text-center">
                             <div class="col-3">
                                 <button class="btn btn-info shadow-4-strong">
-                                    <span class="icon-padding-5">
-                                        Загрузить аккаунты
-                                    </span>
+                                    <span class="icon-padding-5"> Загрузить аккаунты </span>
                                     <i class="fas fa-upload"></i>
-
                                 </button>
                             </div>
                             <div class="col-3">
                                 <button class="btn btn-info shadow-4-strong">
-                                    <span class="icon-padding-5">
-                                        Установить прокси
-                                    </span>
+                                    <span class="icon-padding-5"> Установить прокси </span>
                                     <i class="fas fa-wifi"></i>
                                 </button>
                             </div>
                             <div class="col-3">
                                 <button class="btn btn-info shadow-4-strong">
-                                    <span class="icon-padding-5">
-                                        Проверить аккаунты
-                                    </span>
+                                    <span class="icon-padding-5"> Проверить аккаунты </span>
                                     <i class="fas fa-sync"></i>
                                 </button>
                             </div>
                             <div class="col-3">
                                 <button class="btn btn-info shadow-4-strong">
-                                    <span class="icon-padding-5">
-                                        Добавить аккаунт вручную
-                                    </span>
+                                    <span class="icon-padding-5"> Добавить аккаунт вручную </span>
                                     <i class="fas fa-phone"></i>
                                 </button>
                             </div>
@@ -205,12 +180,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -222,31 +194,25 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -259,12 +225,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -276,31 +239,25 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -313,12 +270,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -330,31 +284,25 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -367,12 +315,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -384,31 +329,25 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -421,12 +360,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -438,31 +374,25 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -475,12 +405,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -492,31 +419,25 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -529,12 +450,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -546,31 +464,25 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
@@ -583,12 +495,9 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img
-                                                    alt=""
-                                                    class="rounded-circle"
-                                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                                    style="width: 45px; height: 45px"
-                                            />
+                                            <img alt="" class="rounded-circle"
+                                                 src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                                 style="width: 45px; height: 45px"/>
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">Иван Сусанин</p>
                                                 <p class="text-muted mb-0">@supersus</p>
@@ -600,36 +509,29 @@
                                         <p class="text-muted mb-0">Мужчина</p>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Готов к работе">
-                                        Доступен
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Готов к работе"> Доступен </span>
                                     </td>
                                     <td>
-                                    <span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip"
-                                          rel="tooltip" title="Прокси валидное">
-                                        199.82.1.253
-                                    </span>
+                                        <span class="badge badge-success rounded-pill d-inline"
+                                              data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное"> 199.82.1.253 </span>
                                     </td>
                                     <td>
-                                    <span data-mdb-toggle="tooltip" rel="tooltip" title="Возраст взят из .json файла">
-                                        47 дней
-                                    </span>
+                                        <span data-mdb-toggle="tooltip" rel="tooltip"
+                                              title="Возраст взят из .json файла"> 47 дней </span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Проверить аккаунт" type="button">
+                                                rel="tooltip" title="Проверить аккаунт" type="button">
                                             <i class="fas fa-sync"></i>
                                         </button>
                                         <button class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip"
-                                                rel="tooltip"
-                                                title="Сменить прокси" type="button">
+                                                rel="tooltip" title="Сменить прокси" type="button">
                                             <i class="fas fa-wifi"></i>
                                         </button>
                                     </td>
                                 </tr>
-
                                 </tbody>
                             </table>
                         </div>
@@ -658,16 +560,13 @@
                                                             <input class="form-control form-select" id="chat-link"
                                                                    type="text"/>
                                                             <label class="form-label" for="chat-link"
-                                                                   id='chat-link-label'>
-                                                                Ссылка на чат
-                                                            </label>
+                                                                   id='chat-link-label'> Ссылка на чат </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-outline">
                                                             <select aria-label="Default select example"
-                                                                    class="form-select"
-                                                                    id="accounts-dropdown">
+                                                                    class="form-select" id="accounts-dropdown">
                                                                 <option disabled selected>+6285229164278</option>
                                                                 <option disabled>Выберите во вкладке Аккаунты</option>
                                                             </select>
@@ -687,8 +586,7 @@
                                                     <div class="col-4">
                                                         <div class="mb-3 form-check">
                                                             <input class="form-check-input" id="parse-dialogs"
-                                                                   onclick="parseDialogs()"
-                                                                   type="checkbox"/>
+                                                                   onclick="parseDialogs()" type="checkbox"/>
                                                             <label class="form-check-label" for="parse-dialogs">Парсинг
                                                                 по диалогам</label>
                                                         </div>
@@ -731,14 +629,16 @@
                                                 <div class="row mt-2">
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                    <textarea class="form-control rounded" disabled id="system-result-users-text-area"
-                                              rows="10" style="resize: none;">Системные логи</textarea>
+                                                            <textarea class="form-control rounded" disabled
+                                                                      id="system-result-users-text-area" rows="10"
+                                                                      style="resize: none;">Системные логи</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-8">
                                                         <div class="form-group">
-                                    <textarea class="form-control rounded" disabled id="result-users-text-area"
-                                              rows="10" style="resize: none;">История парсинга</textarea>
+                                                            <textarea class="form-control rounded" disabled
+                                                                      id="result-users-text-area" rows="10"
+                                                                      style="resize: none;">История парсинга</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -764,102 +664,128 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header">
+                                    <div class="card-header p-0 sending-card-header">
                                         <div class="row">
-                                            <div class="container">
-                                                <div class="row mt-2">
+                                            <div class="container-fluid">
+                                                <div class="row">
                                                     <div class="col-4">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control rounded" id="sms-text-area"
-                                                                      placeholder="Текст сообщения" rows="5"
-                                                                      style="resize: none;"></textarea>
+                                                        <textarea class="form-control rounded" id="message-text-area"
+                                                                  placeholder="Текст сообщения"
+                                                                  style="resize: none; height: 140px!important"></textarea>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="form-outline">
+                                                            <select class="form-select" id="target-user-type-dropdown">
+                                                                <option disabled selected>Тип получателя</option>
+                                                                <option>По юзернейму</option>
+                                                                <option>По ID</option>
+                                                                <option>По телефону</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-outline mt-2">
+                                                            <select class="form-select" id="sending-chat-type-dropdown"
+                                                                    onclick="validateChatType()">
+                                                                <option disabled selected>Тип чата</option>
+                                                                <option>Диалог</option>
+                                                                <option>Новый</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="btn btn-info w-100 mt-3"
+                                                             id="recipients-upload-button">
+                                                            <span class="icon-padding-5"> Получатели </span>
+                                                            <i class="fas fa-upload"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="col-3 mt-1">
-                                                        <div class="mb-4 form-check">
-                                                            <input checked class="form-check-input" id="forward-post"
-                                                                   type="checkbox"/>
-                                                            <label class="form-check-label" for="forward-post">Пересылка
-                                                                поста</label>
+                                                    <div class="col-3">
+                                                        <div class="form-outline">
+                                                            <select class="form-select" id="message-type"
+                                                                    onclick="validateMessageType()">
+                                                                <option disabled selected>Вид сообщения</option>
+                                                                <option>Текст</option>
+                                                                <option>Репост</option>
+                                                                <option>Медиа файл</option>
+                                                            </select>
                                                         </div>
-                                                        <div class="mb-4 form-check">
-                                                            <input checked class="form-check-input" id="use-secret-chat"
-                                                                   type="checkbox"/>
-                                                            <label class="use-secret-chat-label" for="use-secret-chat">Секретные чаты</label>
+                                                        <div class="btn btn-info w-100" id="add-file-button" style="display: none;">
+                                                            <span class="icon-padding-5">Добавить файлы</span>
+                                                            <i class="fa fa-images"></i>
                                                         </div>
-                                                         <div class="form-check mb-4">
-                                                            <input checked class="form-check-input" id="use-dialog-chats"
-                                                                   type="checkbox"/>
-                                                            <label class="use-dialog-chats-label" for="use-dialog-chats">Только по диалогам</label>
+                                                        <div class="form-outline w-100" id="link-forward-input">
+                                                            <input class="form-control form-select" disabled
+                                                                   id="forward-from-link" type="text">
+                                                            <label class="form-label" for="forward-from-link"
+                                                                   id="forward-from-link-label"
+                                                                   style="margin-left: 0px;"> Ссылка на пост </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn btn-success mt-3" id="start-sending-dm">
+                                                            <span class="icon-padding-5"> Запустить рассылку </span>
+                                                            <i class="fas fa-play"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="col-5">
-                                                        <div class="form-outline mb-1">
+                                                    <div class="col-2">
+                                                        <div class="form-outline delays">
                                                             <input class="form-control form-select"
-                                                                   id="post-forward-link"
-                                                                   type="text">
-                                                            <label class="form-label" for="post-forward-link"
-                                                                   id="post-forward-link-label"
-                                                                   style="margin-left: 0px;">
-                                                                Ссылка на пост
-                                                            </label>
+                                                                   id="delay-between-sms-from" type="text">
+                                                            <label class="form-label" for="delay-between-sms-from"
+                                                                   id="delay-between-sms-from-label"
+                                                                   style="margin-left: 0px;"> Задержа ОТ (сек.) </label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
                                                                      style="width: 9px;"></div>
                                                                 <div class="form-notch-middle"
                                                                      style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3 mb-2">
-                                                            <div class="col-6">
-                                                                <div class="form-outline mb-1">
+                                                        <div class="form-outline mb-3">
                                                             <input class="form-control form-select"
-                                                                   id="post-forward-link"
-                                                                   type="text">
-                                                            <label class="form-label" for="post-forward-link"
-                                                                   id="post-forward-link-label"
-                                                                   style="margin-left: 0px;">
-                                                                Задержка ОТ
-                                                            </label>
+                                                                   id="delay-between-sms-to" type="text">
+                                                            <label class="form-label" for="delay-between-sms-to"
+                                                                   id="delay-between-sms-to-label"
+                                                                   style="margin-left: 0px;"> Задержа ДО (сек.) </label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
                                                                      style="width: 9px;"></div>
                                                                 <div class="form-notch-middle"
                                                                      style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
                                                             </div>
                                                         </div>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <div class="form-outline mb-1">
+                                                        <div class="form-outline delays">
                                                             <input class="form-control form-select"
-                                                                   id="post-forward-link"
-                                                                   type="text">
-                                                            <label class="form-label" for="post-forward-link"
-                                                                   id="post-forward-link-label"
-                                                                   style="margin-left: 0px;">
-                                                                Задержка ДО
-                                                            </label>
+                                                                   id="account-limit" type="text">
+                                                            <label class="form-label" for="account-limit"
+                                                                   id="account-limit-label"
+                                                                   style="margin-left: 0px;">Аккаунт-лимит</label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
                                                                      style="width: 9px;"></div>
                                                                 <div class="form-notch-middle"
                                                                      style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
                                                             </div>
-                                                        </div>
-                                                            </div>
-                                                        </div>
-                                                         <div class="btn btn-info w-100" id='start-sending-btn'
-                                                             onclick="runSending()">
-                                                            <span class="icon-padding-5">Начать рассылку в ЛС</span>
-                                                            <i class="fas fa-share-square"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="card-header p-0 logs-card-header">
+                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                                            <i class="fa fa-download"></i>
+                                        </div>
+                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                                            <i class="fa fa-copy"></i>
+                                        </div>
+                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
+                                                  rows="10" style="resize: none;">История рассылки&#13;</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -873,15 +799,11 @@
                 <div class="row">
                     <div class="col-lg-12 mt-2">
                         <h1>Inviter Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
                     </div>
                 </div>
             </div>
@@ -891,15 +813,11 @@
                 <div class="row">
                     <div class="col-lg-12 mt-2">
                         <h1>Settings Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
                     </div>
                 </div>
             </div>
@@ -909,15 +827,11 @@
                 <div class="row">
                     <div class="col-lg-12 mt-2">
                         <h1>Sender Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
                     </div>
                 </div>
             </div>
@@ -927,15 +841,11 @@
                 <div class="row">
                     <div class="col-lg-12 mt-2">
                         <h1>Sender Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
                     </div>
                 </div>
             </div>
@@ -979,7 +889,6 @@
 <script>
     async function parseDialogs() {
         let parseDialogsCheckboxIsChecked = document.getElementById('parse-dialogs').checked
-
         if (parseDialogsCheckboxIsChecked) {
             document.getElementById('chat-link-label').innerText = 'Название чата';
         } else {
@@ -987,6 +896,46 @@
         }
     }
 </script>
-</body>
+<script>
+    function validateChatType() {
+        let sendingChatTypeDropdown = document.getElementById("sending-chat-type-dropdown");
+        let sendingUserTypeDropdown = document.getElementById("target-user-type-dropdown");
+        let recipientsUploadButton = document.getElementById("recipients-upload-button");
+        if (sendingChatTypeDropdown.value === "Диалог") {
+            sendingUserTypeDropdown.disabled = true
+            recipientsUploadButton.style.pointerEvents = 'none'
+            recipientsUploadButton.style.opacity = '0.5'
+        } else {
+            sendingUserTypeDropdown.disabled = false
+            recipientsUploadButton.style.pointerEvents = 'all'
+            recipientsUploadButton.style.opacity = '1'
+        }
+    }
 
+    function validateMessageType() {
+        let messageTypeDropdown = document.getElementById("message-type")
+        let forwardFromLinkInput = document.getElementById("forward-from-link")
+        let messageTextArea = document.getElementById('message-text-area')
+
+        let linkForwardContainer = document.getElementById('link-forward-input')
+        let addFileButton = document.getElementById('add-file-button')
+
+        if (messageTypeDropdown.value === "Репост") {
+            forwardFromLinkInput.disabled = false
+            messageTextArea.disabled = true
+            linkForwardContainer.style.display = 'block'
+            addFileButton.style.display = 'none'
+        } else if (messageTypeDropdown.value === "Медиа файл") {
+            addFileButton.style.display = 'block'
+            linkForwardContainer.style.display = 'none'
+            messageTextArea.disabled = false
+        } else {
+            forwardFromLinkInput.value = ''
+            forwardFromLinkInput.classList.remove('active')
+            forwardFromLinkInput.disabled = true
+            messageTextArea.disabled = false
+        }
+    }
+</script>
+</body>
 </html>
