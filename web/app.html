@@ -30,7 +30,7 @@
                 </b>
             </li>
             <li class="nav-item">
-                <a data-mdb-toggle="tab" href="#accounts-content" id="tab-accounts" role="tab">
+                <a class="active" data-mdb-toggle="tab" href="#accounts-content" id="tab-accounts" role="tab">
                     <i class="fas fa-user"></i>Аккаунты </a>
             </li>
             <li class="nav-item">
@@ -46,55 +46,13 @@
                     <i class="fas fa-plus"></i>Инвайтер </a>
             </li>
             <li class="nav-item" id="settings-li" style="border-top: 2px solid #f5f5f5">
-                <a class="active" data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
+                <a data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
                     <i class="fas fa-cog"></i>Настройки </a>
             </li>
-            <div id="pro-li" style="display: none">
-                <b>
-                    <i class="fas fa-crown" id="pro-i"></i>
-                    <span class="pro-menu-btn">ПРО МОДУЛИ <span id="menu-item-span"></span>
-              </span>
-                </b>
-            </div>
-            <span id="pro-menu-list" style="display: none">
-            <li class="nav-item">
-              <a class="active" data-mdb-toggle="tab" href="#farmer-content" id="tab-farmer" role="tab">
-                <i class="fas fa-clock"></i>Фармер </a>
-            </li>
-            <li class="nav-item">
-              <a class="active" data-mdb-toggle="tab" href="#parser-channel-parser-content" id="tab-channel-chat"
-                 role="tab">
-                <i class="fas fa-bullhorn"></i>Парсер Каналов </a>
-            </li>
-            <li class="nav-item">
-              <a data-mdb-toggle="tab" href="#geo-parser-content" id="tab-geo-parser" role="tab">
-                <i class="fas fa-compass"></i>Гео Парсер </a>
-            </li>
-            <li class="nav-item">
-              <a data-mdb-toggle="tab" href="#check-numbers-content" id="tab-check-numbers" role="tab">
-                <i class="fas fa-mobile-alt"></i>Чекер номеров </a>
-            </li>
-            <li class="nav-item">
-              <a data-mdb-toggle="tab" href="#searcher-content" id="tab-search" role="tab">
-                <i class="fas fa-search"></i>Поиск чатов </a>
-            </li>
-            <li class="nav-item">
-              <a class="active" data-mdb-toggle="tab" href="#smm-content" id="tab-smm" role="tab">
-                <i class="fas fa-signal"></i>Накрутка </a>
-            </li>
-            <li class="nav-item">
-              <a data-mdb-toggle="tab" href="#registrator-content" id="tab-registrator" role="tab">
-                <i class="fas fa-user-plus"></i>Реггер </a>
-            </li>
-            <li class="nav-item">
-              <a data-mdb-toggle="tab" href="#converter-content" id="tab-converter" role="tab">
-                <i class="fas fa-sync-alt"></i>Конвертер </a>
-            </li>
-          </span>
         </ul>
     </div>
     <div class="tab-content">
-        <div class="tab-pane fade" id="accounts-content" role="tabpanel">
+        <div class="tab-pane fade show active" id="accounts-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
@@ -876,8 +834,8 @@
                                                             <select class="form-select" id="message-type"
                                                                     onclick="validateMessageType()">
                                                                 <option disabled selected>Вид инвайта</option>
-                                                                <option>Прямой</option>
-                                                                <option>Контакты</option>
+                                                                <option>Напрямую</option>
+                                                                <option>Через контакты</option>
                                                             </select>
                                                         </div>
                                                         <div class="btn btn-info w-100" id="add-file-button"
@@ -956,7 +914,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade show active" id="settings-content" role="tabpanel">
+        <div class="tab-pane fade" id="settings-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
