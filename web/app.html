@@ -38,11 +38,11 @@
                     <i class="fas fa-user-friends"></i>Парсер Чатов </a>
             </li>
             <li class="nav-item">
-                <a class="active" data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
+                <a data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
                     <i class="fas fa-comment"></i>Рассылка </a>
             </li>
             <li class="nav-item">
-                <a data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
+                <a class="active" data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
                     <i class="fas fa-plus"></i>Инвайтер </a>
             </li>
             <li class="nav-item" id="settings-li" style="border-top: 2px solid #f5f5f5">
@@ -551,7 +551,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header">
+                                    <div class="card-header p-2">
                                         <div class="row">
                                             <div class="container">
                                                 <div class="row">
@@ -581,7 +581,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="container">
+                                            <div class="container-fluid">
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <div class="mb-3 form-check">
@@ -627,19 +627,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
-                                                    <div class="col-4">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control rounded" disabled
-                                                                      id="system-result-users-text-area" rows="10"
-                                                                      style="resize: none;">Системные логи</textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <div class="form-group">
+                                                    <div class="col-12">
                                                             <textarea class="form-control rounded" disabled
                                                                       id="result-users-text-area" rows="10"
                                                                       style="resize: none;">История парсинга</textarea>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -652,7 +643,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade show active" id="sender-content" role="tabpanel">
+        <div class="tab-pane fade" id="sender-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
@@ -706,7 +697,8 @@
                                                                 <option>Медиа файл</option>
                                                             </select>
                                                         </div>
-                                                        <div class="btn btn-info w-100" id="add-file-button" style="display: none;">
+                                                        <div class="btn btn-info w-100" id="add-file-button"
+                                                             style="display: none;">
                                                             <span class="icon-padding-5">Добавить файлы</span>
                                                             <i class="fa fa-images"></i>
                                                         </div>
@@ -794,16 +786,161 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="inviter-content" role="tabpanel">
+        <div class="tab-pane fade show active" id="inviter-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
-                        <h1>Inviter Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        <h3>
+                            <div class="card text-center accounts-info-pan">
+                                <div class="card-header">Инвайтинг</div>
+                            </div>
+                        </h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header p-0 sending-card-header">
+                                        <div class="row">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="form-outline">
+                                                            <select class="form-select"
+                                                                    id="target-invite-user-type-dropdown">
+                                                                <option disabled selected>Тип пользователя</option>
+                                                                <option>По юзернейму</option>
+                                                                <option>По ID</option>
+                                                                <option>По телефону</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-outline mt-2">
+                                                            <select class="form-select" id="sending-chat-type-dropdown"
+                                                                    onclick="validateChatType()">
+                                                                <option disabled selected>Тип чата</option>
+                                                                <option>Чат</option>
+                                                                <option disabled="true">Канал</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="btn btn-info w-100 mt-3"
+                                                             id="recipients-upload-button">
+                                                            <span class="icon-padding-5">Пользователи</span>
+                                                            <i class="fas fa-upload"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="form-outline">
+                                                            <input class="form-control form-select"
+                                                                   id="account-limit" type="text">
+                                                            <label class="form-label" for="account-limit"
+                                                                   id="account-limit-label"
+                                                                   style="margin-left: 0px;">Аккаунт-лимит</label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-outline" style="margin-top: 15px;">
+                                                            <input class="form-control form-select"
+                                                                   id="account-limit" type="text">
+                                                            <label class="form-label" for="account-limit"
+                                                                   id="account-limit-label"
+                                                                   style="margin-left: 0px;">Инвайтить за раз </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
+                                                            </div>
+                                                        </div>
+                                                    <div class="form-check form-switch" style="margin-top: 20px">
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                                      <label class="form-check-label" for="flexSwitchCheckDefault">Выходить после инвайта</label>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="form-outline">
+                                                            <select class="form-select" id="message-type"
+                                                                    onclick="validateMessageType()">
+                                                                <option disabled selected>Вид инвайта</option>
+                                                                <option>Прямой</option>
+                                                                <option>Контакты</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="btn btn-info w-100" id="add-file-button"
+                                                             style="display: none;">
+                                                            <span class="icon-padding-5">Добавить файлы</span>
+                                                            <i class="fa fa-images"></i>
+                                                        </div>
+                                                        <div class="form-outline w-100" id="link-forward-input">
+                                                            <input class="form-control form-select"
+                                                                   id="forward-from-link" type="text">
+                                                            <label class="form-label" for="forward-from-link"
+                                                                   id="forward-from-link-label"
+                                                                   style="margin-left: 0px;"> Ссылка на группу </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn btn-success mt-3" id="start-sending-dm"
+                                                             style="width: 200%!important;">
+                                                            <span class="icon-padding-5"> Запустить инвайтинг </span>
+                                                            <i class="fas fa-play"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="form-outline delays">
+                                                            <input class="form-control form-select"
+                                                                   id="delay-between-sms-from" type="text">
+                                                            <label class="form-label" for="delay-between-sms-from"
+                                                                   id="delay-between-sms-from-label"
+                                                                   style="margin-left: 0px;"> Задержа ОТ (сек.) </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-outline mb-3">
+                                                            <input class="form-control form-select"
+                                                                   id="delay-between-sms-to" type="text">
+                                                            <label class="form-label" for="delay-between-sms-to"
+                                                                   id="delay-between-sms-to-label"
+                                                                   style="margin-left: 0px;"> Задержа ДО (сек.) </label>
+                                                            <div class="form-notch">
+                                                                <div class="form-notch-leading"
+                                                                     style="width: 9px;"></div>
+                                                                <div class="form-notch-middle"
+                                                                     style="width: 96px;"></div>
+                                                                <div class="form-notch-trailing margin-right-input"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header p-0 logs-card-header">
+                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                                            <i class="fa fa-download"></i>
+                                        </div>
+                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                                            <i class="fa fa-copy"></i>
+                                        </div>
+                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
+                                                  rows="10" style="resize: none;">История рассылки&#13;</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -813,34 +950,6 @@
                 <div class="row">
                     <div class="col-lg-12 mt-2">
                         <h1>Settings Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="sender3-content" role="tabpanel">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h1>Sender Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="sender4-content" role="tabpanel">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h1>Sender Tab</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in

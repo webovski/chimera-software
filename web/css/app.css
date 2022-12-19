@@ -159,3 +159,18 @@ li > a.active {
 #copy-sending-history {
     right: 8%;
 }
+
+.form-switch .form-check-input:checked[type="checkbox"]::after {
+    background-color: #54b4d3;
+}
+.form-check-input[type="checkbox"]:checked {
+  background-color: #54b4d3;
+}
+
+.form-switch .form-check-input:checked:focus::before {
+  box-shadow: 3px -1px 0 13px #54b4d3;
+}
+
+.form-check-input[type="checkbox"]:checked:focus {
+  background-color: #54b4d3;
+}
