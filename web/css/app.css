@@ -174,3 +174,15 @@ li > a.active {
 .form-check-input[type="checkbox"]:checked:focus {
   background-color: #54b4d3;
 }
+
+.form-check-input:checked {
+  border-color: #54b4d3;
+}
+
+.form-check-input:checked:focus::before {
+  box-shadow: 0 0 0 13px #54b4d3;
+}
+
+.form-check-input:checked:focus {
+  border-color: #54b4d3;
+}

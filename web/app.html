@@ -42,11 +42,11 @@
                     <i class="fas fa-comment"></i>Рассылка </a>
             </li>
             <li class="nav-item">
-                <a class="active" data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
+                <a data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
                     <i class="fas fa-plus"></i>Инвайтер </a>
             </li>
             <li class="nav-item" id="settings-li" style="border-top: 2px solid #f5f5f5">
-                <a data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
+                <a class="active" data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
                     <i class="fas fa-cog"></i>Настройки </a>
             </li>
             <div id="pro-li" style="display: none">
@@ -628,6 +628,12 @@
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-12">
+                                                                                                <div class="btn btn-info textarea-actions" id="download-sending-history">
+                                            <i class="fa fa-download"></i>
+                                        </div>
+                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                                            <i class="fa fa-copy"></i>
+                                        </div>
                                                             <textarea class="form-control rounded" disabled
                                                                       id="result-users-text-area" rows="10"
                                                                       style="resize: none;">История парсинга</textarea>
@@ -786,7 +792,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade show active" id="inviter-content" role="tabpanel">
+        <div class="tab-pane fade" id="inviter-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
@@ -855,10 +861,13 @@
                                                                 <div class="form-notch-trailing margin-right-input"></div>
                                                             </div>
                                                         </div>
-                                                    <div class="form-check form-switch" style="margin-top: 20px">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                                                      <label class="form-check-label" for="flexSwitchCheckDefault">Выходить после инвайта</label>
-                                                    </div>
+                                                        <div class="form-check form-switch" style="margin-top: 20px">
+                                                            <input class="form-check-input" id="flexSwitchCheckDefault"
+                                                                   role="switch" type="checkbox"/>
+                                                            <label class="form-check-label"
+                                                                   for="flexSwitchCheckDefault">Выходить после
+                                                                инвайта</label>
+                                                        </div>
                                                     </div>
                                                     <div class="col-3">
                                                         <div class="form-outline">
@@ -936,7 +945,7 @@
                                             <i class="fa fa-copy"></i>
                                         </div>
                                         <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
-                                                  rows="10" style="resize: none;">История рассылки&#13;</textarea>
+                                                  rows="10" style="resize: none;">История инвайтинга&#13;</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -945,16 +954,69 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="settings-content" role="tabpanel">
+        <div class="tab-pane fade show active" id="settings-content" role="tabpanel">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 mt-2">
-                        <h1>Settings Tab</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        <h3>
+                            <div class="card text-center accounts-info-pan">
+                                <div class="card-header">Настройки</div>
+                            </div>
+                        </h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header p-0 sending-card-header">
+                                        <div class="row">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="btn btn-info w-100"
+                                                             id="recipients-upload-button">
+                                                            <span class="icon-padding-5">Файл прокси</span>
+                                                            <i class="fas fa-wifi"></i>
+                                                        </div>
+                                                        <div class="btn btn-info w-100 mt-3"
+                                                             id="recipients-upload-button">
+                                                            <span class="icon-padding-5">Рабочая папка</span>
+                                                            <i class="fas fa-folder-open"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-outline">
+                                                            <select class="form-select"
+                                                                    id="target-invite-user-type-dropdown">
+                                                                <option disabled selected>Тип прокси</option>
+                                                                <option>HTTP</option>
+                                                                <option>SOCS5</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="btn btn-success w-100" style="margin-top: 13px;">
+                                                            <span class="icon-padding-5">Сохранить</span>
+                                                            <i class="fa fa-save"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                        <textarea class="form-control rounded" id="result-user-logs-textarea"
+                                                  style="resize: none; height: 89px; width: 98%;">1:b6b154c3707471f5339bd661645ed3d6</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="card-header p-0 logs-card-header">
+                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                                            <i class="fa fa-download"></i>
+                                        </div>
+                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                                            <i class="fa fa-copy"></i>
+                                        </div>
+                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
+                                                  rows="10" style="resize: none;">Лог работы программы&#13;</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
