@@ -59,7 +59,7 @@
                     <div class="col-lg-12 mt-2">
                         <h3>
                             <div class="card text-center accounts-info-pan">
-                                <div class="card-header">Управление Аккаунтами <span
+                                <div class="card-header">Управление Аккаунтами <span id="all-accounts-badge"
                                         class="badge badge-success badge-custom">796</span>
                                 </div>
                             </div>
@@ -67,20 +67,20 @@
                         <div class="row mb-2">
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Доступно <span
+                                    <div class="card-header">Доступно <span id="valid-accounts-badge"
                                             class="badge badge-success badge-custom">18</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Не проверено <span class="badge badge-info badge-custom">777</span>
+                                    <div class="card-header">Не проверено <span id="not-checked-accounts-badge" class="badge badge-info badge-custom">777</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Спам-Блок <span
+                                    <div class="card-header">Спам-Блок <span id="spam-block-accounts-badge"
                                             class="badge badge-danger badge-custom">1</span>
                                     </div>
                                 </div>
@@ -633,23 +633,8 @@
     eel.render_accounts_list()
 </script>
 
-<script>
-    // set all checkbox checked
-    const checkbox = document.getElementById('flexCheckDefault')
+<script type="text/javascript" src="js/modules/view-navigations.js">
 
-checkbox.addEventListener('change', (event) => {
-let tableRows =document.getElementsByTagName("tbody")[0].rows;
-  if (event.currentTarget.checked) {
-    for(let i=0;i<tableRows.length;i++){
-      let checkbox = tableRows[i].querySelectorAll('input[type=checkbox]');
-      checkbox[0].checked = true;
-    }
-    } else {
-    for(let i=0;i<tableRows.length;i++){
-      let checkbox = tableRows[i].querySelectorAll('input[type=checkbox]');
-      checkbox[0].checked = false;
-    }
-  }})
 </script>
 <script>
     let accountsTable = document.getElementById('account-table-body')
