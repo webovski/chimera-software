@@ -186,3 +186,7 @@ li > a.active {
 .form-check-input:checked:focus {
   border-color: #54b4d3;
 }
+.account-picture {
+    width: 45px;
+    height: 45px;
+}

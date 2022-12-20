@@ -2,6 +2,7 @@ import async_eel
 import asyncio
 from core.config import System
 from core.handlers import AuthHandler
+from core.renderers import AccountsRenderer
 
 loop = asyncio.get_event_loop()
 
