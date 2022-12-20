@@ -627,9 +627,29 @@
 </div>
 </div>
 </div>
+
 <script>
     // init necessary methods
     eel.render_accounts_list()
+</script>
+
+<script>
+    // set all checkbox checked
+    const checkbox = document.getElementById('flexCheckDefault')
+
+checkbox.addEventListener('change', (event) => {
+let tableRows =document.getElementsByTagName("tbody")[0].rows;
+  if (event.currentTarget.checked) {
+    for(let i=0;i<tableRows.length;i++){
+      let checkbox = tableRows[i].querySelectorAll('input[type=checkbox]');
+      checkbox[0].checked = true;
+    }
+    } else {
+    for(let i=0;i<tableRows.length;i++){
+      let checkbox = tableRows[i].querySelectorAll('input[type=checkbox]');
+      checkbox[0].checked = false;
+    }
+  }})
 </script>
 <script>
     let accountsTable = document.getElementById('account-table-body')
