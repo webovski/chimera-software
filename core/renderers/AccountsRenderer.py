@@ -11,6 +11,7 @@ async def read_account_json(json_file_path: str):
             account_json = json.load(file)
             accounts_setting_dict: dict = {
                 'session': json_file_path.replace('.json', '.session'),
+                'phone': account_json.get('phone'),
                 'api_id': account_json.get('app_id'),
                 'api_hash': account_json.get('app_hash'),
                 'device_model': account_json.get('device'),
@@ -47,7 +48,7 @@ async def render_accounts_list():
             account_json_config = await read_account_json(json_path)
             account_has_json_file = account_json_config[0]
 
-            phone_number = account_json_config[1]['session'].rsplit('/', 1)[1].split('.session')[0]
+            phone_number = account_json_config[1]['phone']
             gender = account_json_config[1]['sex']
             account_proxy = f'{account_json_config[1]["proxy"][1]}:{account_json_config[1]["proxy"][2]}'
             username = account_json_config[1]["username"]
