@@ -628,14 +628,15 @@
 </div>
 </div>
 
+<script type="text/javascript" src="js/modules/view-navigations.js"></script>
+
 <script>
     // init necessary methods
     eel.render_accounts_list()
+    updateAccountsBadges()
 </script>
 
-<script type="text/javascript" src="js/modules/view-navigations.js">
 
-</script>
 <script>
     let accountsTable = document.getElementById('account-table-body')
     eel.expose(renderAccountsList)

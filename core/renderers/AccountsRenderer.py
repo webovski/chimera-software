@@ -39,7 +39,10 @@ async def render_accounts_list():
     sessions = [f for f in glob.glob(f"{input_sessions_folder}*.session")]
     accounts_html = ''
 
-    # 'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png https://icons-for-free.com/iconfiles/png/512/female+person+user+woman+young+icon-1320196266256009072.png'
+    accounts_all = 0
+    accounts_valid = 0
+    accounts_not_checked = 0
+    accounts_spam_block = 0
 
     for session_path in sessions:
 
@@ -69,13 +72,16 @@ async def render_accounts_list():
             user_fl_names = f'{first_name} {last_name}'
 
             if chimera_status is None:
+                accounts_not_checked += 1
                 chimera_status = ['info', 'Аккаунт ещё не был использован в программе', 'Не проверен']
             elif chimera_status == 'valid':
+                accounts_valid += 1
                 chimera_status = ['success', 'Аккаунт готов к работе', 'Проверен']
             elif chimera_status == 'spam-block':
-                chimera_status = ['warning', 'Аккаунт ограничен', 'Spam block']
+                accounts_spam_block += 1
+                chimera_status = ['danger', 'Аккаунт ограничен', 'Спам-Блок']
             elif chimera_status == 'deleted':
-                chimera_status = ['error', 'Аккаунт удалён', 'Удалён']
+                chimera_status = ['danger', 'Аккаунт удалён', 'Удалён']
             else:
                 chimera_status = ['default', 'Не удалось распознать', 'Неизвестно']
 
@@ -96,6 +102,7 @@ async def render_accounts_list():
             user_fl_names = 'Неизвестно'
             register_time_in_days = 'NaN дней'
 
+        accounts_all += 1
         session_name = os.path.basename(os.path.normpath(session_path))
         account_item = f'<tr id="tr_{session_name}">' \
                             f'<td>' \
@@ -144,3 +151,4 @@ async def render_accounts_list():
 
     async_eel.renderAccountsList(accounts_html)
     async_eel.displayToast(f'Список аккаунтов обновлён!<br/>Найдено сессий: {len(sessions)} ', 'success')
+    async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block)
