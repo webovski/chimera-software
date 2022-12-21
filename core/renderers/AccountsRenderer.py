@@ -2,6 +2,9 @@ import glob
 import json
 import os
 import async_eel
+import pathlib
+import shutil
+from itertools import chain
 from datetime import datetime, date
 
 
@@ -152,3 +155,18 @@ async def render_accounts_list():
     async_eel.renderAccountsList(accounts_html)
     async_eel.displayToast(f'Список аккаунтов обновлён!<br/>Найдено сессий: {len(sessions)} ', 'success')
     async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block)
+
+
+
+
+
+@async_eel.expose
+async def copy_accounts(dir_path:str=r"C:\Users\axolotl\Desktop\accounts")->int:
+    #by dir path copy to input dir by software with extension session and json
+    try:
+        main_dir_path = rf"accounts\input"
+        files = [shutil.copy2(filepath.absolute(), main_dir_path) for filepath in
+                 chain(pathlib.Path(dir_path).glob('*.session'), pathlib.Path(dir_path).glob('*.json'))]
+        return int(len(files) / 2) if len(files) > 0 else len(files)
+    except Exception as e:
+        print(e)
