@@ -88,9 +88,11 @@
                         </div>
                         <div class="row mt-3 mb-3 text-center">
                             <div class="col-3">
-                                <button class="btn btn-info shadow-4-strong">
+                                <input id="fileselector" type="file" onchange="uploadNewAccounts()" webkitdirectory directory multiple="false" style="display:none" />
+                                <button class="btn btn-info shadow-4-strong" id="accounts-load-btn" onclick="getElementById('fileselector').click()">
                                     <span class="icon-padding-5"> Загрузить аккаунты </span>
                                     <i class="fas fa-upload"></i>
+
                                 </button>
                             </div>
                             <div class="col-3">

@@ -11,6 +11,18 @@ function updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked
     accountSpamBlockBadge.innerText = accounts_spam_block
 }
 
+function uploadNewAccounts() {
+    console.log("fuck");
+    //get invisible object for load directory
+    let directoryPicker = document.getElementById('fileselector');
+    let directoryPath = directoryPicker.files[0].path.match(/(.*)[\/\\]/)[1]||'';
+    //copy accounts from direct
+    console.log(directoryPath);
+    eel.copy_accounts(directoryPath)
+    //render accounts list on view
+    eel.render_accounts_list()
+}
+
 function changeAllCheckboxes(event){
     // set all checkbox checked
   let tableRows = document.getElementsByTagName("tbody")[0].rows;
