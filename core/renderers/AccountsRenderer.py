@@ -161,11 +161,12 @@ async def render_accounts_list():
 
 
 @async_eel.expose
-async def copy_accounts(dir_path:str=r"C:\Users\axolotl\Desktop\accounts")->int:
+async def copy_accounts(dir_path:str)->int:
     #by dir path copy to input dir by software with extension session and json
     try:
-        main_dir_path = pathlib.Path("accounts/input")
-        files = [shutil.copy2(filepath.absolute(), main_dir_path) for filepath in
+        base_dir = os.getcwd()
+        main_dir_path = rf"{base_dir}/accounts/input/"
+        files = [shutil.copy2(filepath.absolute(), f"{main_dir_path}{filepath.name}") for filepath in
                  chain(pathlib.Path(dir_path).glob('*.session'), pathlib.Path(dir_path).glob('*.json'))]
         return int(len(files) / 2) if len(files) > 0 else len(files)
     except Exception as e:
