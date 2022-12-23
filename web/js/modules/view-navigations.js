@@ -38,6 +38,8 @@ function updateProxies(){
     let accountsList = getSelectedAccounts();
     if(accountsList.length>0){
         eel.set_proxies(accountsList)
+    } else{
+        //send warning message about need choose accounts before
     }
 }
 
