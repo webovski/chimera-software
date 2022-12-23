@@ -110,7 +110,7 @@ async def render_accounts_list():
         account_item = f'<tr id="tr_{session_name}">' \
                             f'<td>' \
                                 f'<div class="form-check">' \
-                                    f'<input class="form-check-input" type="checkbox" value=""/>' \
+                                    f'<input class="form-check-input" type="checkbox" value="{session_name}"/>' \
                                 f'</div>' \
                             f'</td>' \
                             f'<td>' \

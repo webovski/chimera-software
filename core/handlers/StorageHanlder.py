@@ -5,7 +5,9 @@ async def init_directories():
     program_dirs = [
         'accounts/input',
         'accounts/spam-block',
-        'accounts/unauthorized'
+        'accounts/unauthorized',
+        'assets'
+
     ]
 
     for program_dir in program_dirs:

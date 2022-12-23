@@ -23,6 +23,24 @@ function uploadNewAccounts() {
     eel.render_accounts_list()
 }
 
+function getSelectedAccounts(){
+    // get selected accounts by checkboxes
+    let tableBody = document.getElementsByTagName("tbody")[0];
+    let selectAccountsCheckBoxes = tableBody.querySelectorAll('input[type=checkbox]:checked');
+    let sessionsArray = [];
+    selectAccountsCheckBoxes.forEach(account => sessionsArray.push(account.value));
+    console.log(sessionsArray);
+    return sessionsArray
+}
+
+function updateProxies(){
+    //update proxies for selected accounts
+    let accountsList = getSelectedAccounts();
+    if(accountsList.length>0){
+        eel.set_proxies(accountsList)
+    }
+}
+
 function changeAllCheckboxes(event){
     // set all checkbox checked
   let tableRows = document.getElementsByTagName("tbody")[0].rows;
