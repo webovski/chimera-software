@@ -13,7 +13,7 @@ async def read_account_json(json_file_path: str):
         with open(json_file_path) as file:
             account_json = json.load(file)
             accounts_setting_dict: dict = {
-                'session': json_file_path.replace('.json', '.session'),
+                'session_file': json_file_path.replace('.json', '.session'),
                 'phone': account_json.get('phone'),
                 'api_id': account_json.get('app_id'),
                 'api_hash': account_json.get('app_hash'),
@@ -37,7 +37,7 @@ async def read_account_json(json_file_path: str):
         return [False, {}]
 
 @async_eel.expose
-async def render_accounts_list():
+async def render_accounts_list(render_message=None):
     input_sessions_folder = 'accounts/input/'
     sessions = [f for f in glob.glob(f"{input_sessions_folder}*.session")]
     accounts_html = ''
@@ -52,7 +52,6 @@ async def render_accounts_list():
         try:
             json_path = session_path.replace('session', 'json')
             account_json_config = await read_account_json(json_path)
-            account_has_json_file = account_json_config[0]
 
             phone_number = account_json_config[1]['phone']
             gender = account_json_config[1]['sex']
@@ -153,7 +152,10 @@ async def render_accounts_list():
         accounts_html = '<td class="text-center" colspan="7">Для начала работы поместите аккаунты в папку accounts/input</td>'
 
     async_eel.renderAccountsList(accounts_html)
-    async_eel.displayToast(f'Список аккаунтов обновлён!<br/>Найдено сессий: {len(sessions)} ', 'success')
+    if render_message is None:
+        async_eel.displayToast(f'Список аккаунтов обновлён!<br/>Найдено сессий: {len(sessions)} ', 'success')
+    else:
+        async_eel.displayToast(f'{render_message[0]}', render_message[1])
     async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block)
 
 

@@ -36,9 +36,10 @@ function getSelectedAccounts(){
 function updateProxies(){
     //update proxies for selected accounts
     let accountsList = getSelectedAccounts();
-    if(accountsList.length>0){
+    if(accountsList.length > 0){
         eel.set_proxies(accountsList)
-    } else{
+    } else {
+        displayToast('Вы не выбрали аккаунты!', 'error')
         //send warning message about need choose accounts before
     }
 }

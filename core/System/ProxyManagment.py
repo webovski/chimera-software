@@ -2,9 +2,10 @@ import random
 
 import async_eel
 from core.System.JsonWriteReader import read_json, edit_json
+from core.renderers import AccountsRenderer
 
 
-async def load_proxies() -> list | None:
+async def get_proxies() -> list | None:
     """load proxies from txt file, if get error return None else return list"""
     path = "assets/proxies.txt"
     try:
@@ -23,13 +24,15 @@ async def set_proxies(accounts_names: list[str]):
     json_paths = [f'{input_sessions_folder}{path.replace("session", "json").replace("tr_", "")}' for path in
                   accounts_names]
     print(json_paths)
-    proxies = await load_proxies()
+    proxies = await get_proxies()
     if proxies is not None:
+        setted_count = 0
         if len(proxies) > 0:
             for json in json_paths:
                 proxy = random.choice(proxies)
                 await update_proxy(json, proxy)
-            print("DONE")
+                setted_count += 1
+            await AccountsRenderer.render_accounts_list(render_message=[f'{setted_count} прокси успешно установлены!', 'info'])
         else:
             async_eel.displayToast(f'Прокси отсутствуют в файле proxies.txt', 'danger')
 
@@ -39,8 +42,12 @@ async def set_proxies(accounts_names: list[str]):
 
 async def update_proxy(path: str, proxy: str):
     """update proxy in json file"""
-    current_json = await read_json(path)
-    if current_json is not None:
-        # add logic for normal format proxy json
-        current_json[proxy] = proxy
+    try:
+        current_json = await read_json(path)
+        new_proxy_list = proxy.split(":")
+        new_proxy = {'proxy': [3, str(new_proxy_list[0]), int(new_proxy_list[1]), True, new_proxy_list[2], new_proxy_list[3]]}
+        current_json.update(new_proxy)
         await edit_json(path, current_json)
+
+    except Exception as E:
+        print(E)
