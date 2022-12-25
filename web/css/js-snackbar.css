@@ -72,9 +72,9 @@
     display: inline-flex;
     box-sizing: border-box;
     border-radius: 3px;
-    color: #eee;
+    color: #4f4f4f;
     font-size: 16px;
-    background-color: #1c1c1c;
+    background-color: #ffffff;
     vertical-align: bottom;
     margin: 0 10px;
     flex-grow: 1;
@@ -148,8 +148,8 @@
     cursor: pointer;
 }
 
-.js-snackbar__action:hover {
-    background-color: #333;
+.js-snackbar__close:hover {
+    background-color: #d8d7d7b5!important;
 }
 
 .js-snackbar__close {
