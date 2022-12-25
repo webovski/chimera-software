@@ -198,3 +198,7 @@ li > a.active {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+#sync-icon {
+    transition: transform 0.8s;
+}

@@ -38,6 +38,12 @@ async def work_with_account(session_path: str):
             print(f'Unexpected | {session_path} {Unexpected}')
 
 
+def all_done(sessions):
+    async_eel.displayToast(f'Проверка {len(sessions)} аккаунтов завершена!', 'success')
+    async_eel.startRotating(0, 'false')
+    async_eel.unblockButton('checking-accounts-btn', 'checking-accounts-btn-text', 'ПРОВЕРИТЬ АККАУНТЫ')
+
+
 @async_eel.expose
 async def check_accounts(accounts_names: list[str]):
     input_sessions_folder = 'accounts/input/'
@@ -53,7 +59,7 @@ async def check_accounts(accounts_names: list[str]):
     if loop and loop.is_running():
         task = loop.create_task(start_accounts(sessions))
         task.add_done_callback(
-            lambda t: async_eel.displayToast(f'Проверка {len(sessions)} аккаунтов завершена!', 'success'))
+            lambda t: all_done(sessions))
     else:
         asyncio.run(start_accounts(sessions))
 

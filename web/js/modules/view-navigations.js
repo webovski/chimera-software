@@ -68,8 +68,28 @@ checkbox.addEventListener('change', (event) => {
 function checkAccounts() {
     let accountsList = getSelectedAccounts();
     if(accountsList.length > 0){
+        startRotating(750, false)
+        blockButton('checking-accounts-btn', 'checking-accounts-btn-text', 'Проверяем аккаунты')
         eel.check_accounts(accountsList)
     } else {
         displayToast('Вы не выбрали аккаунты!', 'error')
     }
+}
+
+eel.expose(blockButton)
+function blockButton(buttonId, buttonTextId, textOnButton) {
+    let selectedButton = document.getElementById(buttonId)
+    let buttonText = document.getElementById(buttonTextId)
+    buttonText.innerText = textOnButton
+    selectedButton.style.pointerEvents = 'none';
+    selectedButton.style.opacity = '0.5';
+}
+
+eel.expose(unblockButton)
+function unblockButton(buttonId, buttonTextId, textOnButton) {
+    let selectedButton = document.getElementById(buttonId)
+    let buttonText = document.getElementById(buttonTextId)
+    buttonText.innerText = textOnButton
+    selectedButton.style.pointerEvents = 'all';
+    selectedButton.style.opacity = '1';
 }
