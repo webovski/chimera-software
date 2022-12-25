@@ -190,3 +190,11 @@ li > a.active {
     width: 45px;
     height: 45px;
 }
+
+.overflow-hidden-p {
+    overflow: hidden;
+    max-width: 150px;
+    max-height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

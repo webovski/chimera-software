@@ -4,12 +4,24 @@ import async_eel
 from core.System.JsonWriteReader import read_json, edit_json
 from core.renderers import AccountsRenderer
 
+PROXY_PATH = 'assets/proxies.txt'
+
+
+async def get_random_proxy():
+    proxy_details = random.choice(list(open(PROXY_PATH))).rstrip().split(sep=":")
+
+    return {
+        "proxy_type": "socks5",
+        "addr": proxy_details[0],
+        "port": int(proxy_details[1]),
+        "username": proxy_details[2],
+        "password": proxy_details[3]
+    }
 
 async def get_proxies() -> list | None:
     """load proxies from txt file, if get error return None else return list"""
-    path = "assets/proxies.txt"
     try:
-        with open(path, mode="r", encoding="utf-8") as file_reader:
+        with open(PROXY_PATH, mode="r", encoding="utf-8") as file_reader:
             proxy_list = [proxy.strip("\n") for proxy in file_reader.readlines()]
             return proxy_list
     except Exception as e:
@@ -23,7 +35,6 @@ async def set_proxies(accounts_names: list[str]):
     input_sessions_folder = 'accounts/input/'
     json_paths = [f'{input_sessions_folder}{path.replace("session", "json").replace("tr_", "")}' for path in
                   accounts_names]
-    print(json_paths)
     proxies = await get_proxies()
     if proxies is not None:
         setted_count = 0
@@ -32,7 +43,10 @@ async def set_proxies(accounts_names: list[str]):
                 proxy = random.choice(proxies)
                 await update_proxy(json, proxy)
                 setted_count += 1
-            await AccountsRenderer.render_accounts_list(render_message=[f'{setted_count} прокси успешно установлены!', 'info'])
+            await AccountsRenderer.render_accounts_list(
+                render_message=[f'{setted_count} прокси успешно установлены!', 'info'],
+                accounts_names=accounts_names
+            )
         else:
             async_eel.displayToast(f'Прокси отсутствуют в файле proxies.txt', 'danger')
 

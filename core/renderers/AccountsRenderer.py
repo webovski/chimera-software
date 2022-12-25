@@ -37,115 +37,117 @@ async def read_account_json(json_file_path: str):
         return [False, {}]
 
 @async_eel.expose
-async def render_accounts_list(render_message=None):
-    input_sessions_folder = 'accounts/input/'
-    sessions = [f for f in glob.glob(f"{input_sessions_folder}*.session")]
-    accounts_html = ''
+async def render_accounts_list(render_message=None, accounts_names=[]):
+    try:
+        input_sessions_folder = 'accounts/input/'
+        sessions = [f for f in glob.glob(f"{input_sessions_folder}*.session")]
+        accounts_html = ''
 
-    accounts_all = 0
-    accounts_valid = 0
-    accounts_not_checked = 0
-    accounts_spam_block = 0
+        accounts_all = 0
+        accounts_valid = 0
+        accounts_not_checked = 0
+        accounts_spam_block = 0
 
-    for session_path in sessions:
+        for session_path in sessions:
 
-        try:
-            json_path = session_path.replace('session', 'json')
-            account_json_config = await read_account_json(json_path)
+            try:
+                json_path = session_path.replace('session', 'json')
+                account_json_config = await read_account_json(json_path)
 
-            phone_number = account_json_config[1]['phone']
-            gender = account_json_config[1]['sex']
-            account_proxy = f'{account_json_config[1]["proxy"][1]}:{account_json_config[1]["proxy"][2]}'
-            username = account_json_config[1]["username"]
-            chimera_status = account_json_config[1]["chimera_status"]
+                phone_number = account_json_config[1]['phone']
+                gender = account_json_config[1]['sex']
+                account_proxy = f'{account_json_config[1]["proxy"][1]}:{account_json_config[1]["proxy"][2]}'
+                username = account_json_config[1]["username"]
+                chimera_status = account_json_config[1]["chimera_status"]
 
-            first_name = account_json_config[1]["first_name"]
-            last_name = account_json_config[1]["last_name"]
-            today = date.today()
-            current_date = today.strftime("%d-%m-%Y")
-            account_created_at = datetime.utcfromtimestamp(int(account_json_config[1]['register_time'])).strftime('%d-%m-%Y')
+                first_name = account_json_config[1]["first_name"]
+                last_name = account_json_config[1]["last_name"]
+                today = date.today()
+                current_date = today.strftime("%d-%m-%Y")
+                account_created_at = datetime.utcfromtimestamp(int(account_json_config[1]['register_time'])).strftime('%d-%m-%Y')
 
-            current_d = datetime.strptime(current_date, "%d-%m-%Y")
-            reg_d = datetime.strptime(account_created_at, "%d-%m-%Y")
-            register_time_in_days = f'{current_d - reg_d}'.split(' ')[0]
+                current_d = datetime.strptime(current_date, "%d-%m-%Y")
+                reg_d = datetime.strptime(account_created_at, "%d-%m-%Y")
+                register_time_in_days = f'{current_d - reg_d}'.split(' ')[0]
 
 
 
-            user_fl_names = f'{first_name} {last_name}'
+                user_fl_names = f'{first_name} {last_name}'
 
-            if chimera_status is None:
-                accounts_not_checked += 1
-                chimera_status = ['info', 'Аккаунт ещё не был использован в программе', 'Не проверен']
-            elif chimera_status == 'valid':
-                accounts_valid += 1
-                chimera_status = ['success', 'Аккаунт готов к работе', 'Проверен']
-            elif chimera_status == 'spam-block':
-                accounts_spam_block += 1
-                chimera_status = ['danger', 'Аккаунт ограничен', 'Спам-Блок']
-            elif chimera_status == 'deleted':
-                chimera_status = ['danger', 'Аккаунт удалён', 'Удалён']
-            else:
-                chimera_status = ['default', 'Не удалось распознать', 'Неизвестно']
+                if chimera_status is None:
+                    accounts_not_checked += 1
+                    chimera_status = ['info', 'Аккаунт ещё не был использован в программе', 'Не проверен']
+                elif chimera_status == 'valid':
+                    accounts_valid += 1
+                    chimera_status = ['success', 'Аккаунт готов к работе', 'Проверен']
+                elif chimera_status == 'spam-block':
+                    accounts_spam_block += 1
+                    chimera_status = ['danger', 'Аккаунт ограничен', 'Спам-Блок']
+                elif chimera_status == 'deleted':
+                    chimera_status = ['danger', 'Аккаунт удалён', 'Удалён']
+                else:
+                    chimera_status = ['default', 'Не удалось распознать', 'Неизвестно']
 
-            if gender == 0:
-                account_picture = 'https://icons-for-free.com/iconfiles/png/512/female+person+user+woman+young+icon-1320196266256009072.png'
-                readable_gender = 'Женщина'
-            else:
-                account_picture = 'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
-                readable_gender = 'Мужчина'
-        except Exception as E:
-            print(E)
-            phone_number = '+777000'
-            readable_gender = 'Неизвестно'
-            account_picture = 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png'
-            account_proxy = '0.0.0.0'
-            username = 'Неизвестно'
-            chimera_status = ['danger', 'Ошибка чтнеия аккаунта', 'Ошибка']
-            user_fl_names = 'Неизвестно'
-            register_time_in_days = 'NaN дней'
+                if gender == 0:
+                    account_picture = 'https://icons-for-free.com/iconfiles/png/512/female+person+user+woman+young+icon-1320196266256009072.png'
+                    readable_gender = 'Женщина'
+                else:
+                    account_picture = 'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
+                    readable_gender = 'Мужчина'
+            except Exception as E:
+                print(E)
+                phone_number = '+777000'
+                readable_gender = 'Неизвестно'
+                account_picture = 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png'
+                account_proxy = '0.0.0.0'
+                username = 'Неизвестно'
+                chimera_status = ['danger', 'Ошибка чтнеия аккаунта', 'Ошибка']
+                user_fl_names = 'Неизвестно'
+                register_time_in_days = 'NaN дней'
 
-        accounts_all += 1
-        session_name = os.path.basename(os.path.normpath(session_path))
-        account_item = f'<tr id="tr_{session_name}">' \
-                            f'<td>' \
-                                f'<div class="form-check">' \
-                                    f'<input class="form-check-input" type="checkbox" value="{session_name}"/>' \
-                                f'</div>' \
-                            f'</td>' \
-                            f'<td>' \
-                                f'<div class="d-flex align-items-center">'\
-                                    f'<img alt="" class="rounded-circle account-picture" src="{account_picture}"></>'\
-                                    f'<div class="ms-3">' \
-                                        f'<p class="fw-bold mb-1">{user_fl_names}</p>'\
-                                        f'<p class="text-muted mb-0">@{username}</p>' \
+            accounts_all += 1
+            session_name = os.path.basename(os.path.normpath(session_path))
+            account_item = f'<tr id="tr_{session_name}">' \
+                                f'<td>' \
+                                    f'<div class="form-check">' \
+                                        f'<input class="form-check-input" type="checkbox" {"checked" if session_name in accounts_names  else ""} value="{session_name}"/>' \
+                                    f'</div>' \
+                                f'</td>' \
+                                f'<td>' \
+                                    f'<div class="d-flex align-items-center">'\
+                                        f'<img alt="" class="rounded-circle account-picture" src="{account_picture}"></>'\
+                                        f'<div class="ms-3">' \
+                                            f'<p class="fw-bold mb-1 overflow-hidden-p">{user_fl_names}</p>'\
+                                            f'<p class="text-muted mb-0 overflow-hidden-p">@{username}</p>' \
+                                        f'</div>'\
                                     f'</div>'\
-                                f'</div>'\
-                            f'</td>'\
-                            f'<td>' \
-                                f'<p class="fw-normal mb-1">{phone_number}</p>'\
-                                f'<p class="text-muted mb-0">{readable_gender}</p>'\
-                            f'</td>' \
-                            f'<td>' \
-                                f'<span class="badge badge-{chimera_status[0]} rounded-pill d-inline" data-mdb-toggle="tooltip" rel="tooltip" title="{chimera_status[1]}">' \
-                                    f'{chimera_status[2]}' \
-                                f'</span>' \
-                            f'</td>'\
-                            f'<td>' \
-                                f'<span class="badge badge-success rounded-pill d-inline" data-mdb-toggle="tooltip" rel="tooltip" title="Прокси валидное">' \
-                                    f'{account_proxy}' \
-                                f'</span>'\
-                            f'</td>'\
-                            f'<td>' \
-                                f'<span data-mdb-toggle="tooltip" rel="tooltip"title="Возраст взят из .json файла">' \
-                                    f'{register_time_in_days}' \
-                                f'</span>' \
-                            f'</td>'\
-                            f'<td>' \
-                                f'<button id="{session_name}" onclick=checkAccount("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Проверить аккаунт" type="button"><i class="fas fa-sync"></i></button>&nbsp;'\
-                                f'<button id="{session_name}" onclick=changeProxy("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Сменить прокси" type="button"><i class="fas fa-wifi"></i></button>' \
-                            f'</td>'\
-                       f'</tr>'
-        accounts_html += account_item
+                                f'</td>'\
+                                f'<td>' \
+                                    f'<p class="fw-normal mb-1">{phone_number}</p>'\
+                                    f'<p class="text-muted mb-0">{readable_gender}</p>'\
+                                f'</td>' \
+                                f'<td>' \
+                                    f'<span class="badge badge-{chimera_status[0]} rounded-pill d-inline" data-mdb-toggle="tooltip" rel="tooltip" title="{chimera_status[1]}">' \
+                                        f'{chimera_status[2]}' \
+                                    f'</span>' \
+                                f'</td>'\
+                                f'<td>' \
+                                    f'<span class="badge badge-info rounded-pill d-inline">' \
+                                        f'{account_proxy}' \
+                                    f'</span>'\
+                                f'</td>'\
+                                f'<td>' \
+                                    f'<span data-mdb-toggle="tooltip" rel="tooltip"title="Возраст взят из .json файла">' \
+                                        f'{register_time_in_days}' \
+                                    f'</span>' \
+                                f'</td>'\
+                                f'<td>' \
+                                    f'<button id="{session_name}" onclick=checkAccount("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;'\
+                                f'</td>'\
+                           f'</tr>'
+            accounts_html += account_item
+    except Exception as Ass:
+        print(Ass)
 
 
     if len(accounts_html) == 0:
@@ -157,8 +159,6 @@ async def render_accounts_list(render_message=None):
     else:
         async_eel.displayToast(f'{render_message[0]}', render_message[1])
     async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block)
-
-
 
 
 

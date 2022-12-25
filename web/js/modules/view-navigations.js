@@ -64,3 +64,12 @@ const checkbox = document.getElementById('flexCheckDefault')
 checkbox.addEventListener('change', (event) => {
   changeAllCheckboxes(event)
 });
+
+function checkAccounts() {
+    let accountsList = getSelectedAccounts();
+    if(accountsList.length > 0){
+        eel.check_accounts(accountsList)
+    } else {
+        displayToast('Вы не выбрали аккаунты!', 'error')
+    }
+}
