@@ -93,8 +93,25 @@ function unblockButton(buttonId, buttonTextId, textOnButton) {
     selectedButton.style.pointerEvents = 'all';
     selectedButton.style.opacity = '1';
 }
+eel.expose(blockTableRow)
+function blockTableRow(sessionName){
+    let format = `tr_${sessionName}`;
+    let selectTRofTable = document.getElementById(format);
+    selectTRofTable.style.pointerEvents="none";
+    selectTRofTable.style.opacity = '0.5';
+    //selectTRofTable.style.backgroundColor="grey";
+}
 
+eel.expose(unblockTableRow)
+function unblockTableRow(sessionName){
+    let format = `tr_${sessionName}`;
+    let selectTRofTable = document.getElementById(format);
+    selectTRofTable.style.pointerEvents="all";
+    selectTRofTable.style.opacity = '1';
+    //selectTRofTable.style.backgroundColor="grey";
+}
 
 function getSmsCode(sessionName){
+    blockTableRow(sessionName);
     eel.get_sms_code(sessionName);
 }

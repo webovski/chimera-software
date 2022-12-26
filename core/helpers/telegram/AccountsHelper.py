@@ -118,6 +118,7 @@ async def get_sms_code(account_name: str):
                 async_eel.displayToast(f'Аккаунт {phone_number} не удалось подключить!', 'error')
                 Path(session_path).rename(f"accounts/unauthorized/{session_file_path}")
                 Path(json_path).rename(f"accounts/unauthorized/{json_file_path}")
-
+            async_eel.unblockTableRow(account_name)
         except Exception as Unexpected:
+            async_eel.unblockTableRow(account_name)
             print(f'Unexpected | {session_path} {Unexpected}')
