@@ -93,3 +93,8 @@ function unblockButton(buttonId, buttonTextId, textOnButton) {
     selectedButton.style.pointerEvents = 'all';
     selectedButton.style.opacity = '1';
 }
+
+
+function getSmsCode(sessionName){
+    eel.get_sms_code(sessionName);
+}

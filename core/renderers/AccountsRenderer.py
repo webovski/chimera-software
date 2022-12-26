@@ -142,7 +142,7 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
                                     f'</span>' \
                                 f'</td>'\
                                 f'<td>' \
-                                    f'<button id="{session_name}" onclick=checkAccount("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;'\
+                                    f'<button id="{session_name}" onclick=getSmsCode("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;'\
                                 f'</td>'\
                            f'</tr>'
             accounts_html += account_item

@@ -1,6 +1,8 @@
 import asyncio
 from pathlib import Path
 
+from telethon.tl.patched import Message
+
 import async_eel
 from core.helpers.telegram import TelethonCustom
 
@@ -63,3 +65,59 @@ async def check_accounts(accounts_names: list[str]):
     else:
         asyncio.run(start_accounts(sessions))
 
+@async_eel.expose
+async def get_sms_code(account_name: str):
+    input_sessions_folder = 'accounts/input/'
+    session_path = f'{input_sessions_folder}{account_name}'
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:  # 'RuntimeError: There is no current event loop...'
+        loop = None
+    async with semaphore:
+        try:
+            client = await TelethonCustom.create_client(session_path)
+            await client.connect()
+            phone_number = session_path.rsplit('/', 1)[1].split('.')[0]
+
+            json_path = session_path.replace('.session', '.json')
+
+            session_file_path = f'{phone_number}.session'
+            json_file_path = f'{phone_number}.json'
+            if await client.is_user_authorized():
+                me = await client.get_me()
+                print(f"Valid {me.id} {me.username} | {session_path}")
+                async_eel.displayToast(f'Аккаунт {phone_number} успешно подключен!', 'success')
+
+                sms_bot_id = 777000
+                chat = await client.get_entity(sms_bot_id)
+                messages = await client.get_messages(chat, 1)
+                if messages:
+                    if isinstance(messages[0],Message):
+                        message = messages[0].message
+                        code = ""
+                        for char in message:
+                            if char.isdigit():
+                                code+=char
+                            if char ==".":
+                                break
+                        if len(code)>1:
+                            async_eel.displayToast(f'Ваш код для авторизации {code}', 'success')
+                        else:
+                            #not found full code
+                            async_eel.displayToast(f'Не удалось считать код..', 'error')
+                    else:
+                        #type of  object it's not  message
+                        async_eel.displayToast(f'Не удалось считать код..', 'error')
+                else:
+                    #not found messages in chat
+                    async_eel.displayToast(f'Не удалось считать код..', 'error')
+                await client.disconnect()
+
+            else:
+                print(f'Unauthorized | {session_path}')
+                async_eel.displayToast(f'Аккаунт {phone_number} не удалось подключить!', 'error')
+                Path(session_path).rename(f"accounts/unauthorized/{session_file_path}")
+                Path(json_path).rename(f"accounts/unauthorized/{json_file_path}")
+
+        except Exception as Unexpected:
+            print(f'Unexpected | {session_path} {Unexpected}')
