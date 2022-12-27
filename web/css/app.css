@@ -213,3 +213,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+#add-account-button-i {
+    transform: rotate(7deg);
+}
