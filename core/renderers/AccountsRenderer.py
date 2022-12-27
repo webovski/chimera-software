@@ -6,7 +6,6 @@ import pathlib
 import shutil
 from itertools import chain
 from datetime import datetime, date
-from syncer import sync
 
 async def read_account_json(json_file_path: str):
     try:
