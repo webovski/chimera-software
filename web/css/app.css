@@ -163,29 +163,31 @@ li > a.active {
 .form-switch .form-check-input:checked[type="checkbox"]::after {
     background-color: #54b4d3;
 }
+
 .form-check-input[type="checkbox"]:checked {
-  background-color: #54b4d3;
+    background-color: #54b4d3;
 }
 
 .form-switch .form-check-input:checked:focus::before {
-  box-shadow: 3px -1px 0 13px #54b4d3;
+    box-shadow: 3px -1px 0 13px #54b4d3;
 }
 
 .form-check-input[type="checkbox"]:checked:focus {
-  background-color: #54b4d3;
+    background-color: #54b4d3;
 }
 
 .form-check-input:checked {
-  border-color: #54b4d3;
+    border-color: #54b4d3;
 }
 
 .form-check-input:checked:focus::before {
-  box-shadow: 0 0 0 13px #54b4d3;
+    box-shadow: 0 0 0 13px #54b4d3;
 }
 
 .form-check-input:checked:focus {
-  border-color: #54b4d3;
+    border-color: #54b4d3;
 }
+
 .account-picture {
     width: 45px;
     height: 45px;
@@ -202,20 +204,26 @@ li > a.active {
 #sync-icon {
     transition: transform 0.8s;
 }
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 #add-account-button-i {
     transform: rotate(7deg);
+}
+
+#add-account-button {
+    max-width: 200px;
+    min-width: 200px;
 }
 
 .alert {
@@ -228,12 +236,22 @@ input[type=number] {
     height: 0;
     overflow: hidden;
 }
+
 #adding-account-process-container.active {
     opacity: 1;
     height: auto;
 }
+
 #inform-text-container {
     margin-bottom: 0;
     text-transform: uppercase;
     text-align: center;
+}
+
+.spinner-custom {
+    margin-bottom: -2px;
+}
+
+#add-account-button-spinner {
+    display: none;
 }

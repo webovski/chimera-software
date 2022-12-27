@@ -131,6 +131,11 @@ function addNewAccount() {
     let userInfoContainer = document.getElementById('adding-account-process-container')
     userInfoContainer.classList.remove('active')
 
+    let accountPlaneIcon = document.getElementById('add-account-button-i')
+    let accountSpinnerAnimation = document.getElementById('add-account-button-spinner')
+    accountPlaneIcon.style.display = 'none'
+    accountSpinnerAnimation.style.display = 'inline-block'
+    blockButton('add-account-button', 'send-code-button-text', 'Обработка')
 
     console.log(accountPhone, cloudPassword, cloudPassword, phoneCodeHash)
 
@@ -141,6 +146,11 @@ eel.expose(setPhoneCodeHash)
 function setPhoneCodeHash(phoneCodeHashFromTelegram) {
     let phoneCodeHash = document.getElementById('phone-code-hash-input')
     phoneCodeHash.value = phoneCodeHashFromTelegram
+    unblockButton('add-account-button', 'send-code-button-text', 'Добавить аккаунт')
+    let accountPlaneIcon = document.getElementById('add-account-button-i')
+    let accountSpinnerAnimation = document.getElementById('add-account-button-spinner')
+    accountPlaneIcon.style.display = 'contents'
+    accountSpinnerAnimation.style.display = 'none'
 }
 
 eel.expose(informUserAboutPhoneAdding)
@@ -150,4 +160,9 @@ function informUserAboutPhoneAdding(message, alertType) {
     informTextContainer.innerText = message
     informTextContainer.className = `alert alert-${alertType}`
     userInfoContainer.classList.add('active')
+    unblockButton('add-account-button', 'send-code-button-text', 'Добавить аккаунт')
+    let accountPlaneIcon = document.getElementById('add-account-button-i')
+    let accountSpinnerAnimation = document.getElementById('add-account-button-spinner')
+    accountPlaneIcon.style.display = 'contents'
+    accountSpinnerAnimation.style.display = 'none'
 }
