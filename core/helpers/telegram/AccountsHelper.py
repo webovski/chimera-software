@@ -4,7 +4,10 @@ from pathlib import Path
 from telethon.tl.patched import Message
 
 import async_eel
+from core.System import JsonWriteReader
+from core.System.JsonWriteReader import edit_json
 from core.helpers.telegram import TelethonCustom
+from core.renderers.AccountsRenderer import render_accounts_list
 
 max_threads = 25
 semaphore = asyncio.Semaphore(max_threads)
@@ -32,6 +35,31 @@ async def work_with_account(session_path: str):
                 await client.send_message('me', 'Saved Messages')
                 await client.disconnect()
 
+                first_name = me.first_name
+                last_name = ''
+                username = 'null'
+                phone = f'+{me.phone}'
+                chimera_status = 'valid'
+
+                if me.last_name:
+                    last_name = me.last_name
+                if me.username:
+                    username = me.username
+
+                json_path = session_path.replace('session', 'json')
+                account_json = await JsonWriteReader.read_json(path=json_path)
+
+                updated_json = {
+                    'username': username,
+                    'phone': phone,
+                    'first_name': first_name,
+                    'last_name': last_name,
+                    'chimera_status': chimera_status
+                }
+                account_json.update(updated_json)
+                await edit_json(json_path, account_json)
+
+
             else:
                 print(f'Unauthorized | {session_path}')
                 Path(session_path).rename(f"accounts/unauthorized/{session_file_path}")
@@ -45,6 +73,11 @@ def all_done(sessions):
     async_eel.startRotating(0, 'false')
     async_eel.unblockButton('checking-accounts-btn', 'checking-accounts-btn-text', 'ПРОВЕРИТЬ АККАУНТЫ')
 
+    loop = asyncio.get_running_loop()
+    if loop and loop.is_running():
+        loop.create_task(render_accounts_list(accounts_names=sessions))
+    else:
+        asyncio.run(render_accounts_list(accounts_names=sessions))
 
 @async_eel.expose
 async def check_accounts(accounts_names: list[str]):
@@ -66,6 +99,7 @@ async def check_accounts(accounts_names: list[str]):
     else:
         asyncio.run(start_accounts(sessions))
 
+
 @async_eel.expose
 async def get_sms_code(account_name: str):
     input_sessions_folder = 'accounts/input/'
@@ -75,14 +109,13 @@ async def get_sms_code(account_name: str):
     except RuntimeError:  # 'RuntimeError: There is no current event loop...'
         loop = None
     if loop and loop.is_running():
-        task = loop.create_task(run_get_sms(account_name,session_path))
+        task = loop.create_task(run_get_sms(account_name, session_path))
         await task
     else:
-        asyncio.run(run_get_sms(account_name,session_path))
+        asyncio.run(run_get_sms(account_name, session_path))
 
 
-
-async def run_get_sms(account_name:str, session_path:str):
+async def run_get_sms(account_name: str, session_path: str):
     async with semaphore:
         try:
             client = await TelethonCustom.create_client(session_path)
@@ -102,24 +135,24 @@ async def run_get_sms(account_name:str, session_path:str):
                 chat = await client.get_entity(sms_bot_id)
                 messages = await client.get_messages(chat, 1)
                 if messages:
-                    if isinstance(messages[0],Message):
+                    if isinstance(messages[0], Message):
                         message = messages[0].message
                         code = ""
                         for char in message:
                             if char.isdigit():
-                                code+=char
-                            if char ==".":
+                                code += char
+                            if char == ".":
                                 break
-                        if len(code)>1:
+                        if len(code) > 1:
                             async_eel.displayToast(f'Ваш код для авторизации {code}', 'success')
                         else:
-                            #not found full code
+                            # not found full code
                             async_eel.displayToast(f'Не удалось считать код..', 'error')
                     else:
-                        #type of  object it's not  message
+                        # type of  object it's not  message
                         async_eel.displayToast(f'Не удалось считать код..', 'error')
                 else:
-                    #not found messages in chat
+                    # not found messages in chat
                     async_eel.displayToast(f'Не удалось считать код..', 'error')
                 await client.disconnect()
 

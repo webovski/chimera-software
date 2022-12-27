@@ -6,7 +6,7 @@ import pathlib
 import shutil
 from itertools import chain
 from datetime import datetime, date
-
+from syncer import sync
 
 async def read_account_json(json_file_path: str):
     try:
@@ -38,6 +38,12 @@ async def read_account_json(json_file_path: str):
 
 @async_eel.expose
 async def render_accounts_list(render_message=None, accounts_names=[]):
+    input_accounts_names = accounts_names
+    accounts_names = []
+    for account_name in input_accounts_names:
+        new_account_name = account_name.split('/')[-1]
+        accounts_names.append(new_account_name)
+
     try:
         input_sessions_folder = 'accounts/input/'
         sessions = [f for f in glob.glob(f"{input_sessions_folder}*.session")]
