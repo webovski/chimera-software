@@ -117,18 +117,14 @@
                                 </button>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-info shadow-4-strong">
+                                <button class="btn btn-info shadow-4-strong" data-mdb-target="#staticBackdrop"
+                                        data-mdb-toggle="modal">
                                     <span class="icon-padding-5"> Добавить аккаунт вручную </span>
                                     <i class="fas fa-phone"></i>
                                 </button>
                             </div>
                         </div>
-<!--                        <div class="fixed-table-height" style="pointer-events: none; overflow: hidden;">-->
                         <div class="fixed-table-height">
-                            <div id="account-overlay" class="mask d-flex flex-column text-center"
-                                 style="background-color: rgb(0 0 0 / 16%); top: 10.6%;">
-                                <div class="btn btn-info">Проверено 0/24 аккаунтов</div>
-                            </div>
                             <table class="table align-middle mb-0 bg-white shadow-4-strong">
                                 <thead class="bg-light">
                                 <tr>
@@ -636,6 +632,82 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+            aria-hidden="true"
+            aria-labelledby="staticBackdropLabel"
+            class="modal fade"
+            data-mdb-backdrop="static"
+            data-mdb-keyboard="false"
+            id="staticBackdrop"
+            tabindex="-1"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-uppercase" id="staticBackdropLabel">Добавление аккаунта</h5>
+                    <button aria-label="Close" class="btn-close" data-mdb-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-outline">
+                                <input class="form-control form-select"
+                                       id="delay-between-sms-from" type="number">
+                                <label class="form-label" for="delay-between-sms-from"
+                                       id="delay-between-sms-from-label"
+                                       style="margin-left: 0px;">Номер телефона</label>
+                                <div class="form-notch">
+                                    <div class="form-notch-leading"
+                                         style="width: 9px;"></div>
+                                    <div class="form-notch-middle"
+                                         style="width: 96px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-outline">
+                                <input class="form-control form-select"
+                                       id="delay-between-sms-from" type="number">
+                                <label class="form-label" for="delay-between-sms-from"
+                                       id="delay-between-sms-from-label"
+                                       style="margin-left: 0px;">СМС-Код</label>
+                                <div class="form-notch">
+                                    <div class="form-notch-leading"
+                                         style="width: 9px;"></div>
+                                    <div class="form-notch-middle"
+                                         style="width: 96px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="form-outline">
+                                <input class="form-control form-select"
+                                       id="delay-between-sms-from" type="text">
+                                <label class="form-label" for="delay-between-sms-from"
+                                       id="delay-between-sms-from-label"
+                                       style="margin-left: 0px;">Обачный пароль</label>
+                                <div class="form-notch">
+                                    <div class="form-notch-leading"
+                                         style="width: 9px;"></div>
+                                    <div class="form-notch-middle"
+                                         style="width: 96px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-mdb-dismiss="modal" type="button">Отменить</button>
+                    <button class="btn btn-info" id="add-account-button" type="button">Отправить код</button>
                 </div>
             </div>
         </div>
