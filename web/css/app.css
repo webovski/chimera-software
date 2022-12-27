@@ -217,3 +217,23 @@ input[type=number] {
 #add-account-button-i {
     transform: rotate(7deg);
 }
+
+.alert {
+    padding: 10px 0 8px 0;
+}
+
+#adding-account-process-container {
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+#adding-account-process-container.active {
+    opacity: 1;
+    height: auto;
+}
+#inform-text-container {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    text-align: center;
+}

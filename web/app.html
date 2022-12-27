@@ -708,7 +708,14 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" id="phone-code-hash-input">
+                    <div id="adding-account-process-container" class="row">
+                        <div class="col-12 mt-3">
+                            <div id="inform-text-container" role="alert">
+                                <!-- information about account adding process -->
+                            </div>
+                        </div>
+                    </div>
+                    <input id="phone-code-hash-input" type="hidden">
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-mdb-dismiss="modal" type="button">
@@ -717,7 +724,7 @@
                         </span>
                         <i class="fa fa-cancel" id="cancel-adding-account-button-i"></i>
                     </button>
-                    <button class="btn btn-info" id="add-account-button" type="button" onclick="addNewAccount()">
+                    <button class="btn btn-info" id="add-account-button" onclick="addNewAccount()" type="button">
                         <span class="icon-padding-5" id="send-code-button-text">
                             Отправить код
                         </span>

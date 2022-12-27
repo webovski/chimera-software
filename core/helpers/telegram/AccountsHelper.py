@@ -2,6 +2,7 @@ import asyncio
 from pathlib import Path
 
 from telethon import TelegramClient
+from telethon.errors import SessionPasswordNeededError
 from telethon.tl.patched import Message
 
 import async_eel
@@ -172,32 +173,39 @@ async def run_get_sms(account_name: str, session_path: str):
 async def add_new_account(phone_number, sms_code=None, cloud_password=None, phone_code_hash=None):
     # here should be if for on/off proxies
     # right now we consider that proxy list is exists and proxies are valid
-    random_proxy = await ProxyManagment.get_random_proxy()
+    try:
+        random_proxy = await ProxyManagment.get_random_proxy()
 
-    client = TelegramClient(
-        phone_number,
-        api_id=1,
-        api_hash="b6b154c3707471f5339bd661645ed3d6",
-        proxy=random_proxy
-    )
-
-    await client.connect()
-
-    if not sms_code:
-        if not await client.is_user_authorized():
-            try:
-                sent_code_response = await client.send_code_request(phone_number)
-                phone_code_hash_from_telegram = sent_code_response.phone_code_hash
-                async_eel.setPhoneCodeHash(phone_code_hash_from_telegram)
-                async_eel.displayToast(f'Код отправлен!', 'info')
-            except Exception as AnyOtherExceptions:
-                async_eel.displayToast(f'Произошла ошибка: {AnyOtherExceptions}', 'info')
-    else:
-        result = await client.sign_in(
-            phone=phone_number,
-            code=sms_code,
-            password=cloud_password,
-            phone_code_hash=phone_code_hash
+        client = TelegramClient(
+            phone_number,
+            api_id=1,
+            api_hash="b6b154c3707471f5339bd661645ed3d6",
+            proxy=random_proxy,
+            connection_retries=0
         )
-        print(result)
-        async_eel.displayToast(f'Аккаунт успешно добавлен!', 'success')
+
+        await client.connect()
+
+        if not sms_code:
+            if not await client.is_user_authorized():
+                try:
+                    sent_code_response = await client.send_code_request(phone_number)
+                    phone_code_hash_from_telegram = sent_code_response.phone_code_hash
+                    async_eel.setPhoneCodeHash(phone_code_hash_from_telegram)
+                    async_eel.informUserAboutPhoneAdding('Код отправлен!', 'info')
+                except Exception as AnyOtherExceptions:
+                    async_eel.informUserAboutPhoneAdding(f'Произошла ошибка: {AnyOtherExceptions}', 'danger')
+        else:
+            print(phone_number, sms_code, cloud_password, phone_code_hash)
+            try:
+                result = await client.sign_in(
+                    phone=phone_number,
+                    code=sms_code,
+                    phone_code_hash=phone_code_hash
+                )
+            except SessionPasswordNeededError:
+                await client.sign_in(password=cloud_password)
+                await client.disconnect()
+                async_eel.informUserAboutPhoneAdding(f'Аккаунт успешно добавлен!', 'success')
+    except Exception as AnyOtherGlobalException:
+        async_eel.informUserAboutPhoneAdding(f'Что-то пошло не так: {AnyOtherGlobalException}', 'danger')

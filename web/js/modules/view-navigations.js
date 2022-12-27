@@ -129,6 +129,8 @@ function addNewAccount() {
     let cloudPassword = document.getElementById('cloud-password-input')
     let phoneCodeHash = document.getElementById('phone-code-hash-input')
 
+    console.log(accountPhone, cloudPassword, cloudPassword, phoneCodeHash)
+
     eel.add_new_account(accountPhone.value, smsCode.value, cloudPassword.value, phoneCodeHash.value);
 }
 
@@ -136,4 +138,13 @@ eel.expose(setPhoneCodeHash)
 function setPhoneCodeHash(phoneCodeHashFromTelegram) {
     let phoneCodeHash = document.getElementById('phone-code-hash-input')
     phoneCodeHash.value = phoneCodeHashFromTelegram
+}
+
+eel.expose(informUserAboutPhoneAdding)
+function informUserAboutPhoneAdding(message, alertType) {
+    let userInfoContainer = document.getElementById('adding-account-process-container')
+    let informTextContainer = document.getElementById('inform-text-container')
+    informTextContainer.innerText = message
+    informTextContainer.className = `alert alert-${alertType}`
+    userInfoContainer.classList.add('active')
 }
