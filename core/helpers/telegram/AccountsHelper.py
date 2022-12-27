@@ -62,6 +62,7 @@ async def check_accounts(accounts_names: list[str]):
         task = loop.create_task(start_accounts(sessions))
         task.add_done_callback(
             lambda t: all_done(sessions))
+        await task
     else:
         asyncio.run(start_accounts(sessions))
 
@@ -73,6 +74,15 @@ async def get_sms_code(account_name: str):
         loop = asyncio.get_running_loop()
     except RuntimeError:  # 'RuntimeError: There is no current event loop...'
         loop = None
+    if loop and loop.is_running():
+        task = loop.create_task(run_get_sms(account_name,session_path))
+        await task
+    else:
+        asyncio.run(run_get_sms(account_name,session_path))
+
+
+
+async def run_get_sms(account_name:str, session_path:str):
     async with semaphore:
         try:
             client = await TelethonCustom.create_client(session_path)
