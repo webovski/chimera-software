@@ -128,6 +128,9 @@ function addNewAccount() {
     let smsCode = document.getElementById('sms-code-input')
     let cloudPassword = document.getElementById('cloud-password-input')
     let phoneCodeHash = document.getElementById('phone-code-hash-input')
+    let userInfoContainer = document.getElementById('adding-account-process-container')
+    userInfoContainer.classList.remove('active')
+
 
     console.log(accountPhone, cloudPassword, cloudPassword, phoneCodeHash)
 
