@@ -1,14 +1,16 @@
 eel.expose(updateAccountsBadges)
-function updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block) {
+function updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block, accounts_deleted) {
     let accountsAllBadge = document.getElementById('all-accounts-badge')
     let accountsValidBadge = document.getElementById('valid-accounts-badge')
     let accountsNotCheckedBadge = document.getElementById('not-checked-accounts-badge')
     let accountSpamBlockBadge = document.getElementById('spam-block-accounts-badge')
+    let accountDeletedBadge = document.getElementById('deleted-accounts-badge')
 
     accountsAllBadge.innerText = accounts_all
     accountsValidBadge.innerText = accounts_valid
     accountsNotCheckedBadge.innerText = accounts_not_checked
     accountSpamBlockBadge.innerText = accounts_spam_block
+    accountDeletedBadge.innerText = accounts_deleted
 }
 
 function uploadNewAccounts() {

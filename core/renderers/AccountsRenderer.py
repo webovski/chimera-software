@@ -52,6 +52,7 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
         accounts_valid = 0
         accounts_not_checked = 0
         accounts_spam_block = 0
+        accounts_deleted = 0
 
         for session_path in sessions:
 
@@ -89,7 +90,8 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
                     accounts_spam_block += 1
                     chimera_status = ['danger', 'Аккаунт ограничен', 'Спам-Блок']
                 elif chimera_status == 'deleted':
-                    chimera_status = ['danger', 'Аккаунт удалён', 'Удалён']
+                    accounts_deleted += 1
+                    chimera_status = ['dark', 'Аккаунт удалён', 'Удалён']
                 else:
                     chimera_status = ['default', 'Не удалось распознать', 'Неизвестно']
 
@@ -163,7 +165,7 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
         async_eel.displayToast(f'Список аккаунтов обновлён!<br/>Найдено сессий: {len(sessions)} ', 'success')
     else:
         async_eel.displayToast(f'{render_message[0]}', render_message[1])
-    async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block)
+    async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block, accounts_deleted)
 
 
 
