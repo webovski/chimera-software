@@ -663,9 +663,8 @@
                         <div class="col-8">
                             <div class="form-outline">
                                 <input class="form-control form-select"
-                                       id="delay-between-sms-from" type="number">
-                                <label class="form-label" for="delay-between-sms-from"
-                                       id="delay-between-sms-from-label"
+                                       id="phone-number-input" type="number">
+                                <label class="form-label" for="phone-number-input"
                                        style="margin-left: 0px;">Номер телефона</label>
                                 <div class="form-notch">
                                     <div class="form-notch-leading"
@@ -679,9 +678,8 @@
                         <div class="col-4">
                             <div class="form-outline">
                                 <input class="form-control form-select"
-                                       id="delay-between-sms-from" type="number">
-                                <label class="form-label" for="delay-between-sms-from"
-                                       id="delay-between-sms-from-label"
+                                       id="sms-code-input" type="number">
+                                <label class="form-label" for="sms-code-input"
                                        style="margin-left: 0px;">СМС-Код</label>
                                 <div class="form-notch">
                                     <div class="form-notch-leading"
@@ -697,9 +695,8 @@
                         <div class="col-12">
                             <div class="form-outline">
                                 <input class="form-control form-select"
-                                       id="delay-between-sms-from" type="password">
-                                <label class="form-label" for="delay-between-sms-from"
-                                       id="delay-between-sms-from-label"
+                                       id="cloud-password-input" type="password">
+                                <label class="form-label" for="cloud-password-input"
                                        style="margin-left: 0px;">Облачный пароль (если есть)</label>
                                 <div class="form-notch">
                                     <div class="form-notch-leading"
@@ -711,6 +708,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" id="phone-code-hash-input">
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-mdb-dismiss="modal" type="button">
@@ -719,7 +717,7 @@
                         </span>
                         <i class="fa fa-cancel" id="cancel-adding-account-button-i"></i>
                     </button>
-                    <button class="btn btn-info" id="add-account-button" type="button">
+                    <button class="btn btn-info" id="add-account-button" type="button" onclick="addNewAccount()">
                         <span class="icon-padding-5" id="send-code-button-text">
                             Отправить код
                         </span>

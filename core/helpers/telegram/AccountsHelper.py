@@ -1,10 +1,11 @@
 import asyncio
 from pathlib import Path
 
+from telethon import TelegramClient
 from telethon.tl.patched import Message
 
 import async_eel
-from core.System import JsonWriteReader
+from core.System import JsonWriteReader, ProxyManagment
 from core.System.JsonWriteReader import edit_json
 from core.helpers.telegram import TelethonCustom
 from core.renderers.AccountsRenderer import render_accounts_list
@@ -78,6 +79,7 @@ def all_done(sessions):
         loop.create_task(render_accounts_list(accounts_names=sessions))
     else:
         asyncio.run(render_accounts_list(accounts_names=sessions))
+
 
 @async_eel.expose
 async def check_accounts(accounts_names: list[str]):
@@ -165,3 +167,37 @@ async def run_get_sms(account_name: str, session_path: str):
         except Exception as Unexpected:
             async_eel.unblockTableRow(account_name)
             print(f'Unexpected | {session_path} {Unexpected}')
+
+@async_eel.expose
+async def add_new_account(phone_number, sms_code=None, cloud_password=None, phone_code_hash=None):
+    # here should be if for on/off proxies
+    # right now we consider that proxy list is exists and proxies are valid
+    random_proxy = await ProxyManagment.get_random_proxy()
+
+    client = TelegramClient(
+        phone_number,
+        api_id=1,
+        api_hash="b6b154c3707471f5339bd661645ed3d6",
+        proxy=random_proxy
+    )
+
+    await client.connect()
+
+    if not sms_code:
+        if not await client.is_user_authorized():
+            try:
+                sent_code_response = await client.send_code_request(phone_number)
+                phone_code_hash_from_telegram = sent_code_response.phone_code_hash
+                async_eel.setPhoneCodeHash(phone_code_hash_from_telegram)
+                async_eel.displayToast(f'Код отправлен!', 'info')
+            except Exception as AnyOtherExceptions:
+                async_eel.displayToast(f'Произошла ошибка: {AnyOtherExceptions}', 'info')
+    else:
+        result = await client.sign_in(
+            phone=phone_number,
+            code=sms_code,
+            password=cloud_password,
+            phone_code_hash=phone_code_hash
+        )
+        print(result)
+        async_eel.displayToast(f'Аккаунт успешно добавлен!', 'success')
