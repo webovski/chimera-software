@@ -48,7 +48,13 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
     try:
         input_sessions_folder = 'accounts/input/'
         sessions = [f for f in glob.glob(f"{input_sessions_folder}*.session")]
-        temp_sessions = [session if exists(session.replace('session', 'json')) else os.remove(session) for session in sessions]
+
+        for session in sessions:
+            if session:
+                if not exists(session.replace('session', 'json')):
+                    os.remove(session)
+                    sessions.remove(session)
+
         accounts_html = ''
 
         accounts_all = 0
@@ -56,7 +62,7 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
         accounts_not_checked = 0
         accounts_spam_block = 0
         accounts_deleted = 0
-        sessions = list(temp_sessions)
+
         for session_path in sessions:
 
             try:

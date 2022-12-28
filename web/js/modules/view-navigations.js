@@ -166,3 +166,24 @@ function informUserAboutPhoneAdding(message, alertType) {
     accountPlaneIcon.style.display = 'contents'
     accountSpinnerAnimation.style.display = 'none'
 }
+
+function clearAddingAccountForm() {
+    let accountPhone = document.getElementById('phone-number-input')
+    let smsCode = document.getElementById('sms-code-input')
+    let cloudPassword = document.getElementById('cloud-password-input')
+    let phoneCodeHash = document.getElementById('phone-code-hash-input')
+
+    accountPhone.classList.remove('active')
+    smsCode.classList.remove('active')
+    cloudPassword.classList.remove('active')
+    phoneCodeHash.classList.remove('active')
+
+    accountPhone.value = ''
+    smsCode.value = ''
+    cloudPassword.value = ''
+    phoneCodeHash.value = ''
+
+    let userInfoContainer = document.getElementById('adding-account-process-container')
+    userInfoContainer.value = ''
+    userInfoContainer.classList.remove('active')
+}

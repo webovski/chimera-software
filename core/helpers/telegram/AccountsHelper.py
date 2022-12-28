@@ -66,8 +66,14 @@ async def work_with_account(session_path: str):
 
             else:
                 print(f'Unauthorized | {session_path}')
-                Path(session_path).rename(f"accounts/unauthorized/{session_file_path}")
-                Path(json_path).rename(f"accounts/unauthorized/{json_file_path}")
+
+                updated_json = {
+                    'chimera_status': 'deleted'
+                }
+                json_path = session_path.replace('session', 'json')
+                account_json = await JsonWriteReader.read_json(path=json_path)
+                account_json.update(updated_json)
+                await edit_json(json_path, account_json)
         except Exception as Unexpected:
             print(f'Unexpected | {session_path} {Unexpected}')
 
@@ -164,8 +170,6 @@ async def run_get_sms(account_name: str, session_path: str):
             else:
                 print(f'Unauthorized | {session_path}')
                 async_eel.displayToast(f'Аккаунт {phone_number} не удалось подключить!', 'error')
-                Path(session_path).rename(f"accounts/unauthorized/{session_file_path}")
-                Path(json_path).rename(f"accounts/unauthorized/{json_file_path}")
             async_eel.unblockTableRow(account_name)
         except Exception as Unexpected:
             async_eel.unblockTableRow(account_name)
@@ -180,6 +184,7 @@ async def add_new_account(phone_number, sms_code=None, cloud_password=None, phon
     api_hash = "b6b154c3707471f5339bd661645ed3d6"
     input_sessions_folder = 'accounts/input/'
     file_path = f'{input_sessions_folder}'
+    client: TelegramClient = TelegramClient('777000', api_id, api_hash)
     try:
         random_proxy = await ProxyManagment.get_random_proxy()
         string_proxy_format = f"{random_proxy['addr']}:{random_proxy['port']}:{random_proxy['username']}:{random_proxy['password']}"
@@ -212,28 +217,31 @@ async def add_new_account(phone_number, sms_code=None, cloud_password=None, phon
                 )
                 user_info = await get_user_info(client)
                 await client.disconnect()
-                json_data = await generate_json_template(user_info,phone_number,api_id,api_hash,string_proxy_format)
-                await edit_json(f"{file_path}{phone_number}.json",json_data)
+                json_data = await generate_json_template(user_info, phone_number, api_id, api_hash, string_proxy_format)
+                await edit_json(f"{file_path}{phone_number}.json", json_data)
                 async_eel.informUserAboutPhoneAdding(f'Аккаунт успешно добавлен!', 'success')
                 await render_accounts_list()
             except SessionPasswordNeededError:
                 await client.sign_in(password=cloud_password)
                 user_info = await get_user_info(client)
                 await client.disconnect()
-                json_data = await generate_json_template(user_info,phone_number,api_id,api_hash,string_proxy_format,cloud_password)
-                await edit_json(f"{file_path}{phone_number}.json",json_data)
+                json_data = await generate_json_template(user_info, phone_number, api_id, api_hash, string_proxy_format,
+                                                         cloud_password)
+                await edit_json(f"{file_path}{phone_number}.json", json_data)
                 async_eel.informUserAboutPhoneAdding(f'Аккаунт успешно добавлен!', 'success')
                 await render_accounts_list()
     except Exception as AnyOtherGlobalException:
         print(AnyOtherGlobalException)
+        await client.disconnect()
         async_eel.informUserAboutPhoneAdding(f'Что-то пошло не так: {AnyOtherGlobalException}', 'danger')
+
 
 async def get_user_info(client: TelegramClient):
     user_info = await client.get_me()
     return user_info
 
 
-async def generate_json_template(user_data,phone, api_id, api_hash, proxy, password=None):
+async def generate_json_template(user_data, phone, api_id, api_hash, proxy, password=None):
     """create dict such as json config from account and connection information"""
     phone = f"{phone}"
     session_file = f"{phone}"
