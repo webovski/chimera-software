@@ -75,8 +75,8 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
                 current_d = datetime.strptime(current_date, "%d-%m-%Y")
                 reg_d = datetime.strptime(account_created_at, "%d-%m-%Y")
                 register_time_in_days = f'{current_d - reg_d}'.split(' ')[0]
-
-
+                if register_time_in_days == '0:00:00':
+                    register_time_in_days = 'Добавлен сегодня'
 
                 user_fl_names = f'{first_name} {last_name}'
 
