@@ -18,6 +18,9 @@ async def get_random_proxy():
         "password": proxy_details[3]
     }
 
+
+
+
 async def get_proxies() -> list | None:
     """load proxies from txt file, if get error return None else return list"""
     try:
@@ -59,7 +62,8 @@ async def update_proxy(path: str, proxy: str):
     try:
         current_json = await read_json(path)
         new_proxy_list = proxy.split(":")
-        new_proxy = {'proxy': [3, str(new_proxy_list[0]), int(new_proxy_list[1]), True, new_proxy_list[2], new_proxy_list[3]]}
+        new_proxy = {
+            'proxy': [3, str(new_proxy_list[0]), int(new_proxy_list[1]), True, new_proxy_list[2], new_proxy_list[3]]}
         current_json.update(new_proxy)
         await edit_json(path, current_json)
 

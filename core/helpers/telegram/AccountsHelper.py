@@ -1,4 +1,6 @@
 import asyncio
+import json
+import time
 from pathlib import Path
 
 from telethon import TelegramClient
@@ -169,17 +171,22 @@ async def run_get_sms(account_name: str, session_path: str):
             async_eel.unblockTableRow(account_name)
             print(f'Unexpected | {session_path} {Unexpected}')
 
+
 @async_eel.expose
 async def add_new_account(phone_number, sms_code=None, cloud_password=None, phone_code_hash=None):
     # here should be if for on/off proxies
     # right now we consider that proxy list is exists and proxies are valid
+    api_id = 1
+    api_hash = "b6b154c3707471f5339bd661645ed3d6"
+    input_sessions_folder = 'accounts/input/'
+    file_path = f'{input_sessions_folder}'
     try:
         random_proxy = await ProxyManagment.get_random_proxy()
-
+        string_proxy_format = f"{random_proxy['addr']}:{random_proxy['port']}:{random_proxy['username']}:{random_proxy['password']}"
         client = TelegramClient(
-            phone_number,
-            api_id=1,
-            api_hash="b6b154c3707471f5339bd661645ed3d6",
+            f"{file_path}{phone_number}",
+            api_id=api_id,
+            api_hash=api_hash,
             proxy=random_proxy,
             connection_retries=0
         )
@@ -203,9 +210,65 @@ async def add_new_account(phone_number, sms_code=None, cloud_password=None, phon
                     code=sms_code,
                     phone_code_hash=phone_code_hash
                 )
+                user_info = await get_user_info(client)
+                await client.disconnect()
+                json_data = await generate_json_template(user_info,phone_number,api_id,api_hash,string_proxy_format)
+                await edit_json(f"{file_path}{phone_number}.json",json_data)
+                async_eel.informUserAboutPhoneAdding(f'Аккаунт успешно добавлен!', 'success')
+                await render_accounts_list()
             except SessionPasswordNeededError:
                 await client.sign_in(password=cloud_password)
+                user_info = await get_user_info(client)
                 await client.disconnect()
+                json_data = await generate_json_template(user_info,phone_number,api_id,api_hash,string_proxy_format,cloud_password)
+                await edit_json(f"{file_path}{phone_number}.json",json_data)
                 async_eel.informUserAboutPhoneAdding(f'Аккаунт успешно добавлен!', 'success')
+                await render_accounts_list()
     except Exception as AnyOtherGlobalException:
+        print(AnyOtherGlobalException)
         async_eel.informUserAboutPhoneAdding(f'Что-то пошло не так: {AnyOtherGlobalException}', 'danger')
+
+async def get_user_info(client: TelegramClient):
+    user_info = await client.get_me()
+    return user_info
+
+
+async def generate_json_template(user_data,phone, api_id, api_hash, proxy, password=None):
+    """create dict such as json config from account and connection information"""
+    phone = f"{phone}"
+    session_file = f"{phone}"
+    register_time = int(time.time())
+    last_check_time = int(time.time())
+    first_name = f"{user_data.first_name}"
+    last_name = f"{user_data.last_name if user_data.last_name is not None else ''}"
+    username = f"{user_data.username if user_data.username is not None else 'null'}"
+    twoFA = f"{password if password is not None else 'null'}"
+
+    json_template = {
+        "session_file": session_file,
+        "phone": phone,
+        "register_time": register_time,
+        "app_id": api_id,
+        "app_hash": api_hash,
+        "sdk": "Android 9.0 Pie LG UX 7",
+        "app_version": "3.50.68",
+        "device": "Archos45Titanium",
+        "last_check_time": last_check_time,
+        "avatar": "null",
+        "first_name": first_name,
+        "last_name": last_name,
+        "username": username,
+        "sex": 0,
+        "lang_pack": "ms",
+        "system_lang_pack": "en-US",
+        "proxy": [],
+        "ipv6": False,
+        "twoFA": twoFA,
+        "chimera_status": "valid"
+    }
+    new_proxy_list = proxy.split(":")
+    new_proxy = {
+        'proxy': [3, str(new_proxy_list[0]), int(new_proxy_list[1]), True, new_proxy_list[2], new_proxy_list[3]]
+    }
+    json_template.update(new_proxy)
+    return json_template
