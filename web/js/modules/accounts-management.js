@@ -1,3 +1,11 @@
+let accountsTable = document.getElementById('account-table-body')
+eel.expose(renderAccountsList)
+
+function renderAccountsList(accountsTableItemsHtml) {
+    accountsTable.innerHTML = ''
+    accountsTable.innerHTML += accountsTableItemsHtml
+}
+
 eel.expose(updateAccountsBadges)
 
 function updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block, accounts_deleted) {
@@ -143,6 +151,7 @@ function addNewAccount() {
 }
 
 eel.expose(setPhoneCodeHash)
+
 function setPhoneCodeHash(phoneCodeHashFromTelegram) {
     let phoneCodeHash = document.getElementById('phone-code-hash-input')
     phoneCodeHash.value = phoneCodeHashFromTelegram
@@ -154,6 +163,7 @@ function setPhoneCodeHash(phoneCodeHashFromTelegram) {
 }
 
 eel.expose(informUserAboutPhoneAdding)
+
 function informUserAboutPhoneAdding(message, alertType) {
     let userInfoContainer = document.getElementById('adding-account-process-container')
     let informTextContainer = document.getElementById('inform-text-container')

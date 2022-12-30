@@ -1,843 +1,618 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ru">
+  <head>
     <meta charset="utf-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <meta content="" name="description">
-    <meta content="Gautam" name="author">
     <title>Chimera Software</title>
-    <!-- Bootstrap Core CSS -->
     <link href="css/mdb.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <script src="/eel.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"></script>
     <link href="css/js-snackbar.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="js/js-snackbar.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
-    <script src="js/mdb.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-</head>
-<body>
-<div id="wrapper">
-    <div class="text-uppercase shadow-5-strong" id="sidebar-wrapper">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="text-uppercase shadow-5-strong" id="sidebar-wrapper">
         <ul class="sidebar-nav nav nav-tabs" id="sidebar-nav" role="tablist">
-            <li class="sidebar-brand" style="letter-spacing: 4px;">
-                <b>CHI<span class="m-style">M</span>ERA </b>
-            </li>
-            <li id="base-li">
-                <b>
-                    <i class="fas fa-users" id="base-i"></i>
-                    <span>СТАНДАРТ CОФТ</span>
-                </b>
-            </li>
-            <li class="nav-item">
-                <a class="active" data-mdb-toggle="tab" href="#accounts-content" id="tab-accounts" role="tab">
-                    <i class="fas fa-user"></i>Аккаунты </a>
-            </li>
-            <li class="nav-item">
-                <a data-mdb-toggle="tab" href="#chats-parser-content" id="tab-parser-chat" role="tab">
-                    <i class="fas fa-user-friends"></i>Парсер Чатов </a>
-            </li>
-            <li class="nav-item">
-                <a data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
-                    <i class="fas fa-comment"></i>Рассылка </a>
-            </li>
-            <li class="nav-item">
-                <a data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
-                    <i class="fas fa-plus"></i>Инвайтер </a>
-            </li>
-            <li class="nav-item" id="settings-li" style="border-top: 2px solid #f5f5f5">
-                <a data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
-                    <i class="fas fa-cog"></i>Настройки </a>
-            </li>
+          <li class="sidebar-brand" style="letter-spacing: 4px;">
+            <b>CHI <span class="m-style">M</span>ERA </b>
+          </li>
+          <li id="base-li">
+            <b>
+              <i class="fas fa-users" id="base-i"></i>
+              <span>СТАНДАРТ CОФТ</span>
+            </b>
+          </li>
+          <li class="nav-item">
+            <a data-mdb-toggle="tab" href="#accounts-content" id="tab-accounts" role="tab">
+              <i class="fas fa-user"></i>Аккаунты </a>
+          </li>
+          <li class="nav-item">
+            <a class="active" data-mdb-toggle="tab" href="#chats-parser-content" id="tab-parser-chat" role="tab">
+              <i class="fas fa-user-friends"></i>Парсер Чатов </a>
+          </li>
+          <li class="nav-item">
+            <a data-mdb-toggle="tab" href="#sender-content" id="tab-sender" role="tab">
+              <i class="fas fa-comment"></i>Рассылка </a>
+          </li>
+          <li class="nav-item">
+            <a data-mdb-toggle="tab" href="#inviter-content" id="tab-inviter" role="tab">
+              <i class="fas fa-plus"></i>Инвайтер </a>
+          </li>
+          <li class="nav-item" id="settings-li" style="border-top: 2px solid #f5f5f5">
+            <a data-mdb-toggle="tab" href="#settings-content" id="tab-settings" role="tab">
+              <i class="fas fa-cog"></i>Настройки </a>
+          </li>
         </ul>
-    </div>
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="accounts-content" role="tabpanel">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h3>
-                            <div class="card text-center accounts-info-pan">
-                                <div class="card-header">Управление Аккаунтами <span
-                                        class="badge badge-success badge-custom"
-                                        id="all-accounts-badge">796</span>
-                                </div>
-                            </div>
-                        </h3>
-                        <div class="row mb-2">
-                            <div class="col-3">
-                                <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Доступно <span class="badge badge-success badge-custom"
-                                                                            id="valid-accounts-badge">18</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Не проверено <span class="badge badge-info badge-custom"
-                                                                                id="not-checked-accounts-badge">777</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Спам-Блок <span class="badge badge-danger badge-custom"
-                                                                             id="spam-block-accounts-badge">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="card text-center accounts-info-pan">
-                                    <div class="card-header">Удалённые <span class="badge badge-dark badge-custom"
-                                                                             id="deleted-accounts-badge">0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3 mb-3 text-center">
-                            <div class="col-3">
-                                <input directory id="fileselector" multiple="false" onchange="uploadNewAccounts()"
-                                       style="display:none" type="file" webkitdirectory/>
-                                <button class="btn btn-info shadow-4-strong" id="accounts-load-btn"
-                                        onclick="getElementById('fileselector').click()">
-                                    <span class="icon-padding-5"> Загрузить аккаунты </span>
-                                    <i class="fas fa-upload"></i>
-
-                                </button>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-info shadow-4-strong" onclick="updateProxies()">
-                                    <span class="icon-padding-5"> Установить прокси </span>
-                                    <i class="fas fa-wifi"></i>
-                                </button>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-info shadow-4-strong" id="checking-accounts-btn"
-                                        onclick="checkAccounts()">
-                                    <span class="icon-padding-5"
-                                          id="checking-accounts-btn-text"> Проверить аккаунты </span>
-                                    <i class="fas fa-sync" id="sync-icon"></i>
-                                </button>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-info shadow-4-strong" data-mdb-target="#staticBackdrop"
-                                        data-mdb-toggle="modal" onclick="clearAddingAccountForm()">
-                                    <span class="icon-padding-5"> Добавить аккаунт вручную </span>
-                                    <i class="fas fa-phone"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="fixed-table-height">
-                            <table class="table align-middle mb-0 bg-white shadow-4-strong">
-                                <thead class="bg-light">
-                                <tr>
-                                    <th>
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="flexCheckDefault" type="checkbox"
-                                                   value=""/>
-                                        </div>
-                                    </th>
-                                    <th>Аккаунт</th>
-                                    <th>Дополнительно</th>
-                                    <th>Статус</th>
-                                    <th>Прокси</th>
-                                    <th>Возраст</th>
-                                    <th>СМС Код</th>
-                                </tr>
-                                </thead>
-                                <tbody id="account-table-body">
-                                <!-- generated code by python-->
-                                </tbody>
-                            </table>
-                        </div>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane fade" id="accounts-content" role="tabpanel">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 mt-2">
+                <h3>
+                  <div class="card text-center accounts-info-pan">
+                    <div class="card-header">Управление Аккаунтами <span class="badge badge-success badge-custom" id="all-accounts-badge">796</span>
                     </div>
+                  </div>
+                </h3>
+                <div class="row mb-2">
+                  <div class="col-3">
+                    <div class="card text-center accounts-info-pan">
+                      <div class="card-header">Доступно <span class="badge badge-success badge-custom" id="valid-accounts-badge">18</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="card text-center accounts-info-pan">
+                      <div class="card-header">Не проверено <span class="badge badge-info badge-custom" id="not-checked-accounts-badge">777</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="card text-center accounts-info-pan">
+                      <div class="card-header">Спам-Блок <span class="badge badge-danger badge-custom" id="spam-block-accounts-badge">1</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="card text-center accounts-info-pan">
+                      <div class="card-header">Удалённые <span class="badge badge-dark badge-custom" id="deleted-accounts-badge">0</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div class="row mt-3 mb-3 text-center">
+                  <div class="col-3">
+                    <input directory id="fileselector" multiple="false" onchange="uploadNewAccounts()" style="display:none" type="file" webkitdirectory />
+                    <button class="btn btn-info shadow-4-strong" id="accounts-load-btn" onclick="getElementById('fileselector').click()">
+                      <span class="icon-padding-5"> Загрузить аккаунты </span>
+                      <i class="fas fa-upload"></i>
+                    </button>
+                  </div>
+                  <div class="col-3">
+                    <button class="btn btn-info shadow-4-strong" onclick="updateProxies()">
+                      <span class="icon-padding-5"> Установить прокси </span>
+                      <i class="fas fa-wifi"></i>
+                    </button>
+                  </div>
+                  <div class="col-3">
+                    <button class="btn btn-info shadow-4-strong" id="checking-accounts-btn" onclick="checkAccounts()">
+                      <span class="icon-padding-5" id="checking-accounts-btn-text"> Проверить аккаунты </span>
+                      <i class="fas fa-sync" id="sync-icon"></i>
+                    </button>
+                  </div>
+                  <div class="col-3">
+                    <button class="btn btn-info shadow-4-strong" data-mdb-target="#staticBackdrop" data-mdb-toggle="modal" onclick="clearAddingAccountForm()">
+                      <span class="icon-padding-5"> Добавить аккаунт вручную </span>
+                      <i class="fas fa-phone"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="fixed-table-height">
+                  <table class="table align-middle mb-0 bg-white shadow-4-strong">
+                    <thead class="bg-light">
+                      <tr>
+                        <th>
+                          <div class="form-check">
+                            <input class="form-check-input" id="flexCheckDefault" type="checkbox" value="" />
+                          </div>
+                        </th>
+                        <th>Аккаунт</th>
+                        <th>Дополнительно</th>
+                        <th>Статус</th>
+                        <th>Прокси</th>
+                        <th>Возраст</th>
+                        <th>СМС Код</th>
+                      </tr>
+                    </thead>
+                    <tbody id="account-table-body">
+                      <!-- generated code by python-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="tab-pane fade" id="chats-parser-content" role="tabpanel">
-            <div class="container-fluid">
+        <div class="tab-pane fade show active" id="chats-parser-content" role="tabpanel">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 mt-2">
+                <h3>
+                  <div class="card text-center accounts-info-pan">
+                    <div class="card-header">Парсер чатов</div>
+                  </div>
+                </h3>
                 <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h3>
-                            <div class="card text-center accounts-info-pan">
-                                <div class="card-header">Парсер чатов</div>
-                            </div>
-                        </h3>
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-header p-2">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header p-2">
-                                        <div class="row">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <div class="form-outline mb-3">
-                                                            <input class="form-control form-select" id="chat-link"
-                                                                   type="text"/>
-                                                            <label class="form-label" for="chat-link"
-                                                                   id='chat-link-label'> Ссылка на чат </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="form-outline">
-                                                            <select aria-label="Default select example"
-                                                                    class="form-select" id="accounts-dropdown">
-                                                                <option disabled selected>+6285229164278</option>
-                                                                <option disabled>Выберите во вкладке Аккаунты</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="btn btn-info w-100" id='start-parsing-btn'
-                                                             onclick="runScraping()">
-                                                            <span class="icon-padding-5">Начать парсинг</span>
-                                                            <i class="fas fa-search" id="icon-search"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <div class="mb-3 form-check">
-                                                            <input class="form-check-input" id="parse-dialogs"
-                                                                   onclick="parseDialogs()" type="checkbox"/>
-                                                            <label class="form-check-label" for="parse-dialogs">Парсинг
-                                                                по диалогам</label>
-                                                        </div>
-                                                        <div class="mb-3 form-check">
-                                                            <input class="form-check-input" id="parse-fast"
-                                                                   type="checkbox"/>
-                                                            <label class="form-check-label" for="parse-fast">Быстрый
-                                                                парсинг</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="mb-3 form-check">
-                                                            <input checked class="form-check-input" id="parse-multi"
-                                                                   type="checkbox"/>
-                                                            <label class="form-check-label" for="parse-multi">Сбор
-                                                                премиум</label>
-                                                        </div>
-                                                        <div class="mb-3 form-check">
-                                                            <input checked class="form-check-input" id="parse-phones"
-                                                                   type="checkbox"/>
-                                                            <label class="form-check-label" for="parse-phones">Сбор
-                                                                телефонов</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="mb-3 form-check">
-                                                            <input checked class="form-check-input" id="parse-no-admins"
-                                                                   type="checkbox"/>
-                                                            <label class="form-check-label" for="parse-no-admins">Без
-                                                                админов</label>
-                                                        </div>
-                                                        <div class="mb-3 form-check">
-                                                            <input checked class="form-check-input" id="parse-no-bots"
-                                                                   type="checkbox"/>
-                                                            <label class="form-check-label" for="parse-no-bots">Без
-                                                                ботов</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-12">
-                                                        <div class="btn btn-info textarea-actions"
-                                                             id="download-sending-history">
-                                                            <i class="fa fa-download"></i>
-                                                        </div>
-                                                        <div class="btn btn-info textarea-actions"
-                                                             id="copy-sending-history">
-                                                            <i class="fa fa-copy"></i>
-                                                        </div>
-                                                        <textarea class="form-control rounded" disabled
-                                                                  id="result-users-text-area" rows="10"
-                                                                  style="resize: none;">История парсинга</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4">
+                                <div class="form-outline mb-3">
+                                  <input class="form-control form-select" id="chat-link" type="text" />
+                                  <label class="form-label" for="chat-link" id='chat-link-label'> Ссылка на чат </label>
                                 </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="form-outline">
+                                  <select aria-label="Default select example" class="form-select" id="accounts-dropdown">
+                                    <option disabled selected>+6285229164278</option>
+                                    <option disabled>Выберите во вкладке Аккаунты</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="btn btn-info w-100" id='start-parsing-btn' onclick="runChatsScraping()">
+                                  <span class="icon-padding-5">Начать парсинг</span>
+                                  <i class="fas fa-search" id="icon-search"></i>
+                                </div>
+                              </div>
                             </div>
+                          </div>
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-4">
+                                <div class="mb-3 form-check">
+                                  <input class="form-check-input" id="parse-dialogs" onclick="parseDialogs()" type="checkbox" />
+                                  <label class="form-check-label" for="parse-dialogs">Парсинг по диалогам</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                  <input class="form-check-input" id="parse-fast" type="checkbox" />
+                                  <label class="form-check-label" for="parse-fast">Быстрый парсинг (чаты до 10к)</label>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="mb-3 form-check">
+                                  <input checked class="form-check-input" id="parse-premium" type="checkbox" />
+                                  <label class="form-check-label" for="parse-premium">Сбор премиум</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                  <input checked class="form-check-input" id="parse-phones" type="checkbox" />
+                                  <label class="form-check-label" for="parse-phones">Сбор телефонов</label>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="mb-3 form-check">
+                                  <input checked class="form-check-input" id="parse-without-admins" type="checkbox" />
+                                  <label class="form-check-label" for="parse-without-admins">Без админов</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                  <input checked class="form-check-input" id="parse-without-bots" type="checkbox" />
+                                  <label class="form-check-label" for="parse-without-bots">Без ботов</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mt-2">
+                              <div class="col-12">
+                                <div class="btn btn-info textarea-actions" id="download-parsing-results">
+                                  <i class="fa fa-download"></i>
+                                </div>
+                                <div class="btn btn-info textarea-actions" id="copy-parsing-logs">
+                                  <i class="fa fa-copy"></i>
+                                </div>
+                                <div class="btn btn-danger textarea-actions" id="clear-parsing-database">
+                                  <i class="fa fa-trash"></i>
+                                </div>
+                                <textarea class="form-control rounded" disabled id="result-users-text-area" rows="10" style="resize: none;">История парсинга</textarea>
+                              </div>
+                            </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
         <div class="tab-pane fade" id="sender-content" role="tabpanel">
-            <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 mt-2">
+                <h3>
+                  <div class="card text-center accounts-info-pan">
+                    <div class="card-header">Рассылка</div>
+                  </div>
+                </h3>
                 <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h3>
-                            <div class="card text-center accounts-info-pan">
-                                <div class="card-header">Рассылка</div>
-                            </div>
-                        </h3>
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-header p-0 sending-card-header">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header p-0 sending-card-header">
-                                        <div class="row">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <textarea class="form-control rounded" id="message-text-area"
-                                                                  placeholder="Текст сообщения"
-                                                                  style="resize: none; height: 140px!important"></textarea>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <div class="form-outline">
-                                                            <select class="form-select" id="target-user-type-dropdown">
-                                                                <option disabled selected>Тип получателя</option>
-                                                                <option>По юзернейму</option>
-                                                                <option>По ID</option>
-                                                                <option>По телефону</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-outline mt-2">
-                                                            <select class="form-select" id="sending-chat-type-dropdown"
-                                                                    onclick="validateChatType()">
-                                                                <option disabled selected>Тип чата</option>
-                                                                <option>Диалог</option>
-                                                                <option>Новый</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="btn btn-info w-100 mt-3"
-                                                             id="recipients-upload-button">
-                                                            <span class="icon-padding-5"> Получатели </span>
-                                                            <i class="fas fa-upload"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <div class="form-outline">
-                                                            <select class="form-select" id="message-type"
-                                                                    onclick="validateMessageType()">
-                                                                <option disabled selected>Вид сообщения</option>
-                                                                <option>Текст</option>
-                                                                <option>Репост</option>
-                                                                <option>Медиа файл</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="btn btn-info w-100" id="add-file-button"
-                                                             style="display: none;">
-                                                            <span class="icon-padding-5">Добавить файлы</span>
-                                                            <i class="fa fa-images"></i>
-                                                        </div>
-                                                        <div class="form-outline w-100" id="link-forward-input">
-                                                            <input class="form-control form-select" disabled
-                                                                   id="forward-from-link" type="text">
-                                                            <label class="form-label" for="forward-from-link"
-                                                                   id="forward-from-link-label"
-                                                                   style="margin-left: 0px;"> Ссылка на пост </label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="btn btn-success mt-3" id="start-sending-dm">
-                                                            <span class="icon-padding-5"> Запустить рассылку </span>
-                                                            <i class="fas fa-play"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <div class="form-outline delays">
-                                                            <input class="form-control form-select"
-                                                                   id="delay-between-sms-from" type="text">
-                                                            <label class="form-label" for="delay-between-sms-from"
-                                                                   id="delay-between-sms-from-label"
-                                                                   style="margin-left: 0px;"> Задержа ОТ (сек.) </label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-outline mb-3">
-                                                            <input class="form-control form-select"
-                                                                   id="delay-between-sms-to" type="text">
-                                                            <label class="form-label" for="delay-between-sms-to"
-                                                                   id="delay-between-sms-to-label"
-                                                                   style="margin-left: 0px;"> Задержа ДО (сек.) </label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-outline delays">
-                                                            <input class="form-control form-select"
-                                                                   id="account-limit" type="text">
-                                                            <label class="form-label" for="account-limit"
-                                                                   id="account-limit-label"
-                                                                   style="margin-left: 0px;">Аккаунт-лимит</label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header p-0 logs-card-header">
-                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
-                                            <i class="fa fa-download"></i>
-                                        </div>
-                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
-                                            <i class="fa fa-copy"></i>
-                                        </div>
-                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
-                                                  rows="10" style="resize: none;">История рассылки&#13;</textarea>
-                                    </div>
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-4">
+                                <textarea class="form-control rounded" id="message-text-area" placeholder="Текст сообщения" style="resize: none; height: 140px!important"></textarea>
+                              </div>
+                              <div class="col-3">
+                                <div class="form-outline">
+                                  <select class="form-select" id="target-user-type-dropdown">
+                                    <option disabled selected>Тип получателя</option>
+                                    <option>По юзернейму</option>
+                                    <option>По ID</option>
+                                    <option>По телефону</option>
+                                  </select>
                                 </div>
+                                <div class="form-outline mt-2">
+                                  <select class="form-select" id="sending-chat-type-dropdown" onclick="validateChatType()">
+                                    <option disabled selected>Тип чата</option>
+                                    <option>Диалог</option>
+                                    <option>Новый</option>
+                                  </select>
+                                </div>
+                                <div class="btn btn-info w-100 mt-3" id="recipients-upload-button">
+                                  <span class="icon-padding-5"> Получатели </span>
+                                  <i class="fas fa-upload"></i>
+                                </div>
+                              </div>
+                              <div class="col-3">
+                                <div class="form-outline">
+                                  <select class="form-select" id="message-type" onclick="validateMessageType()">
+                                    <option disabled selected>Вид сообщения</option>
+                                    <option>Текст</option>
+                                    <option>Репост</option>
+                                    <option>Медиа файл</option>
+                                  </select>
+                                </div>
+                                <div class="btn btn-info w-100" id="add-file-button" style="display: none;">
+                                  <span class="icon-padding-5">Добавить файлы</span>
+                                  <i class="fa fa-images"></i>
+                                </div>
+                                <div class="form-outline w-100" id="link-forward-input">
+                                  <input class="form-control form-select" disabled id="forward-from-link" type="text">
+                                  <label class="form-label" for="forward-from-link" id="forward-from-link-label" style="margin-left: 0px;"> Ссылка на пост </label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                                <div class="btn btn-success mt-3" id="start-sending-dm">
+                                  <span class="icon-padding-5"> Запустить рассылку </span>
+                                  <i class="fas fa-play"></i>
+                                </div>
+                              </div>
+                              <div class="col-2">
+                                <div class="form-outline delays">
+                                  <input class="form-control form-select" id="delay-between-sms-from" type="text">
+                                  <label class="form-label" for="delay-between-sms-from" id="delay-between-sms-from-label" style="margin-left: 0px;"> Задержа ОТ (сек.) </label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                                <div class="form-outline mb-3">
+                                  <input class="form-control form-select" id="delay-between-sms-to" type="text">
+                                  <label class="form-label" for="delay-between-sms-to" id="delay-between-sms-to-label" style="margin-left: 0px;"> Задержа ДО (сек.) </label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                                <div class="form-outline delays">
+                                  <input class="form-control form-select" id="account-limit" type="text">
+                                  <label class="form-label" for="account-limit" id="account-limit-label" style="margin-left: 0px;">Аккаунт-лимит</label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="card-header p-0 logs-card-header">
+                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                          <i class="fa fa-download"></i>
+                        </div>
+                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                          <i class="fa fa-copy"></i>
+                        </div>
+                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea" rows="10" style="resize: none;">История рассылки&#13;</textarea>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
         <div class="tab-pane fade" id="inviter-content" role="tabpanel">
-            <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 mt-2">
+                <h3>
+                  <div class="card text-center accounts-info-pan">
+                    <div class="card-header">Инвайтинг</div>
+                  </div>
+                </h3>
                 <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h3>
-                            <div class="card text-center accounts-info-pan">
-                                <div class="card-header">Инвайтинг</div>
-                            </div>
-                        </h3>
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-header p-0 sending-card-header">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header p-0 sending-card-header">
-                                        <div class="row">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <div class="form-outline">
-                                                            <select class="form-select"
-                                                                    id="target-invite-user-type-dropdown">
-                                                                <option disabled selected>Тип пользователя</option>
-                                                                <option>По юзернейму</option>
-                                                                <option>По ID</option>
-                                                                <option>По телефону</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-outline mt-2">
-                                                            <select class="form-select" id="sending-chat-type-dropdown"
-                                                                    onclick="validateChatType()">
-                                                                <option disabled selected>Тип чата</option>
-                                                                <option>Чат</option>
-                                                                <option disabled="true">Канал</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="btn btn-info w-100 mt-3"
-                                                             id="recipients-upload-button">
-                                                            <span class="icon-padding-5">Пользователи</span>
-                                                            <i class="fas fa-upload"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <div class="form-outline">
-                                                            <input class="form-control form-select"
-                                                                   id="account-limit" type="text">
-                                                            <label class="form-label" for="account-limit"
-                                                                   id="account-limit-label"
-                                                                   style="margin-left: 0px;">Аккаунт-лимит</label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-outline" style="margin-top: 15px;">
-                                                            <input class="form-control form-select"
-                                                                   id="account-limit" type="text">
-                                                            <label class="form-label" for="account-limit"
-                                                                   id="account-limit-label"
-                                                                   style="margin-left: 0px;">Инвайтить за раз </label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check form-switch" style="margin-top: 20px">
-                                                            <input class="form-check-input" id="flexSwitchCheckDefault"
-                                                                   role="switch" type="checkbox"/>
-                                                            <label class="form-check-label"
-                                                                   for="flexSwitchCheckDefault">Выходить после
-                                                                инвайта</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <div class="form-outline">
-                                                            <select class="form-select" id="message-type"
-                                                                    onclick="validateMessageType()">
-                                                                <option disabled selected>Вид инвайта</option>
-                                                                <option>Напрямую</option>
-                                                                <option>Через контакты</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="btn btn-info w-100" id="add-file-button"
-                                                             style="display: none;">
-                                                            <span class="icon-padding-5">Добавить файлы</span>
-                                                            <i class="fa fa-images"></i>
-                                                        </div>
-                                                        <div class="form-outline w-100" id="link-forward-input">
-                                                            <input class="form-control form-select"
-                                                                   id="forward-from-link" type="text">
-                                                            <label class="form-label" for="forward-from-link"
-                                                                   id="forward-from-link-label"
-                                                                   style="margin-left: 0px;"> Ссылка на группу </label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="btn btn-success mt-3" id="start-sending-dm"
-                                                             style="width: 200%!important;">
-                                                            <span class="icon-padding-5"> Запустить инвайтинг </span>
-                                                            <i class="fas fa-play"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <div class="form-outline delays">
-                                                            <input class="form-control form-select"
-                                                                   id="delay-between-sms-from" type="text">
-                                                            <label class="form-label" for="delay-between-sms-from"
-                                                                   id="delay-between-sms-from-label"
-                                                                   style="margin-left: 0px;"> Задержа ОТ (сек.) </label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-outline mb-3">
-                                                            <input class="form-control form-select"
-                                                                   id="delay-between-sms-to" type="text">
-                                                            <label class="form-label" for="delay-between-sms-to"
-                                                                   id="delay-between-sms-to-label"
-                                                                   style="margin-left: 0px;"> Задержа ДО (сек.) </label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 96px;"></div>
-                                                                <div class="form-notch-trailing margin-right-input"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header p-0 logs-card-header">
-                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
-                                            <i class="fa fa-download"></i>
-                                        </div>
-                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
-                                            <i class="fa fa-copy"></i>
-                                        </div>
-                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
-                                                  rows="10" style="resize: none;">История инвайтинга&#13;</textarea>
-                                    </div>
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-3">
+                                <div class="form-outline">
+                                  <select class="form-select" id="target-invite-user-type-dropdown">
+                                    <option disabled selected>Тип пользователя</option>
+                                    <option>По юзернейму</option>
+                                    <option>По ID</option>
+                                    <option>По телефону</option>
+                                  </select>
                                 </div>
+                                <div class="form-outline mt-2">
+                                  <select class="form-select" id="sending-chat-type-dropdown" onclick="validateChatType()">
+                                    <option disabled selected>Тип чата</option>
+                                    <option>Чат</option>
+                                    <option disabled="true">Канал</option>
+                                  </select>
+                                </div>
+                                <div class="btn btn-info w-100 mt-3" id="recipients-upload-button">
+                                  <span class="icon-padding-5">Пользователи</span>
+                                  <i class="fas fa-upload"></i>
+                                </div>
+                              </div>
+                              <div class="col-3">
+                                <div class="form-outline">
+                                  <input class="form-control form-select" id="account-limit" type="text">
+                                  <label class="form-label" for="account-limit" id="account-limit-label" style="margin-left: 0px;">Аккаунт-лимит</label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                                <div class="form-outline" style="margin-top: 15px;">
+                                  <input class="form-control form-select" id="account-limit" type="text">
+                                  <label class="form-label" for="account-limit" id="account-limit-label" style="margin-left: 0px;">Инвайтить за раз </label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                                <div class="form-check form-switch" style="margin-top: 20px">
+                                  <input class="form-check-input" id="flexSwitchCheckDefault" role="switch" type="checkbox" />
+                                  <label class="form-check-label" for="flexSwitchCheckDefault">Выходить после инвайта</label>
+                                </div>
+                              </div>
+                              <div class="col-3">
+                                <div class="form-outline">
+                                  <select class="form-select" id="message-type" onclick="validateMessageType()">
+                                    <option disabled selected>Вид инвайта</option>
+                                    <option>Напрямую</option>
+                                    <option>Через контакты</option>
+                                  </select>
+                                </div>
+                                <div class="btn btn-info w-100" id="add-file-button" style="display: none;">
+                                  <span class="icon-padding-5">Добавить файлы</span>
+                                  <i class="fa fa-images"></i>
+                                </div>
+                                <div class="form-outline w-100" id="link-forward-input">
+                                  <input class="form-control form-select" id="forward-from-link" type="text">
+                                  <label class="form-label" for="forward-from-link" id="forward-from-link-label" style="margin-left: 0px;"> Ссылка на группу </label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                                <div class="btn btn-success mt-3" id="start-sending-dm" style="width: 200%!important;">
+                                  <span class="icon-padding-5"> Запустить инвайтинг </span>
+                                  <i class="fas fa-play"></i>
+                                </div>
+                              </div>
+                              <div class="col-3">
+                                <div class="form-outline delays">
+                                  <input class="form-control form-select" id="delay-between-sms-from" type="text">
+                                  <label class="form-label" for="delay-between-sms-from" id="delay-between-sms-from-label" style="margin-left: 0px;"> Задержа ОТ (сек.) </label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                                <div class="form-outline mb-3">
+                                  <input class="form-control form-select" id="delay-between-sms-to" type="text">
+                                  <label class="form-label" for="delay-between-sms-to" id="delay-between-sms-to-label" style="margin-left: 0px;"> Задержа ДО (сек.) </label>
+                                  <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 96px;"></div>
+                                    <div class="form-notch-trailing margin-right-input"></div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="card-header p-0 logs-card-header">
+                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                          <i class="fa fa-download"></i>
+                        </div>
+                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                          <i class="fa fa-copy"></i>
+                        </div>
+                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea" rows="10" style="resize: none;">История инвайтинга&#13;</textarea>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
         <div class="tab-pane fade" id="settings-content" role="tabpanel">
-            <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 mt-2">
+                <h3>
+                  <div class="card text-center accounts-info-pan">
+                    <div class="card-header">Настройки</div>
+                  </div>
+                </h3>
                 <div class="row">
-                    <div class="col-lg-12 mt-2">
-                        <h3>
-                            <div class="card text-center accounts-info-pan">
-                                <div class="card-header">Настройки</div>
-                            </div>
-                        </h3>
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-header p-0 sending-card-header">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header p-0 sending-card-header">
-                                        <div class="row">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <div class="btn btn-info w-100"
-                                                             id="recipients-upload-button">
-                                                            <span class="icon-padding-5">Файл прокси</span>
-                                                            <i class="fas fa-wifi"></i>
-                                                        </div>
-                                                        <div class="btn btn-info w-100 mt-3"
-                                                             id="recipients-upload-button">
-                                                            <span class="icon-padding-5">Рабочая папка</span>
-                                                            <i class="fas fa-folder-open"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="form-outline">
-                                                            <select class="form-select"
-                                                                    id="target-invite-user-type-dropdown">
-                                                                <option disabled selected>Тип прокси</option>
-                                                                <option>HTTP</option>
-                                                                <option>SOCS5</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="btn btn-success w-100" style="margin-top: 13px;">
-                                                            <span class="icon-padding-5">Сохранить</span>
-                                                            <i class="fa fa-save"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                        <textarea class="form-control rounded" id="result-user-logs-textarea"
-                                                  style="resize: none; height: 89px; width: 98%;">1:b6b154c3707471f5339bd661645ed3d6</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header p-0 logs-card-header">
-                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
-                                            <i class="fa fa-download"></i>
-                                        </div>
-                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
-                                            <i class="fa fa-copy"></i>
-                                        </div>
-                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
-                                                  rows="10" style="resize: none;">Лог работы программы&#13;</textarea>
-                                    </div>
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-4">
+                                <div class="btn btn-info w-100" id="recipients-upload-button">
+                                  <span class="icon-padding-5">Файл прокси</span>
+                                  <i class="fas fa-wifi"></i>
                                 </div>
+                                <div class="btn btn-info w-100 mt-3" id="recipients-upload-button">
+                                  <span class="icon-padding-5">Рабочая папка</span>
+                                  <i class="fas fa-folder-open"></i>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="form-outline">
+                                  <select class="form-select" id="target-invite-user-type-dropdown">
+                                    <option disabled selected>Тип прокси</option>
+                                    <option>HTTP</option>
+                                    <option>SOCS5</option>
+                                  </select>
+                                </div>
+                                <div class="btn btn-success w-100" style="margin-top: 13px;">
+                                  <span class="icon-padding-5">Сохранить</span>
+                                  <i class="fa fa-save"></i>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <textarea class="form-control rounded" id="result-user-logs-textarea" style="resize: none; height: 89px; width: 98%;">1:b6b154c3707471f5339bd661645ed3d6</textarea>
+                              </div>
                             </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="card-header p-0 logs-card-header">
+                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                          <i class="fa fa-download"></i>
+                        </div>
+                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                          <i class="fa fa-copy"></i>
+                        </div>
+                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea" rows="10" style="resize: none;">Лог работы программы&#13;</textarea>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <div
-            aria-hidden="true"
-            aria-labelledby="staticBackdropLabel"
-            class="modal fade"
-            data-mdb-backdrop="static"
-            data-mdb-keyboard="false"
-            id="staticBackdrop"
-            tabindex="-1"
-    >
+      </div>
+      <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-mdb-backdrop="static" data-mdb-keyboard="false" id="staticBackdrop" tabindex="-1">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase" id="staticBackdropLabel">Добавление аккаунта</h5>
-                    <button aria-label="Close" class="btn-close" data-mdb-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="form-outline">
-                                <input class="form-control form-select"
-                                       id="phone-number-input" type="number">
-                                <label class="form-label" for="phone-number-input"
-                                       style="margin-left: 0px;">Номер телефона</label>
-                                <div class="form-notch">
-                                    <div class="form-notch-leading"
-                                         style="width: 9px;"></div>
-                                    <div class="form-notch-middle"
-                                         style="width: 96px;"></div>
-                                    <div class="form-notch-trailing"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-outline">
-                                <input class="form-control form-select"
-                                       id="sms-code-input" type="number">
-                                <label class="form-label" for="sms-code-input"
-                                       style="margin-left: 0px;">СМС-Код</label>
-                                <div class="form-notch">
-                                    <div class="form-notch-leading"
-                                         style="width: 9px;"></div>
-                                    <div class="form-notch-middle"
-                                         style="width: 96px;"></div>
-                                    <div class="form-notch-trailing"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <div class="form-outline">
-                                <input class="form-control form-select"
-                                       id="cloud-password-input" type="password">
-                                <label class="form-label" for="cloud-password-input"
-                                       style="margin-left: 0px;">Облачный пароль (если есть)</label>
-                                <div class="form-notch">
-                                    <div class="form-notch-leading"
-                                         style="width: 9px;"></div>
-                                    <div class="form-notch-middle"
-                                         style="width: 96px;"></div>
-                                    <div class="form-notch-trailing"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="adding-account-process-container" class="row">
-                        <div class="col-12 mt-3">
-                            <div id="inform-text-container" role="alert">
-                                <!-- information about account adding process -->
-                            </div>
-                        </div>
-                    </div>
-                    <input id="phone-code-hash-input" type="hidden">
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger" data-mdb-dismiss="modal" type="button">
-                        <span class="icon-padding-5" id="cancel-adding-account-button-text">
-                            Отменить
-                        </span>
-                        <i class="fa fa-cancel" id="cancel-adding-account-button-i"></i>
-                    </button>
-                    <button class="btn btn-info" id="add-account-button" onclick="addNewAccount()" type="button">
-                        <span class="icon-padding-5" id="send-code-button-text">
-                            Отправить код
-                        </span>
-                          <span id="add-account-button-spinner" class="spinner-custom spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                          <i class="fa fa-paper-plane" id="add-account-button-i"></i>
-                    </button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-uppercase" id="staticBackdropLabel">Добавление аккаунта</h5>
+              <button aria-label="Close" class="btn-close" data-mdb-dismiss="modal" type="button"></button>
             </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-8">
+                  <div class="form-outline">
+                    <input class="form-control form-select" id="phone-number-input" type="number">
+                    <label class="form-label" for="phone-number-input" style="margin-left: 0px;">Номер телефона</label>
+                    <div class="form-notch">
+                      <div class="form-notch-leading" style="width: 9px;"></div>
+                      <div class="form-notch-middle" style="width: 96px;"></div>
+                      <div class="form-notch-trailing"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-outline">
+                    <input class="form-control form-select" id="sms-code-input" type="number">
+                    <label class="form-label" for="sms-code-input" style="margin-left: 0px;">СМС-Код</label>
+                    <div class="form-notch">
+                      <div class="form-notch-leading" style="width: 9px;"></div>
+                      <div class="form-notch-middle" style="width: 96px;"></div>
+                      <div class="form-notch-trailing"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <div class="form-outline">
+                    <input class="form-control form-select" id="cloud-password-input" type="password">
+                    <label class="form-label" for="cloud-password-input" style="margin-left: 0px;">Облачный пароль (если есть)</label>
+                    <div class="form-notch">
+                      <div class="form-notch-leading" style="width: 9px;"></div>
+                      <div class="form-notch-middle" style="width: 96px;"></div>
+                      <div class="form-notch-trailing"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="adding-account-process-container">
+                <div class="col-12 mt-3">
+                  <div id="inform-text-container" role="alert">
+                    <!-- information about account adding process -->
+                  </div>
+                </div>
+              </div>
+              <input id="phone-code-hash-input" type="hidden">
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-danger" data-mdb-dismiss="modal" type="button">
+                <span class="icon-padding-5" id="cancel-adding-account-button-text"> Отменить </span>
+                <i class="fa fa-cancel" id="cancel-adding-account-button-i"></i>
+              </button>
+              <button class="btn btn-info" id="add-account-button" onclick="addNewAccount()" type="button">
+                <span class="icon-padding-5" id="send-code-button-text"> Отправить код </span>
+                <span aria-hidden="true" class="spinner-custom spinner-border spinner-border-sm" id="add-account-button-spinner" role="status"></span>
+                <i class="fa fa-paper-plane" id="add-account-button-i"></i>
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</div>
-</div>
-<script src="js/modules/rotator.js" type="text/javascript"></script>
-<script src="js/modules/view-navigations.js" type="text/javascript"></script>
-
-<script>
-    // init necessary methods
-    eel.render_accounts_list()
-    updateAccountsBadges()
-</script>
-
-
-<script>
-    let accountsTable = document.getElementById('account-table-body')
-    eel.expose(renderAccountsList)
-
-    function renderAccountsList(accountsTableItemsHtml) {
-        accountsTable.innerHTML = ''
-        accountsTable.innerHTML += accountsTableItemsHtml
-    }
-</script>
-<script>
-    document.querySelectorAll('.form-outline').forEach((formOutline) => {
-        new mdb.Input(formOutline).init();
-    });
-    document.querySelectorAll('.form-select').forEach((fromSelect) => {
-        new mdb.Input(fromSelect).init();
-    });
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    $('[rel="tooltip"]').on('click', function () {
-        $(this).tooltip('hide')
-    })
-</script>
-<script>
-    $('#pro-li').click(function () {
-        let proMenu = document.getElementById('pro-menu-list')
-        let proAnimation = document.getElementById('menu-item-span')
-        let settingsLi = document.getElementById('settings-li')
-        if (proMenu.style.maxHeight) {
-            proMenu.style.maxHeight = null;
-            proAnimation.classList.remove('opened')
-            settingsLi.style.borderTop = '0px solid #f4f4f4'
-        } else {
-            proMenu.style.maxHeight = proMenu.scrollHeight + "px";
-            proAnimation.classList.add('opened')
-            settingsLi.style.borderTop = '2px solid #f4f4f4'
-        }
-    });
-</script>
-<script>
-    async function parseDialogs() {
-        let parseDialogsCheckboxIsChecked = document.getElementById('parse-dialogs').checked
-        if (parseDialogsCheckboxIsChecked) {
-            document.getElementById('chat-link-label').innerText = 'Название чата';
-        } else {
-            document.getElementById('chat-link-label').innerText = 'Ссылка на чат';
-        }
-    }
-</script>
-<script>
-    function validateChatType() {
-        let sendingChatTypeDropdown = document.getElementById("sending-chat-type-dropdown");
-        let sendingUserTypeDropdown = document.getElementById("target-user-type-dropdown");
-        let recipientsUploadButton = document.getElementById("recipients-upload-button");
-        if (sendingChatTypeDropdown.value === "Диалог") {
-            sendingUserTypeDropdown.disabled = true
-            recipientsUploadButton.style.pointerEvents = 'none'
-            recipientsUploadButton.style.opacity = '0.5'
-        } else {
-            sendingUserTypeDropdown.disabled = false
-            recipientsUploadButton.style.pointerEvents = 'all'
-            recipientsUploadButton.style.opacity = '1'
-        }
-    }
-
-    function validateMessageType() {
-        let messageTypeDropdown = document.getElementById("message-type")
-        let forwardFromLinkInput = document.getElementById("forward-from-link")
-        let messageTextArea = document.getElementById('message-text-area')
-
-        let linkForwardContainer = document.getElementById('link-forward-input')
-        let addFileButton = document.getElementById('add-file-button')
-
-        if (messageTypeDropdown.value === "Репост") {
-            forwardFromLinkInput.disabled = false
-            messageTextArea.disabled = true
-            linkForwardContainer.style.display = 'block'
-            addFileButton.style.display = 'none'
-        } else if (messageTypeDropdown.value === "Медиа файл") {
-            addFileButton.style.display = 'block'
-            linkForwardContainer.style.display = 'none'
-            messageTextArea.disabled = false
-        } else {
-            forwardFromLinkInput.value = ''
-            forwardFromLinkInput.classList.remove('active')
-            forwardFromLinkInput.disabled = true
-            messageTextArea.disabled = false
-        }
-    }
-</script>
-</body>
+    <script src="js/modules/rotator.js" type="text/javascript"></script>
+    <script src="js/modules/accounts-management.js" type="text/javascript"></script>
+    <script src="js/modules/chats-parser.js" type="text/javascript"></script>
+    <script src="js/modules/global.js" type="text/javascript"></script>
+  </body>
 </html>

@@ -152,12 +152,16 @@ li > a.active {
     margin-top: 15px;
 }
 
-#download-sending-history {
-    right: 2%;
+#download-sending-history, #download-parsing-results {
+    right: 7.9%;
 }
 
-#copy-sending-history {
-    right: 8%;
+#copy-sending-history, #copy-parsing-logs {
+    right: 14%;
+}
+
+#clear-parsing-database {
+    right: 2%;
 }
 
 .form-switch .form-check-input:checked[type="checkbox"]::after {

@@ -9,6 +9,7 @@ import shutil
 from itertools import chain
 from datetime import datetime, date
 
+
 async def read_account_json(json_file_path: str):
     try:
         with open(json_file_path) as file:
@@ -36,6 +37,7 @@ async def read_account_json(json_file_path: str):
     except Exception as AccountJsonReadingError:
         print(f'AccountJsonReadingError: {AccountJsonReadingError}')
         return [False, {}]
+
 
 @async_eel.expose
 async def render_accounts_list(render_message=None, accounts_names=[]):
@@ -78,7 +80,8 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
                 last_name = account_json_config[1]["last_name"]
                 today = date.today()
                 current_date = today.strftime("%d-%m-%Y")
-                account_created_at = datetime.utcfromtimestamp(int(account_json_config[1]['register_time'])).strftime('%d-%m-%Y')
+                account_created_at = datetime.utcfromtimestamp(int(account_json_config[1]['register_time'])).strftime(
+                    '%d-%m-%Y')
 
                 current_d = datetime.strptime(current_date, "%d-%m-%Y")
                 reg_d = datetime.strptime(account_created_at, "%d-%m-%Y")
@@ -123,47 +126,46 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
             accounts_all += 1
             session_name = os.path.basename(os.path.normpath(session_path))
             account_item = f'<tr id="tr_{session_name}">' \
-                                f'<td>' \
-                                    f'<div class="form-check">' \
-                                        f'<input class="form-check-input" type="checkbox" {"checked" if session_name in accounts_names  else ""} value="{session_name}"/>' \
-                                    f'</div>' \
-                                f'</td>' \
-                                f'<td>' \
-                                    f'<div class="d-flex align-items-center">'\
-                                        f'<img alt="" class="rounded-circle account-picture" src="{account_picture}"></>'\
-                                        f'<div class="ms-3">' \
-                                            f'<p class="fw-bold mb-1 overflow-hidden-p">{user_fl_names}</p>'\
-                                            f'<p class="text-muted mb-0 overflow-hidden-p">@{username}</p>' \
-                                        f'</div>'\
-                                    f'</div>'\
-                                f'</td>'\
-                                f'<td>' \
-                                    f'<p class="fw-normal mb-1">{phone_number}</p>'\
-                                    f'<p class="text-muted mb-0">{readable_gender}</p>'\
-                                f'</td>' \
-                                f'<td>' \
-                                    f'<span class="badge badge-{chimera_status[0]} rounded-pill d-inline" data-mdb-toggle="tooltip" rel="tooltip" title="{chimera_status[1]}">' \
-                                        f'{chimera_status[2]}' \
-                                    f'</span>' \
-                                f'</td>'\
-                                f'<td>' \
-                                    f'<span class="badge badge-info rounded-pill d-inline">' \
-                                        f'{account_proxy}' \
-                                    f'</span>'\
-                                f'</td>'\
-                                f'<td>' \
-                                    f'<span data-mdb-toggle="tooltip" rel="tooltip"title="Возраст взят из .json файла">' \
-                                        f'{register_time_in_days}' \
-                                    f'</span>' \
-                                f'</td>'\
-                                f'<td>' \
-                                    f'<button id="{session_name}" onclick=getSmsCode("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;'\
-                                f'</td>'\
+                           f'<td>' \
+                           f'<div class="form-check">' \
+                           f'<input class="form-check-input" type="checkbox" {"checked" if session_name in accounts_names else ""} value="{session_name}"/>' \
+                           f'</div>' \
+                           f'</td>' \
+                           f'<td>' \
+                           f'<div class="d-flex align-items-center">' \
+                           f'<img alt="" class="rounded-circle account-picture" src="{account_picture}"></>' \
+                           f'<div class="ms-3">' \
+                           f'<p class="fw-bold mb-1 overflow-hidden-p">{user_fl_names}</p>' \
+                           f'<p class="text-muted mb-0 overflow-hidden-p">@{username}</p>' \
+                           f'</div>' \
+                           f'</div>' \
+                           f'</td>' \
+                           f'<td>' \
+                           f'<p class="fw-normal mb-1">{phone_number}</p>' \
+                           f'<p class="text-muted mb-0">{readable_gender}</p>' \
+                           f'</td>' \
+                           f'<td>' \
+                           f'<span class="badge badge-{chimera_status[0]} rounded-pill d-inline" data-mdb-toggle="tooltip" rel="tooltip" title="{chimera_status[1]}">' \
+                           f'{chimera_status[2]}' \
+                           f'</span>' \
+                           f'</td>' \
+                           f'<td>' \
+                           f'<span class="badge badge-info rounded-pill d-inline">' \
+                           f'{account_proxy}' \
+                           f'</span>' \
+                           f'</td>' \
+                           f'<td>' \
+                           f'<span data-mdb-toggle="tooltip" rel="tooltip"title="Возраст взят из .json файла">' \
+                           f'{register_time_in_days}' \
+                           f'</span>' \
+                           f'</td>' \
+                           f'<td>' \
+                           f'<button id="{session_name}" onclick=getSmsCode("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;' \
+                           f'</td>' \
                            f'</tr>'
             accounts_html += account_item
     except Exception as Ass:
         print(Ass)
-
 
     if len(accounts_html) == 0:
         accounts_html = '<td class="text-center" colspan="7">Для начала работы поместите аккаунты в папку accounts/input</td>'
@@ -173,13 +175,13 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
         async_eel.displayToast(f'Список аккаунтов обновлён!<br/>Найдено сессий: {len(sessions)} ', 'success')
     else:
         async_eel.displayToast(f'{render_message[0]}', render_message[1])
-    async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block, accounts_deleted)
-
+    async_eel.updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked, accounts_spam_block,
+                                   accounts_deleted)
 
 
 @async_eel.expose
-async def copy_accounts(dir_path:str)->int:
-    #by dir path copy to input dir by software with extension session and json
+async def copy_accounts(dir_path: str) -> int:
+    # by dir path copy to input dir by software with extension session and json
     try:
         base_dir = os.getcwd()
         main_dir_path = rf"{base_dir}/accounts/input/"
