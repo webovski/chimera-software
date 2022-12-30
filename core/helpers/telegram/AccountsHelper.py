@@ -243,6 +243,7 @@ async def get_user_info(client: TelegramClient):
 
 async def generate_json_template(user_data, phone, api_id, api_hash, proxy, password=None):
     """create dict such as json config from account and connection information"""
+    print(user_data)
     phone = f"{phone}"
     session_file = f"{phone}"
     register_time = int(time.time())
