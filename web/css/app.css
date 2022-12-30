@@ -259,3 +259,7 @@ input[type=number] {
 #add-account-button-spinner {
     display: none;
 }
+
+.only-photo-parsing {
+    margin-top: 8px;
+}
