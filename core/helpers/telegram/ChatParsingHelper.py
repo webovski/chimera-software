@@ -12,31 +12,32 @@ from core.System import JsonWriteReader
 from core.System.JsonWriteReader import edit_json
 from core.helpers.telegram import TelethonCustom
 from core.helpers.telegram.TelethonCustom import get_dialogs, parse_users
+from core.helpers import SQLiteHelper
 
 max_threads = 25
 semaphore = asyncio.Semaphore(max_threads)
 
 LATIN_ALPHABET = dict(zip(string.ascii_lowercase, range(1, 27)))
-CYRILLIC_ALPHABET = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с',
-                     'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', '0', '1', '2', '3', '4',
-                     '5', '6', '7', '8', '9', '_', '', '*']
+CYRILLIC_ALPHABET = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т',
+                     'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', '0', '1', '2', '3', '4', '5', '6',
+                     '7', '8', '9', '_', '', '*']
 
 ALPHABET = list(LATIN_ALPHABET.keys()) + CYRILLIC_ALPHABET
 
 
-async def start_accounts(sessions, chunked_letters,  parameters: dict):
+async def start_accounts(sessions, chunked_letters, parameters: dict):
     coroutines = []
-
+    connection = SQLiteHelper.get_connection()
     for index, session in enumerate(sessions):
         try:
-            coroutines.append(work_with_account(session, chunked_letters[index], parameters))
+            coroutines.append(work_with_account(session, chunked_letters[index], parameters, connection))
         except IndexError:
             print(f"No tasks for account: {session}")
 
     await asyncio.gather(*coroutines)
 
 
-async def work_with_account(session_path: str, target_letters: list, parameters: dict):
+async def work_with_account(session_path: str, target_letters: list, parameters: dict, connection):
     dialog_parsing = parameters["dialogsParsing"]
     need_premium = parameters["premium"]
     parse_phones = parameters["parsePhones"]
@@ -53,7 +54,7 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                 if dialog_parsing:
                     dialogs = await get_dialogs(client)
                     temp_ = [dialog for dialog in dialogs if dialog.title == chat]
-                    if len(temp_)>0:
+                    if len(temp_) > 0:
                         chat_entity = temp_[0]
                     else:
                         raise Exception("Диалог с таким названием не найден!")
@@ -70,7 +71,9 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                         # parse users for target_latter
                         # adding to an array or directly insert into db
                         users = await parse_users(client, target_letter, chat_entity)
-                        print(len(users))
+                        [await SQLiteHelper.insert_parser_user(connection, user.id, f'{user.first_name} {user.last_name}',
+                         user.username, 1, 'Recently', user.phone, 0, user.premium, user.scam)
+                         for user in users]
                         pass
                     except Exception as AnyParsingException:
                         # display toast or another action
@@ -103,7 +106,7 @@ def all_done():
 
 
 @async_eel.expose
-async def run_parsing(accounts_names,parameters):
+async def run_parsing(accounts_names, parameters):
     # parameters it's settings with filters for scraping
     # check chats-parser js for read signature
     # print(parameters)
@@ -149,9 +152,7 @@ async def get_entity_chat(client, info_chat):
     is_chat_private = info_chat["is_private"]
     try:
         if is_chat_private:
-            info_object = await client(functions.messages.CheckChatInviteRequest(
-                hash=chat_entity
-            ))
+            info_object = await client(functions.messages.CheckChatInviteRequest(hash=chat_entity))
             if not isinstance(info_object, ChatInviteAlready):
                 update_object = await client(ImportChatInviteRequest(chat_entity))
                 chat_entity = await client.get_entity(update_object.chats[0].id)

@@ -35,10 +35,11 @@ async def create_client(session: Union[str, Session]) -> TelegramClient:
 async def get_dialogs(client: TelegramClient):
     """get dialogs with type chat from account"""
     dialogs = await client.get_dialogs()
-    return [dialog.entity for dialog in dialogs if isinstance(dialog.entity,Channel) or isinstance(dialog.entity,Chat)]
+    return [dialog.entity for dialog in dialogs if
+            isinstance(dialog.entity, Channel) or isinstance(dialog.entity, Chat)]
+
 
 async def parse_users(client: TelegramClient, letter, target_group):
-
     all_participants = []
 
     offset = 0
@@ -56,7 +57,6 @@ async def parse_users(client: TelegramClient, letter, target_group):
             participants_count = len(participants.users)
             if participants_count < limit:
                 while_condition = False
-                #print(f'\nCurrent job: {letter} | {participants_count} scrapped', 'yellow', end="")
         return all_participants
 
     except Exception as AnyParsingException:
