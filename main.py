@@ -7,7 +7,8 @@ from core.renderers import AccountsRenderer
 from core.helpers.telegram import AccountsHelper, ChatParsingHelper
 from core.System import ProxyManagment
 
-loop = asyncio.get_event_loop()
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
 
 
 async def main():
@@ -23,5 +24,8 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run_coroutine_threadsafe(main(), loop)
-    loop.run_forever()
+    try:
+        asyncio.run_coroutine_threadsafe(main(), loop)
+        loop.run_forever()
+    except Exception as E:
+        print(E)

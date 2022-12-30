@@ -12,6 +12,7 @@ function validateChatType() {
         recipientsUploadButton.style.opacity = '1'
     }
 }
+
 function validateMessageType() {
     let messageTypeDropdown = document.getElementById("message-type")
     let forwardFromLinkInput = document.getElementById("forward-from-link")
@@ -36,6 +37,7 @@ function validateMessageType() {
         messageTextArea.disabled = false
     }
 }
+
 function parseDialogs() {
     let parseDialogsCheckboxIsChecked = document.getElementById('parse-dialogs').checked
     if (parseDialogsCheckboxIsChecked) {
@@ -44,6 +46,7 @@ function parseDialogs() {
         document.getElementById('chat-link-label').innerText = 'Ссылка на чат';
     }
 }
+
 function runChatsScraping() {
     let chatLink = document.getElementById('chat-link')
     let dialogsParsing = document.getElementById('parse-dialogs')
@@ -60,17 +63,8 @@ function runChatsScraping() {
         if (sessions.length < 1) {
             displayToast('Вы не выбрали аккаунты для парсинга!', 'error')
         } else {
-            eel.run_parsing(sessions)
+            console.log(chatLink.value, dialogsParsing.checked, fastParsing.checked, parsePremium.checked, parsePhones.checked, parseWithoutAdmins.checked, parseWithoutBots.checked,)
+            eel.run_parsing(sessions, chatLink)
         }
     }
-
-    console.log(
-        chatLink.value,
-        dialogsParsing.checked,
-        fastParsing.checked,
-        parsePremium.checked,
-        parsePhones.checked,
-        parseWithoutAdmins.checked,
-        parseWithoutBots.checked,
-    )
 }

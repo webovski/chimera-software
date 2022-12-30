@@ -22,7 +22,10 @@ ALPHABET = list(LATIN_ALPHABET.keys()) + CYRILLIC_ALPHABET
 async def start_accounts(sessions, chunked_letters, chat):
     coroutines = []
     for index, session in enumerate(sessions):
-        coroutines.append(work_with_account(session, chunked_letters[index], chat))
+        try:
+            coroutines.append(work_with_account(session, chunked_letters[index], chat))
+        except IndexError:
+            print(f"No tasks for account: {session}")
 
     await asyncio.gather(*coroutines)
 
@@ -33,14 +36,19 @@ async def work_with_account(session_path: str, target_letters: list, chat: str):
             client = await TelethonCustom.create_client(session_path)
             await client.connect()
             if await client.is_user_authorized():
+                me = await client.get_me()
+                print(f'Successfully connected: {me.phone}')
                 for target_letter in target_letters:
                     try:
+                        print(f'{session_path} | Symbol {target_letter}')
                         # parse users for target_latter
                         # adding to an array or directly insert into db
                         pass
                     except Exception as AnyParsingException:
                         # display toast or another action
+                        print(f'{session_path} | An error on symbol parsing occurred: {AnyParsingException}')
                         pass
+                print(f'All done: {me.phone}')
                 # after parsing here we will do something with parsed users or just disconnect account
                 await client.disconnect()
             else:
