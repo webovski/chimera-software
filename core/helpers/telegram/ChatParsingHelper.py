@@ -23,10 +23,13 @@ CYRILLIC_ALPHABET = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и',
                      '7', '8', '9', '_', '', '*']
 
 ALPHABET = list(LATIN_ALPHABET.keys()) + CYRILLIC_ALPHABET
+parser_iteration = 1
 
 
 async def start_accounts(sessions, chunked_letters, parameters: dict):
     coroutines = []
+    global parser_iteration
+    parser_iteration = 0
     connection = SQLiteHelper.get_connection()
     for index, session in enumerate(sessions):
         try:
@@ -38,6 +41,7 @@ async def start_accounts(sessions, chunked_letters, parameters: dict):
 
 
 async def work_with_account(session_path: str, target_letters: list, parameters: dict, connection):
+    global parser_iteration
     dialog_parsing = parameters["dialogsParsing"]
     need_premium = parameters["premium"]
     parse_phones = parameters["parsePhones"]
@@ -71,10 +75,14 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                         # parse users for target_latter
                         # adding to an array or directly insert into db
                         users = await parse_users(client, target_letter, chat_entity)
-                        [await SQLiteHelper.insert_parser_user(connection, user.id, f'{user.first_name} {user.last_name}',
-                         user.username, 1, 'Recently', user.phone, 0, user.premium, user.scam)
+                        [await SQLiteHelper.insert_parser_user(connection, user.id,
+                                                               f'{user.first_name} {user.last_name}',
+                                                               user.username, 1, 'Recently', user.phone, 0,
+                                                               user.premium, user.scam)
                          for user in users]
                         pass
+                        print(f'Percents: {int(100 * parser_iteration / len(ALPHABET))}%')
+                        parser_iteration = parser_iteration + 1
                     except Exception as AnyParsingException:
                         # display toast or another action
                         print(f'{session_path} | An error on symbol parsing occurred: {AnyParsingException}')
