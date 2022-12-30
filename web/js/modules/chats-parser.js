@@ -71,7 +71,6 @@ function runChatsScraping() {
                 console.log(chatLink.value, dialogsParsing.checked, fastParsing.checked, parsePremium.checked, parsePhones.checked, parseWithoutAdmins.checked, parseWithoutBots.checked,)
 
                 let parsingParameters = {
-                    "sessions": sessions,
                     "chat": chatLink.value,
                     "dialogsParsing": dialogsParsing.checked,
                     "fastParsing": fastParsing.checked,
@@ -81,7 +80,7 @@ function runChatsScraping() {
                     "parseWithoutBots": parseWithoutBots.checked,
                     "onlyPhotos":onlyPhotos.checked,
                 }
-                eel.run_parsing(parsingParameters);
+                eel.run_parsing(sessions,parsingParameters);
             }
         }
     }
