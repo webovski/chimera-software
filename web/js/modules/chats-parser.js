@@ -81,7 +81,14 @@ function runChatsScraping() {
                     "onlyPhotos":onlyPhotos.checked,
                 }
                 eel.run_parsing(sessions,parsingParameters);
+                blockButton("clear-parsing-database");
+                blockButton("download-parsing-results");
             }
         }
     }
+}
+
+
+function removeScrapingDB(){
+    eel.remove_scraping_db()
 }

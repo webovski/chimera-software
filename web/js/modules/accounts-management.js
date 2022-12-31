@@ -36,11 +36,17 @@ function uploadNewAccounts() {
 
 function getSelectedAccounts() {
     // get selected accounts by checkboxes
-    let tableBody = document.getElementsByTagName("tbody")[0];
-    let selectAccountsCheckBoxes = tableBody.querySelectorAll('input[type=checkbox]:checked');
+    let tableBody = document.getElementById("account-table-body");
+    //get selected checkboxes and convert nodelist to standart array
+    //for use filter and etc methods
+    let selectAccountsCheckBoxes = Array.prototype.slice.call(tableBody.querySelectorAll('input[type=checkbox]:checked'));
     let sessionsArray = [];
-    selectAccountsCheckBoxes.forEach(account => sessionsArray.push(account.value));
-    console.log(sessionsArray);
+    selectAccountsCheckBoxes.forEach( function (account) {
+        if (account.dataset.accountStatus !== "Удалён") {
+          sessionsArray.push(account.value);
+        }
+    })
+
     return sessionsArray
 }
 
@@ -88,25 +94,9 @@ function checkAccounts() {
     }
 }
 
-eel.expose(blockButton)
 
-function blockButton(buttonId, buttonTextId, textOnButton) {
-    let selectedButton = document.getElementById(buttonId)
-    let buttonText = document.getElementById(buttonTextId)
-    buttonText.innerText = textOnButton
-    selectedButton.style.pointerEvents = 'none';
-    selectedButton.style.opacity = '0.5';
-}
 
-eel.expose(unblockButton)
 
-function unblockButton(buttonId, buttonTextId, textOnButton) {
-    let selectedButton = document.getElementById(buttonId)
-    let buttonText = document.getElementById(buttonTextId)
-    buttonText.innerText = textOnButton
-    selectedButton.style.pointerEvents = 'all';
-    selectedButton.style.opacity = '1';
-}
 
 eel.expose(blockTableRow)
 

@@ -128,7 +128,7 @@ async def render_accounts_list(render_message=None, accounts_names=[]):
             account_item = f'<tr id="tr_{session_name}">' \
                            f'<td>' \
                            f'<div class="form-check">' \
-                           f'<input class="form-check-input" type="checkbox" {"checked" if session_name in accounts_names else ""} value="{session_name}"/>' \
+                           f'<input class="form-check-input" type="checkbox" {"checked" if session_name in accounts_names else ""} value="{session_name}" data-account-status="{chimera_status[2]}"/>' \
                            f'</div>' \
                            f'</td>' \
                            f'<td>' \

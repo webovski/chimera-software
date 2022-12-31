@@ -1,5 +1,6 @@
 import asyncio
 import math
+import os
 import string
 from random import shuffle
 
@@ -10,6 +11,7 @@ from telethon.tl.types import ChatInviteAlready
 import async_eel
 from core.System import JsonWriteReader
 from core.System.JsonWriteReader import edit_json
+from core.helpers.SQLiteHelper import close_connection
 from core.helpers.telegram import TelethonCustom
 from core.helpers.telegram.TelethonCustom import get_dialogs, parse_users
 from core.helpers import SQLiteHelper
@@ -102,8 +104,9 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
 
 
 def all_done():
-    async_eel.displayToast(f'Парсинг успешно завершен!', 'success')
-
+    async_eel.displayToast(f'Парсинг завершен!', 'success')
+    async_eel.unblockButton("clear-parsing-database")
+    async_eel.unblockButton("download-parsing-results")
     loop = asyncio.get_running_loop()
     if loop and loop.is_running():
         # here can be some action like accounts refreshing, saving logs, etc
@@ -173,3 +176,13 @@ async def get_entity_chat(client, info_chat):
     except Exception as e:
         print(f"Error when try get entity in function get_entity_chat:{e}")
         return None
+
+
+@async_eel.expose
+async def remove_scraping_db():
+    try:
+        if os.path.exists('temp-parsing.db'):
+            os.remove('temp-parsing.db')
+            async_eel.displayToast(f'База парсинга очищена!', 'success')
+    except Exception as e:
+        print(f"error when try delete db parsing {e}")

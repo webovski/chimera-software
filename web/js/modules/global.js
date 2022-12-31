@@ -33,3 +33,27 @@ $('#pro-li').click(function () {
         settingsLi.style.borderTop = '2px solid #f4f4f4'
     }
 });
+
+
+eel.expose(blockButton)
+function blockButton(buttonId, buttonTextId= null, textOnButton= "") {
+    let selectedButton = document.getElementById(buttonId)
+    if (buttonTextId !==null) {
+        let buttonText = document.getElementById(buttonTextId)
+        buttonText.innerText = textOnButton
+    }
+    selectedButton.style.pointerEvents = 'none';
+    selectedButton.style.opacity = '0.5';
+}
+
+eel.expose(unblockButton)
+
+function unblockButton(buttonId, buttonTextId = null, textOnButton = "") {
+    let selectedButton = document.getElementById(buttonId)
+    if (buttonTextId !==null) {
+        let buttonText = document.getElementById(buttonTextId)
+        buttonText.innerText = textOnButton
+    }
+    selectedButton.style.pointerEvents = 'all';
+    selectedButton.style.opacity = '1';
+}
