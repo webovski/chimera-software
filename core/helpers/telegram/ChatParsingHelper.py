@@ -37,55 +37,8 @@ async def start_accounts(sessions, chunked_letters, connection, parameters: dict
             coroutines.append(work_with_account(session, chunked_letters[index], parameters, connection))
         except IndexError:
             print(f"No tasks for account: {session}")
-    coroutines.append(working_with_admins(sessions[0], parameters, connection))
     await asyncio.gather(*coroutines)
 
-
-
-async def working_with_admins(session_path: str, parameters: dict, connection):
-    """logic for scraping admins"""
-    dialog_parsing = parameters["dialogsParsing"]
-    need_premium = parameters["premium"]
-    parse_phones = parameters["parsePhones"]
-    without_admins = parameters["parseWithoutAdmins"]
-    without_bots = parameters["parseWithoutBots"]
-    chat = parameters["chat"]
-    async with semaphore:
-        try:
-            client = await TelethonCustom.create_client(session_path)
-            await client.connect()
-            if await client.is_user_authorized():
-                me = await client.get_me()
-                print(f'Successfully connected: {me.phone}')
-                if dialog_parsing:
-                    dialogs = await get_dialogs(client)
-                    temp_ = [dialog for dialog in dialogs if dialog.title == chat]
-                    if len(temp_) > 0:
-                        chat_entity = temp_[0]
-                    else:
-                        raise Exception("Диалог с таким названием не найден!")
-                else:
-                    # get info about chat such as is_private and username
-                    info_chat = await check_link(chat)
-                    chat_entity = await get_entity_chat(client, info_chat)
-                    if chat_entity is None:
-                        raise Exception("Не удалось найти чат")
-                users = await parse_admins(client, chat_entity)
-                client.disconnect()
-                [await SQLiteHelper.update_parser_user(connection, user.id,
-                                                       1 if user.photo is not None else 0,
-                                                       user.phone, 1,
-                                                       user.premium, user.scam)
-                 for user in users]
-            else:
-                print(f'Unauthorized | {session_path}')
-                updated_json = {'chimera_status': 'deleted'}
-                json_path = session_path.replace('session', 'json')
-                account_json = await JsonWriteReader.read_json(path=json_path)
-                account_json.update(updated_json)
-                await edit_json(json_path, account_json)
-        except Exception as e:
-            print(e)
 
 
 async def work_with_account(session_path: str, target_letters: list, parameters: dict, connection):
@@ -126,12 +79,20 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                         users = await parse_admins(client, chat_entity)
                         [print(user) for user in users]
                         users = await parse_users(client, target_letter, chat_entity)
-                        [await SQLiteHelper.insert_parser_user(connection, user.id,
-                                                               f'{user.first_name} {user.last_name}',
-                                                               user.username, 1 if user.photo is not None else 0,
-                                                               build_user_status(user.status), user.phone, 0,
-                                                               user.premium, user.scam)
-                         for user in users]
+                        for user in users:
+                            full_name = f'{user.first_name} {user.last_name}'
+                            username = user.username if user.username is not None
+                            has_photo = 1 if user.photo is not None else 0
+                            online_status = build_user_status(user.status)
+                            phone = user.phone
+                            has_premium = user.premium
+                            has_scam = user.scam
+                            await SQLiteHelper.insert_parser_user(connection, user.id,
+                                                                   full_name,
+                                                                   username, has_photo,
+                                                                   online_status,phone, 0,
+                                                                   user.premium, user.scam)
+
                         pass
                         print(f'Percents: {int(100 * parser_iteration / len(ALPHABET))}%')
                         parser_iteration = parser_iteration + 1
