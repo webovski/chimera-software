@@ -31,8 +31,6 @@ parser_iteration = 1
 
 async def start_accounts(sessions, chunked_letters, connection, parameters: dict):
 
-    parameters['parseAdminsFirstTime'] = True
-    parameters['parse_bots_first_time'] = True
     coroutines = []
     global parser_iteration
     parser_iteration = 0
@@ -55,9 +53,6 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
     only_bots = parameters["parseOnlyBots"]
     only_photos = parameters["onlyPhotos"]
     chat = parameters["chat"]
-
-    global parse_admins_first_time
-    global parse_bots_first_time
 
     async with semaphore:
         try:
@@ -86,14 +81,8 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                         # parse users for target_latter
                         # adding to an array or directly insert into db
 
-                        users_db = await parse_users(client, target_letter, chat_entity, parse_admins=parse_admins_first_time,
-                                                     parse_bots=parse_bots_first_time)
-
-                        print(f'admins {only_admins}')
-                        if only_admins and parse_admins_first_time:
-                            parse_admins_first_time = False
-                        if only_bots and parse_bots_first_time:
-                            parse_bots_first_time = False
+                        users_db = await parse_users(client, target_letter, chat_entity, parse_admins=only_admins,
+                                                     parse_bots=only_bots)
 
                         # for user in users_db:
                         #     full_name = f'{user.first_name} {user.last_name}'
