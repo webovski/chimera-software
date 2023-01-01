@@ -13,7 +13,8 @@ def get_connection():
                                     phone INTEGER NULL,
                                     is_admin INTEGER NULL,
                                     has_premium INTEGER NULL,
-                                    is_scam INTEGER NULL
+                                    is_scam INTEGER NULL,
+                                    is_bot INTEGER NULL
                                     );'''
 
         cursor = sqliteConnection.cursor()
@@ -36,33 +37,29 @@ async def insert_parser_user(
         phone: int,
         is_admin: int,
         is_premium: int,
-        is_scam: int
+        is_scam: int,
+        is_bot: int
 ):
     try:
         connection.cursor().execute(
-            "INSERT INTO parsed_users (user_id, full_name, username, has_avatar, was_online, phone, is_admin, has_premium, is_scam) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            (user_id, full_name, username, has_avatar, was_online, phone, is_admin, is_premium, is_scam))
+            "INSERT INTO parsed_users (user_id, full_name, username, has_avatar, was_online, phone, is_admin, has_premium, is_scam, is_bot) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (user_id, full_name, username, has_avatar, was_online, phone, is_admin, is_premium, is_scam, is_bot))
         connection.commit()
     except Exception as Error:
         pass
 
 
-async def update_parser_user(
+async def set_admin(
         connection,
-        user_id: int,
-        has_avatar: int,
-        phone: int,
-        is_admin: int,
-        is_premium: int,
-        is_scam: int
+        user_id: int
 ):
     try:
         connection.cursor().execute(
-            "UPDATE parsed_users SET has_avatar = ?, phone = ?, is_admin = ?, has_premium = ?, is_scam = ? WHERE user_id = ?",
-            (has_avatar, phone, is_admin, is_premium, is_scam, user_id))
+            "UPDATE parsed_users SET is_admin = 1 WHERE user_id = ?",
+            (user_id,))
         connection.commit()
     except Exception as Error:
-        print(Error)
+        print(f"{Error} - Error")
         pass
 
 

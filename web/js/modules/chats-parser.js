@@ -54,8 +54,8 @@ function runChatsScraping() {
     let fastParsing = document.getElementById('parse-fast');
     let parsePremium = document.getElementById('parse-premium');
     let parsePhones = document.getElementById('parse-phones');
-    let parseWithoutAdmins = document.getElementById('parse-without-admins');
-    let parseWithoutBots = document.getElementById('parse-without-bots');
+    let parseOnlyAdmins = document.getElementById('parse-only-admins');
+    let parseOnlyBots = document.getElementById('parse-only-bots');
 
     if (chatLink.value === "") {
         displayToast('Вы не указали чат!', 'error')
@@ -68,7 +68,7 @@ function runChatsScraping() {
             if (sessions.length > 1 && dialogsParsing.checked === true) {
                 displayToast('Выберите один аккаунт в котором находится диалог!', 'error')
             } else {
-                console.log(chatLink.value, dialogsParsing.checked, fastParsing.checked, parsePremium.checked, parsePhones.checked, parseWithoutAdmins.checked, parseWithoutBots.checked,)
+                console.log(chatLink.value, dialogsParsing.checked, fastParsing.checked, parsePremium.checked, parsePhones.checked, parseOnlyAdmins.checked, parseOnlyBots.checked,)
 
                 let parsingParameters = {
                     "chat": chatLink.value,
@@ -76,8 +76,8 @@ function runChatsScraping() {
                     "fastParsing": fastParsing.checked,
                     "premium": parsePremium.checked,
                     "parsePhones": parsePhones.checked,
-                    "parseWithoutAdmins": parseWithoutAdmins.checked,
-                    "parseWithoutBots": parseWithoutBots.checked,
+                    "parseOnlyAdmins": parseOnlyAdmins.checked,
+                    "parseOnlyBots": parseOnlyBots.checked,
                     "onlyPhotos":onlyPhotos.checked,
                 }
                 eel.run_parsing(sessions,parsingParameters);

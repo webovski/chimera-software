@@ -5,7 +5,8 @@ from telethon.sessions import Session
 from typing import Union
 
 from telethon.tl.functions.channels import GetParticipantsRequest
-from telethon.tl.types import Channel, Chat, ChannelParticipantsSearch, ChannelParticipant, ChannelParticipantsAdmins
+from telethon.tl.types import Channel, Chat, ChannelParticipantsSearch, ChannelParticipant, ChannelParticipantsAdmins, \
+    ChannelParticipantSelf
 
 from core.System import ProxyManagment
 from core.System import JsonWriteReader
@@ -66,6 +67,34 @@ async def parse_users(client: TelegramClient, letter, target_group):
         return all_participants
 
 
+async def parse_users_with_admins(client: TelegramClient, letter, target_group):
+    all_participants = []
+    admins = set()
+    offset = 0
+    limit = 200
+    my_filter = ChannelParticipantsSearch(letter)
+    while_condition = True
+    participants = []
+    try:
+        while while_condition:
+            participants = await client(
+                GetParticipantsRequest(channel=target_group, filter=my_filter, offset=offset, limit=limit, hash=0))
+
+            all_participants.extend(participants.users)
+            offset += len(participants.users)
+            participants_count = len(participants.users)
+            if participants_count < limit:
+                while_condition = False
+        admins = list(filter(
+            lambda user: not isinstance(user, ChannelParticipantSelf) and not isinstance(user, ChannelParticipant),
+            participants.participants))
+
+        return [all_participants,admins]
+
+    except Exception as AnyParsingException:
+        print('Parsing Exception:', AnyParsingException)
+        return [all_participants,admins]
+
 async def parse_admins(client: TelegramClient, target_group):
     all_participants = []
 
@@ -91,7 +120,8 @@ async def parse_admins(client: TelegramClient, target_group):
         return all_participants
 
 
-def build_user_status(status):
+def build_user_status(user_data):
+    status = user_data.status
     if str(status) == "UserStatusRecently()":
         return "Заходил недавно"
     if str(status) == "UserStatusLastWeek()":
@@ -102,4 +132,6 @@ def build_user_status(status):
         return status.expires.strftime("%d.%m.%Y, %H:%M")
     if "Offline" in str(status):
         return status.was_online.strftime("%d.%m.%Y, %H:%M")
+    if user_data.bot:
+        return "Бот"
     return "Заходил очень давно."
