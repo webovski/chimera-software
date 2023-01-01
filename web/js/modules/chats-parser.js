@@ -80,7 +80,7 @@ function runChatsScraping() {
                     "parseOnlyBots": parseOnlyBots.checked,
                     "onlyPhotos":onlyPhotos.checked,
                 }
-                eel.run_parsing(sessions,parsingParameters);
+                eel.run_parsing(sessions, parsingParameters);
                 blockButton("clear-parsing-database");
                 blockButton("download-parsing-results");
             }

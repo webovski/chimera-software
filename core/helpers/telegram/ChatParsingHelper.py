@@ -13,8 +13,7 @@ from core.System import JsonWriteReader
 from core.System.JsonWriteReader import edit_json
 from core.helpers.SQLiteHelper import close_connection
 from core.helpers.telegram import TelethonCustom
-from core.helpers.telegram.TelethonCustom import get_dialogs, parse_users, parse_admins, build_user_status, \
-    parse_users_with_admins
+from core.helpers.telegram.TelethonCustom import get_dialogs, build_user_status, parse_users
 from core.helpers import SQLiteHelper
 
 max_threads = 25
@@ -29,7 +28,11 @@ ALPHABET = list(LATIN_ALPHABET.keys()) + CYRILLIC_ALPHABET
 parser_iteration = 1
 
 
+
 async def start_accounts(sessions, chunked_letters, connection, parameters: dict):
+
+    parameters['parseAdminsFirstTime'] = True
+    parameters['parse_bots_first_time'] = True
     coroutines = []
     global parser_iteration
     parser_iteration = 0
@@ -44,6 +47,7 @@ async def start_accounts(sessions, chunked_letters, connection, parameters: dict
 async def work_with_account(session_path: str, target_letters: list, parameters: dict, connection):
     """logic for main scraping"""
     global parser_iteration
+
     dialog_parsing = parameters["dialogsParsing"]
     need_premium = parameters["premium"]
     parse_phones = parameters["parsePhones"]
@@ -51,6 +55,10 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
     only_bots = parameters["parseOnlyBots"]
     only_photos = parameters["onlyPhotos"]
     chat = parameters["chat"]
+
+    global parse_admins_first_time
+    global parse_bots_first_time
+
     async with semaphore:
         try:
             client = await TelethonCustom.create_client(session_path)
@@ -78,45 +86,24 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                         # parse users for target_latter
                         # adding to an array or directly insert into db
 
-                        users_db = await parse_users_with_admins(client, target_letter, chat_entity)
-                        users = users_db[0]
-                        admins = users_db[1]
-                        for user in users:
-                            full_name = f'{user.first_name} {user.last_name}'
-                            username = user.username
-                            has_photo = 1 if user.photo is not None else 0
-                            online_status = build_user_status(user)
-                            phone = user.phone
-                            has_premium = user.premium
-                            has_scam = user.scam
-                            is_bot = user.bot
-                            if parse_phones and phone:
-                                await SQLiteHelper.insert_parser_user(connection, user.id,
-                                                                      full_name,
-                                                                      username, has_photo,
-                                                                      online_status, phone, 0,
-                                                                      has_premium, has_scam, is_bot)
-                            elif need_premium and has_premium:
-                                await SQLiteHelper.insert_parser_user(connection, user.id,
-                                                                      full_name,
-                                                                      username, has_photo,
-                                                                      online_status, phone, 0,
-                                                                      has_premium, has_scam, is_bot)
-                            elif only_photos and has_photo:
-                                await SQLiteHelper.insert_parser_user(connection, user.id,
-                                                                      full_name,
-                                                                      username, has_photo,
-                                                                      online_status, phone, 0,
-                                                                      has_premium, has_scam, is_bot)
-                            elif only_bots and is_bot:
-                                await SQLiteHelper.insert_parser_user(connection, user.id,
-                                                                      full_name,
-                                                                      username, has_photo,
-                                                                      online_status, phone, 0,
-                                                                      has_premium, has_scam, is_bot)
+                        users_db = await parse_users(client, target_letter, chat_entity, parse_admins=parse_admins_first_time,
+                                                     parse_bots=parse_bots_first_time)
 
-                        #admins = await parse_admins(client, chat_entity)
-                        [await SQLiteHelper.set_admin(connection, user.user_id) for user in admins]
+                        print(f'admins {only_admins}')
+                        if only_admins and parse_admins_first_time:
+                            parse_admins_first_time = False
+                        if only_bots and parse_bots_first_time:
+                            parse_bots_first_time = False
+
+                        # for user in users_db:
+                        #     full_name = f'{user.first_name} {user.last_name}'
+                        #     username = user.username
+                        #     has_photo = 1 if user.photo is not None else 0
+                        #     online_status = await build_user_status(user)
+                        #     phone = user.phone
+                        #     has_premium = user.premium
+                        #     has_scam = user.scam
+                        #     is_bot = user.bot
 
                         print(f'Percents: {int(100 * parser_iteration / len(ALPHABET))}%')
                         parser_iteration = parser_iteration + 1
@@ -164,6 +151,7 @@ async def run_parsing(accounts_names, parameters):
         # print(parameters)
         fast_parsing = parameters["fastParsing"]
         only_admins = parameters["parseOnlyAdmins"]
+        only_bots = parameters["parseOnlyBots"]
 
         input_sessions_folder = 'accounts/input/'
         connection = SQLiteHelper.get_connection()
@@ -174,7 +162,7 @@ async def run_parsing(accounts_names, parameters):
             shuffle(letters_list)
         else:
             letters_list = [" "]
-        if only_admins:
+        if only_admins or only_bots:
             letters_list = [" "]
         chunk_size = math.ceil((len(letters_list) / len(sessions)))
         chunked_letters = [letters_list[i:i + chunk_size] for i in range(0, len(letters_list), chunk_size)]

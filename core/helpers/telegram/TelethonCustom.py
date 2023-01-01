@@ -1,13 +1,10 @@
-from pprint import pprint
-
 from telethon import TelegramClient
 from telethon.sessions import Session
 from typing import Union
-
+from telethon import types
 from telethon.tl.functions.channels import GetParticipantsRequest
-from telethon.tl.types import Channel, Chat, ChannelParticipantsSearch, ChannelParticipant, ChannelParticipantsAdmins, \
-    ChannelParticipantSelf
-
+from telethon.tl.types import Channel, Chat, ChannelParticipantsSearch, ChannelParticipantsAdmins, \
+    ChannelParticipantsBots
 from core.System import ProxyManagment
 from core.System import JsonWriteReader
 
@@ -42,8 +39,19 @@ async def get_dialogs(client: TelegramClient):
             isinstance(dialog.entity, Channel) or isinstance(dialog.entity, Chat)]
 
 
-async def parse_users(client: TelegramClient, letter, target_group):
+async def parse_users(client: TelegramClient, letter, target_group, parse_admins=False, parse_bots=False):
     all_participants = []
+
+    if parse_bots:
+        bots = await get_only_bots(client, target_group)
+        me = await client.get_me()
+        all_participants.extend(bots)
+        print(f'{me.id} Bots are parsed!')
+    if parse_admins:
+        admins = await get_only_admins(client, target_group)
+        me = await client.get_me()
+        all_participants.extend(admins)
+        print(f'{me.id} Admins are parsed!')
 
     offset = 0
     limit = 200
@@ -67,71 +75,42 @@ async def parse_users(client: TelegramClient, letter, target_group):
         return all_participants
 
 
-async def parse_users_with_admins(client: TelegramClient, letter, target_group):
-    all_participants = []
-    admins = set()
-    offset = 0
-    limit = 200
-    my_filter = ChannelParticipantsSearch(letter)
-    while_condition = True
-    participants = []
+async def get_only_admins(client: TelegramClient, chat: str):
+    admins = []
     try:
-        while while_condition:
-            participants = await client(
-                GetParticipantsRequest(channel=target_group, filter=my_filter, offset=offset, limit=limit, hash=0))
+        async for admin in client.iter_participants(chat, filter=ChannelParticipantsAdmins()):
+            admins.append(admin)
+        return admins
+    except Exception as ParsingAdminsException:
+        print('Admin parsing exception:', ParsingAdminsException)
+        return admins
 
-            all_participants.extend(participants.users)
-            offset += len(participants.users)
-            participants_count = len(participants.users)
-            if participants_count < limit:
-                while_condition = False
-        admins = list(filter(
-            lambda user: not isinstance(user, ChannelParticipantSelf) and not isinstance(user, ChannelParticipant),
-            participants.participants))
 
-        return [all_participants,admins]
-
-    except Exception as AnyParsingException:
-        print('Parsing Exception:', AnyParsingException)
-        return [all_participants,admins]
-
-async def parse_admins(client: TelegramClient, target_group):
-    all_participants = []
-
-    offset = 0
-    limit = 200
-    my_filter = ChannelParticipantsAdmins()
-    while_condition = True
-
+async def get_only_bots(client: TelegramClient, chat: str):
+    bots = []
     try:
-        while while_condition:
-            participants = await client(
-                GetParticipantsRequest(channel=target_group, filter=my_filter, offset=offset, limit=limit, hash=0))
-
-            all_participants.extend(participants.users)
-            offset += len(participants.users)
-            participants_count = len(participants.users)
-            if participants_count < limit:
-                while_condition = False
-        return all_participants
-
-    except Exception as AnyParsingException:
-        print('Parsing Exception:', AnyParsingException)
-        return all_participants
+        async for bot in client.iter_participants(chat, filter=ChannelParticipantsBots()):
+            bots.append(bot)
+        return bots
+    except Exception as ParsingAdminsException:
+        print('Bots parsing exception:', ParsingAdminsException)
+        return bots
 
 
-def build_user_status(user_data):
-    status = user_data.status
-    if str(status) == "UserStatusRecently()":
+async def build_user_status(user):
+    user_status = user.status
+
+    if isinstance(user_status, types.UserStatusRecently):
         return "Заходил недавно"
-    if str(status) == "UserStatusLastWeek()":
+    if isinstance(user_status, types.UserStatusLastWeek):
         return "Заходил на этой неделе"
-    if str(status) == "UserStatusLastMonth()":
+    if isinstance(user_status, types.UserStatusLastMonth):
         return "Заходил в этом месяце"
-    if "Online" in str(status):
-        return status.expires.strftime("%d.%m.%Y, %H:%M")
-    if "Offline" in str(status):
-        return status.was_online.strftime("%d.%m.%Y, %H:%M")
-    if user_data.bot:
+    if isinstance(user_status, types.UserStatusOnline):
+        return user_status.expires.strftime("%d.%m.%Y, %H:%M")
+    if isinstance(user_status, types.UserStatusOffline):
+        return user_status.was_online.strftime("%d.%m.%Y, %H:%M")
+    if user_status.bot:
         return "Бот"
+
     return "Заходил очень давно."
