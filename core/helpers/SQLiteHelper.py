@@ -47,5 +47,24 @@ async def insert_parser_user(
         pass
 
 
+async def update_parser_user(
+        connection,
+        user_id: int,
+        has_avatar: int,
+        phone: int,
+        is_admin: int,
+        is_premium: int,
+        is_scam: int
+):
+    try:
+        connection.cursor().execute(
+            "UPDATE parsed_users SET has_avatar = ?, phone = ?, is_admin = ?, has_premium = ?, is_scam = ? WHERE user_id = ?",
+            (has_avatar, phone, is_admin, is_premium, is_scam, user_id))
+        connection.commit()
+    except Exception as Error:
+        print(Error)
+        pass
+
+
 def close_connection(connection):
     connection.close()

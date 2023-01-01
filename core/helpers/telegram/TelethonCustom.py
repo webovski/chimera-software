@@ -1,9 +1,11 @@
+from pprint import pprint
+
 from telethon import TelegramClient
 from telethon.sessions import Session
 from typing import Union
 
 from telethon.tl.functions.channels import GetParticipantsRequest
-from telethon.tl.types import Channel, Chat, ChannelParticipantsSearch
+from telethon.tl.types import Channel, Chat, ChannelParticipantsSearch, ChannelParticipant, ChannelParticipantsAdmins
 
 from core.System import ProxyManagment
 from core.System import JsonWriteReader
@@ -62,3 +64,42 @@ async def parse_users(client: TelegramClient, letter, target_group):
     except Exception as AnyParsingException:
         print('Parsing Exception:', AnyParsingException)
         return all_participants
+
+
+async def parse_admins(client: TelegramClient, target_group):
+    all_participants = []
+
+    offset = 0
+    limit = 200
+    my_filter = ChannelParticipantsAdmins()
+    while_condition = True
+
+    try:
+        while while_condition:
+            participants = await client(
+                GetParticipantsRequest(channel=target_group, filter=my_filter, offset=offset, limit=limit, hash=0))
+
+            all_participants.extend(participants.users)
+            offset += len(participants.users)
+            participants_count = len(participants.users)
+            if participants_count < limit:
+                while_condition = False
+        return all_participants
+
+    except Exception as AnyParsingException:
+        print('Parsing Exception:', AnyParsingException)
+        return all_participants
+
+
+def build_user_status(status):
+    if str(status) == "UserStatusRecently()":
+        return "Заходил недавно"
+    if str(status) == "UserStatusLastWeek()":
+        return "Заходил на этой неделе"
+    if str(status) == "UserStatusLastMonth()":
+        return "Заходил в этом месяце"
+    if "Online" in str(status):
+        return status.expires.strftime("%d.%m.%Y, %H:%M")
+    if "Offline" in str(status):
+        return status.was_online.strftime("%d.%m.%Y, %H:%M")
+    return "Заходил очень давно."
