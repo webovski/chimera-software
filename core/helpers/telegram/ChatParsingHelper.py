@@ -90,35 +90,29 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                             has_premium = user.premium
                             has_scam = user.scam
                             is_bot = user.bot
-                            if only_admins:
+                            if parse_phones and phone:
                                 await SQLiteHelper.insert_parser_user(connection, user.id,
                                                                       full_name,
                                                                       username, has_photo,
-                                                                      online_status, phone, only_admins,
-                                                                      has_premium, has_scam, is_bot)
-                            elif parse_phones and phone:
-                                await SQLiteHelper.insert_parser_user(connection, user.id,
-                                                                      full_name,
-                                                                      username, has_photo,
-                                                                      online_status, phone, only_admins,
+                                                                      online_status, phone, 0,
                                                                       has_premium, has_scam, is_bot)
                             elif need_premium and has_premium:
                                 await SQLiteHelper.insert_parser_user(connection, user.id,
                                                                       full_name,
                                                                       username, has_photo,
-                                                                      online_status, phone, only_admins,
+                                                                      online_status, phone, 0,
                                                                       has_premium, has_scam, is_bot)
                             elif only_photos and has_photo:
                                 await SQLiteHelper.insert_parser_user(connection, user.id,
                                                                       full_name,
                                                                       username, has_photo,
-                                                                      online_status, phone, only_admins,
+                                                                      online_status, phone, 0,
                                                                       has_premium, has_scam, is_bot)
                             elif only_bots and is_bot:
                                 await SQLiteHelper.insert_parser_user(connection, user.id,
                                                                       full_name,
                                                                       username, has_photo,
-                                                                      online_status, phone, only_admins,
+                                                                      online_status, phone, 0,
                                                                       has_premium, has_scam, is_bot)
 
                         #admins = await parse_admins(client, chat_entity)
