@@ -40,12 +40,17 @@ async def parse_users(client: TelegramClient, letter, target_group, parse_admins
         bots = await get_only_bots(client, target_group)
         me = await client.get_me()
         bots.extend(bots)
+        all_participants.extend(bots)
         print(f'{me.id} Bots are parsed!')
     if parse_admins:
         admins = await get_only_admins(client, target_group)
         me = await client.get_me()
         admins.extend(admins)
+        all_participants.extend(admins)
         print(f'{me.id} Admins are parsed!')
+
+    if parse_bots or parse_admins:
+        return {'bots': bots, 'admins': admins, 'all_users': all_participants}
 
     offset = 0
     limit = 200
@@ -60,10 +65,16 @@ async def parse_users(client: TelegramClient, letter, target_group, parse_admins
             admins = list(filter(
                 lambda user: not isinstance(user, ChannelParticipantSelf) and not isinstance(user, ChannelParticipant),
                 participants.participants))
+
+            for user in participants.participants:
+                if not isinstance(user, ChannelParticipantSelf) and not isinstance(user, ChannelParticipant):
+                    admins.append(user)
+
             offset += len(participants.users)
             participants_count = len(participants.users)
             if participants_count < limit:
                 while_condition = False
+
         return {'bots': bots, 'admins': admins, 'all_users': all_participants}
 
     except Exception as AnyParsingException:

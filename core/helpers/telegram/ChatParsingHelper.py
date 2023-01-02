@@ -75,7 +75,6 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                     chat_entity = await get_entity_chat(client, info_chat)
                     if chat_entity is None:
                         raise Exception("Не удалось найти чат")
-
                 for target_letter in target_letters:
                     try:
                         parsed_users = await parse_users(client, target_letter, chat_entity, parse_admins=only_admins,
@@ -85,7 +84,11 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                         bots = parsed_users.get('bots')
                         admins = parsed_users.get('admins')
 
+
                         for user in all_users:
+
+                            save_user = True
+
                             if not user.last_name:
                                 last_name = ''
                             else:
@@ -99,25 +102,29 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                             is_scam = user.scam
                             is_bot = user.bot
 
-                            save_user = True
-
-                            if parse_photos and not phone:
+                            if parse_photos and not has_avatar:
                                 save_user = False
                             if parse_premium and not is_premium:
-                                save_user = False
-                            if parse_photos and not has_avatar:
                                 save_user = False
                             if parse_phones and not phone:
                                 save_user = False
                             if only_bots and not user.bot:
                                 save_user = False
 
+                            is_admin = 0
+                            if only_admins:
+                                is_admin = 1
+
+
                             if save_user:
                                 await SQLiteHelper.insert_parsed_user(connection, user.id,
                                                                       full_name,
                                                                       username, has_avatar,
-                                                                      was_online, phone, 0,
+                                                                      was_online, phone, is_admin,
                                                                       is_premium, is_scam, is_bot)
+
+                            if not only_admins and save_user:
+                                [await SQLiteHelper.set_admin(connection, user.user_id) for user in admins]
 
                         print(f'Percents: {int(100 * parser_iteration / len(ALPHABET))}%')
                         parser_iteration = parser_iteration + 1
