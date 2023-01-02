@@ -63,5 +63,14 @@ async def set_admin(
         pass
 
 
+def get_users(connection):
+    cursor = connection.cursor()
+    # for use select data such as dict by keys
+    cursor.row_factory = sqlite3.Row
+    cursor.execute("SELECT * FROM parsed_users")
+    rows = cursor.fetchall()
+    return rows
+
+
 def close_connection(connection):
     connection.close()

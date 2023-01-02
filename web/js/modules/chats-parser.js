@@ -83,6 +83,7 @@ function runChatsScraping() {
                 eel.run_parsing(sessions, parsingParameters);
                 blockButton("clear-parsing-database");
                 blockButton("download-parsing-results");
+
             }
         }
     }
@@ -91,4 +92,8 @@ function runChatsScraping() {
 
 function removeScrapingDB(){
     eel.remove_scraping_db()
+}
+
+function convertDBtoExcel(){
+    eel.convert_db_to_excel()
 }

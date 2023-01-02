@@ -14,6 +14,7 @@ from telethon import types
 import async_eel
 from core.System import JsonWriteReader
 from core.System.JsonWriteReader import edit_json
+from core.helpers.ExcelHelper import create_excel_doc
 from core.helpers.SQLiteHelper import close_connection
 from core.helpers.telegram import TelethonCustom
 from core.helpers.telegram.TelethonCustom import get_dialogs, build_user_status, parse_users
@@ -232,6 +233,19 @@ async def get_entity_chat(client, info_chat):
     except Exception as e:
         print(f"Error when try get entity in function get_entity_chat:{e}")
         return None
+
+@async_eel.expose
+async def convert_db_to_excel():
+    if os.path.exists('temp-parsing.db'):
+        connection = SQLiteHelper.get_connection()
+        query_set_users = SQLiteHelper.get_users(connection)
+        result = create_excel_doc(query_set_users)
+        close_connection(connection)
+        if result is not None and not isinstance(result,Exception):
+            async_eel.displayToast(f'Сохранение отчета в {result} завершено!', 'success')
+        else:
+            async_eel.displayToast(f'Сохранить отчет не удалось - {result}', 'error')
+
 
 
 @async_eel.expose
