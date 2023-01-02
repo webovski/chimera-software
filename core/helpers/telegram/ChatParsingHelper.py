@@ -233,6 +233,7 @@ async def convert_db_to_excel():
         connection = SQLiteHelper.get_connection()
         query_set_users = SQLiteHelper.get_users(connection)
         result = create_excel_doc(query_set_users)
+        close_connection(connection)
         if result is not None and not isinstance(result,Exception):
             async_eel.displayToast(f'Сохранение отчета в {result} завершено!', 'success')
         else:
