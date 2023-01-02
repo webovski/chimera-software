@@ -27,8 +27,8 @@ def get_connection():
         print("Error while creating a temp sqlite table", error)
 
 
-async def insert_parser_user(
-        connection,
+async def insert_parsed_user(
+        connection: sqlite3.Connection,
         user_id: int,
         full_name: str,
         username: str,

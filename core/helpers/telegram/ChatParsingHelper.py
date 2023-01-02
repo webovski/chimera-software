@@ -1,12 +1,15 @@
 import asyncio
+import json
 import math
 import os
+import re
 import string
 from random import shuffle
 
 from telethon import utils, functions
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.types import ChatInviteAlready
+from telethon import types
 
 import async_eel
 from core.System import JsonWriteReader
@@ -28,9 +31,7 @@ ALPHABET = list(LATIN_ALPHABET.keys()) + CYRILLIC_ALPHABET
 parser_iteration = 1
 
 
-
 async def start_accounts(sessions, chunked_letters, connection, parameters: dict):
-
     coroutines = []
     global parser_iteration
     parser_iteration = 0
@@ -47,11 +48,11 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
     global parser_iteration
 
     dialog_parsing = parameters["dialogsParsing"]
-    need_premium = parameters["premium"]
+    parse_premium = parameters["premium"]
     parse_phones = parameters["parsePhones"]
+    parse_photos = parameters["onlyPhotos"]
     only_admins = parameters["parseOnlyAdmins"]
     only_bots = parameters["parseOnlyBots"]
-    only_photos = parameters["onlyPhotos"]
     chat = parameters["chat"]
 
     async with semaphore:
@@ -77,22 +78,46 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
 
                 for target_letter in target_letters:
                     try:
-                        print(f'{session_path} | Symbol {target_letter}')
-                        # parse users for target_latter
-                        # adding to an array or directly insert into db
+                        parsed_users = await parse_users(client, target_letter, chat_entity, parse_admins=only_admins,
+                                                         parse_bots=only_bots)
 
-                        users_db = await parse_users(client, target_letter, chat_entity, parse_admins=only_admins,
-                                                     parse_bots=only_bots)
+                        all_users = parsed_users.get('all_users')
+                        bots = parsed_users.get('bots')
+                        admins = parsed_users.get('admins')
 
-                        # for user in users_db:
-                        #     full_name = f'{user.first_name} {user.last_name}'
-                        #     username = user.username
-                        #     has_photo = 1 if user.photo is not None else 0
-                        #     online_status = await build_user_status(user)
-                        #     phone = user.phone
-                        #     has_premium = user.premium
-                        #     has_scam = user.scam
-                        #     is_bot = user.bot
+                        for user in all_users:
+                            if not user.last_name:
+                                last_name = ''
+                            else:
+                                last_name = user.last_name
+                            full_name = f'{user.first_name} {last_name}'
+                            username = user.username
+                            has_avatar = 1 if user.photo is not None else 0
+                            was_online = await build_user_status(user)
+                            phone = user.phone
+                            is_premium = user.premium
+                            is_scam = user.scam
+                            is_bot = user.bot
+
+                            save_user = True
+
+                            if parse_photos and not phone:
+                                save_user = False
+                            if parse_premium and not is_premium:
+                                save_user = False
+                            if parse_photos and not has_avatar:
+                                save_user = False
+                            if parse_phones and not phone:
+                                save_user = False
+                            if only_bots and not user.bot:
+                                save_user = False
+
+                            if save_user:
+                                await SQLiteHelper.insert_parsed_user(connection, user.id,
+                                                                      full_name,
+                                                                      username, has_avatar,
+                                                                      was_online, phone, 0,
+                                                                      is_premium, is_scam, is_bot)
 
                         print(f'Percents: {int(100 * parser_iteration / len(ALPHABET))}%')
                         parser_iteration = parser_iteration + 1
