@@ -205,7 +205,7 @@ li > a.active {
     white-space: nowrap;
 }
 
-#sync-icon {
+#sync-icon, #icon-sync-parsing {
     transition: transform 0.8s;
 }
 

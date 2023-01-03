@@ -86,7 +86,7 @@ checkbox.addEventListener('change', (event) => {
 function checkAccounts() {
     let accountsList = getSelectedAccounts();
     if (accountsList.length > 0) {
-        startRotating(750, false)
+        startRotating(750, false, 'sync-icon', 0)
         blockButton('checking-accounts-btn', 'checking-accounts-btn-text', 'Проверяем аккаунты')
         eel.check_accounts(accountsList)
     } else {

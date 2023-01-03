@@ -48,6 +48,9 @@ function parseDialogs() {
 }
 
 function runChatsScraping() {
+
+    startRotating(750, false, 'icon-sync-parsing', 0)
+
     let onlyPhotos = document.getElementById("parse-only-photo");
     let chatLink = document.getElementById('chat-link');
     let dialogsParsing = document.getElementById('parse-dialogs');

@@ -1,24 +1,27 @@
 let current_rotation = 0;
 let rotating = false
 
-function rotationAnimation() {
+function rotationAnimation(iconId, initDeg) {
     if (rotating) {
-        let sync_icon = document.getElementById('sync-icon')
+        let icon = document.getElementById(iconId)
+        let current_rotation = initDeg;
         current_rotation += 180;
-        sync_icon.style.transform = 'rotate(' + current_rotation + 'deg)';
-        startRotating(750, false)
+        icon.style.transform = 'rotate(' + current_rotation + 'deg)';
+        startRotating(750, false, iconId, current_rotation)
     }
 }
 
 eel.expose(startRotating)
-function startRotating(timeout, stopRotating) {
+function startRotating(timeout, stopRotating, iconId, initDeg) {
     if (stopRotating === 'false') {
         rotating = false
     } else {
         rotating = true
         setTimeout(
             rotationAnimation,
-            timeout
+            timeout,
+            iconId,
+            initDeg
         );
     }
 }
