@@ -270,6 +270,8 @@ async def convert_db_to_excel():
             async_eel.displayToast(f'Сохранение отчета в {result} завершено!', 'success')
         else:
             async_eel.displayToast(f'Сохранить отчет не удалось - {result}', 'error')
+    else:
+        async_eel.displayToast(f'Пользователи для генерации отчета отсутствуют!', 'error')
 
 
 @async_eel.expose
@@ -277,6 +279,6 @@ async def remove_scraping_db():
     try:
         if os.path.exists('temp-parsing.db'):
             os.remove('temp-parsing.db')
-            async_eel.displayToast(f'База парсинга очищена!', 'success')
+        async_eel.displayToast(f'База парсинга очищена!', 'success')
     except Exception as e:
         print(f"error when try delete db parsing {e}")
