@@ -96,16 +96,10 @@ async def work_with_account(
                 for target_letter in target_letters:
                     try:
                         if target_letter == 'admins':
-                            only_admins = True
+                            parse_admins = True
                             is_admin = 1
                         else:
-                            if parse_admins and target_letter == 'admins':
-                                is_admin = 1
-                                only_admins = True
-                            else:
-                                is_admin = 0
-                                only_admins = False
-
+                            is_admin = 0
 
                         parsed_users = await parse_users(client, target_letter, chat_entity, parse_admins=parse_admins,
                                                          parse_bots=parse_bots)
@@ -115,7 +109,6 @@ async def work_with_account(
                         for user in all_users:
 
                             save_user = True
-
                             if not user.last_name:
                                 last_name = ''
                             else:
@@ -137,8 +130,10 @@ async def work_with_account(
                                 save_user = False
                             if parse_bots and not user.bot:
                                 save_user = False
+                            if parse_admins and not is_admin:
+                                save_user = False
 
-                            if only_admins:
+                            if parse_admins:
                                 is_admin = 1
 
                             if save_user:
@@ -147,7 +142,7 @@ async def work_with_account(
                                                                       username, has_avatar,
                                                                       was_online, phone, is_admin,
                                                                       is_premium, is_scam, is_bot)
-                            if is_admin:
+                            if is_admin and save_user:
                                 await SQLiteHelper.insert_or_update_admins(connection, user.id,
                                                                            full_name,
                                                                            username, has_avatar,
