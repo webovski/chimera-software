@@ -80,6 +80,7 @@ async def work_with_account(
             if await client.is_user_authorized():
                 me = await client.get_me()
                 print(f'Successfully connected: {me.phone}')
+                async_eel.writeLog("result-users-text-area",f"Аккаунт {me.phone} успешно подключен.")
                 if dialog_parsing:
                     dialogs = await get_dialogs(client)
                     temp_ = [dialog for dialog in dialogs if dialog.title == chat]
@@ -170,6 +171,9 @@ async def work_with_account(
                 await client.disconnect()
             except:
                 pass
+            account_phone = session_path.rsplit('/', 1)[1].split('.')[0].replace("+","")
+            async_eel.writeLog("result-users-text-area", f"Во время парсинга на аккаунте {account_phone} произошла ошибка: {Unexpected}")
+
             print(f'Unexpected | {session_path} {Unexpected}')
 
 

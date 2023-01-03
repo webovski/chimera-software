@@ -57,3 +57,26 @@ function unblockButton(buttonId, buttonTextId = null, textOnButton = "") {
     selectedButton.style.pointerEvents = 'all';
     selectedButton.style.opacity = '1';
 }
+
+
+function copyTextToClipboard(elementId){
+    //for copy text from objects by id
+    let element = document.getElementById(elementId);
+    if (element !==null) {
+        element.setSelectionRange(0, 99999999);
+        navigator.clipboard.writeText(element.value);
+    }
+}
+eel.expose(writeLog)
+function writeLog(textAreaId, text){
+    let textArea = document.getElementById(textAreaId);
+    if (textArea !==null) {
+        let time = getCurrentTime();
+        textArea.value += `\n[${time}]: ${text}`;
+    }
+}
+
+function getCurrentTime(){
+    let today = new Date();
+    return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+}
