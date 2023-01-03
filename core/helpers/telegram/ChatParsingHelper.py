@@ -59,8 +59,8 @@ async def work_with_account(
     parse_premium = parameters["premium"]
     parse_phones = parameters["parsePhones"]
     parse_photos = parameters["onlyPhotos"]
-    only_admins = parameters["parseOnlyAdmins"]
-    only_bots = parameters["parseOnlyBots"]
+    parse_admins = parameters["parseOnlyAdmins"]
+    parse_bots = parameters["parseOnlyBots"]
     chat = parameters["chat"]
 
     async with semaphore:
@@ -99,15 +99,18 @@ async def work_with_account(
                             only_admins = True
                             is_admin = 1
                         else:
-                            only_admins = False
-                            is_admin = 0
+                            if parse_admins and target_letter == 'admins':
+                                is_admin = 1
+                                only_admins = True
+                            else:
+                                is_admin = 0
+                                only_admins = False
 
-                        parsed_users = await parse_users(client, target_letter, chat_entity, parse_admins=only_admins,
-                                                         parse_bots=only_bots)
+
+                        parsed_users = await parse_users(client, target_letter, chat_entity, parse_admins=parse_admins,
+                                                         parse_bots=parse_bots)
 
                         all_users = parsed_users.get('all_users')
-                        bots = parsed_users.get('bots')
-                        admins = parsed_users.get('admins')
 
                         for user in all_users:
 
@@ -132,7 +135,7 @@ async def work_with_account(
                                 save_user = False
                             if parse_phones and not phone:
                                 save_user = False
-                            if only_bots and not user.bot:
+                            if parse_bots and not user.bot:
                                 save_user = False
 
                             if only_admins:
