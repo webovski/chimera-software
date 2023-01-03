@@ -49,17 +49,28 @@ async def insert_parsed_user(
         pass
 
 
-async def set_admin(
-        connection,
-        user_id: int
+async def insert_or_update_admins(
+        connection: sqlite3.Connection,
+        user_id: int,
+        full_name: str,
+        username: str,
+        has_avatar: int,
+        was_online: str,
+        phone: int,
+        is_admin: int,
+        has_premium: int,
+        is_scam: int,
+        is_bot: int
 ):
     try:
+        await insert_parsed_user(connection, user_id, full_name, username, has_avatar, was_online, phone, is_admin, has_premium, is_scam, is_bot)
         connection.cursor().execute(
             "UPDATE parsed_users SET is_admin = 1 WHERE user_id = ?",
             (user_id,))
         connection.commit()
+        connection.commit()
     except Exception as Error:
-        print(f"{Error} - Error")
+        print(f"{Error} - Errorrrrrrrrr")
         pass
 
 

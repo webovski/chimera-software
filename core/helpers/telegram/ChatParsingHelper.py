@@ -3,6 +3,7 @@ import json
 import math
 import os
 import re
+import sqlite3
 import string
 from random import shuffle
 
@@ -26,7 +27,7 @@ semaphore = asyncio.Semaphore(max_threads)
 LATIN_ALPHABET = dict(zip(string.ascii_lowercase, range(1, 27)))
 CYRILLIC_ALPHABET = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т',
                      'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', '0', '1', '2', '3', '4', '5', '6',
-                     '7', '8', '9', '_', '', '*']
+                     '7', '8', '9', '_', '', '*', 'admins']
 
 ALPHABET = list(LATIN_ALPHABET.keys()) + CYRILLIC_ALPHABET
 parser_iteration = 1
@@ -44,7 +45,13 @@ async def start_accounts(sessions, chunked_letters, connection, parameters: dict
     await asyncio.gather(*coroutines)
 
 
-async def work_with_account(session_path: str, target_letters: list, parameters: dict, connection):
+async def work_with_account(
+        session_path: str,
+        target_letters: list,
+        parameters: dict,
+        connection: sqlite3.Connection,
+        connection_retries: int = 3
+):
     """logic for main scraping"""
     global parser_iteration
 
@@ -59,7 +66,17 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
     async with semaphore:
         try:
             client = await TelethonCustom.create_client(session_path)
-            await client.connect()
+            try:
+                await client.connect()
+            except Exception as AnyConnectionException:
+                print(f'Left retries {connection_retries}: {AnyConnectionException}')
+                if connection_retries > 0:
+                    connection_retries -= 1
+                    return await work_with_account(session_path, target_letters, parameters, connection, connection_retries)
+                else:
+                    print(f'Account {session_path} has been terminated in case of not connected state')
+                    return False
+
             if await client.is_user_authorized():
                 me = await client.get_me()
                 print(f'Successfully connected: {me.phone}')
@@ -78,13 +95,19 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                         raise Exception("Не удалось найти чат")
                 for target_letter in target_letters:
                     try:
+                        if target_letter == 'admins':
+                            only_admins = True
+                            is_admin = 1
+                        else:
+                            only_admins = False
+                            is_admin = 0
+
                         parsed_users = await parse_users(client, target_letter, chat_entity, parse_admins=only_admins,
                                                          parse_bots=only_bots)
 
                         all_users = parsed_users.get('all_users')
                         bots = parsed_users.get('bots')
                         admins = parsed_users.get('admins')
-
 
                         for user in all_users:
 
@@ -112,10 +135,8 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                             if only_bots and not user.bot:
                                 save_user = False
 
-                            is_admin = 0
                             if only_admins:
                                 is_admin = 1
-
 
                             if save_user:
                                 await SQLiteHelper.insert_parsed_user(connection, user.id,
@@ -123,9 +144,12 @@ async def work_with_account(session_path: str, target_letters: list, parameters:
                                                                       username, has_avatar,
                                                                       was_online, phone, is_admin,
                                                                       is_premium, is_scam, is_bot)
-
-                            if not only_admins and save_user:
-                                [await SQLiteHelper.set_admin(connection, user.user_id) for user in admins]
+                            if is_admin:
+                                await SQLiteHelper.insert_or_update_admins(connection, user.id,
+                                                                           full_name,
+                                                                           username, has_avatar,
+                                                                           was_online, phone, is_admin,
+                                                                           is_premium, is_scam, is_bot)
 
                         print(f'Percents: {int(100 * parser_iteration / len(ALPHABET))}%')
                         parser_iteration = parser_iteration + 1
@@ -183,9 +207,9 @@ async def run_parsing(accounts_names, parameters):
             letters_list = ALPHABET
             shuffle(letters_list)
         else:
-            letters_list = [" "]
+            letters_list = [' ', 'admins']
         if only_admins or only_bots:
-            letters_list = [" "]
+            letters_list = [' ', 'admins']
         chunk_size = math.ceil((len(letters_list) / len(sessions)))
         chunked_letters = [letters_list[i:i + chunk_size] for i in range(0, len(letters_list), chunk_size)]
 
@@ -234,6 +258,7 @@ async def get_entity_chat(client, info_chat):
         print(f"Error when try get entity in function get_entity_chat:{e}")
         return None
 
+
 @async_eel.expose
 async def convert_db_to_excel():
     if os.path.exists('temp-parsing.db'):
@@ -241,11 +266,10 @@ async def convert_db_to_excel():
         query_set_users = SQLiteHelper.get_users(connection)
         result = create_excel_doc(query_set_users)
         close_connection(connection)
-        if result is not None and not isinstance(result,Exception):
+        if result is not None and not isinstance(result, Exception):
             async_eel.displayToast(f'Сохранение отчета в {result} завершено!', 'success')
         else:
             async_eel.displayToast(f'Сохранить отчет не удалось - {result}', 'error')
-
 
 
 @async_eel.expose

@@ -22,11 +22,21 @@ async def start_accounts(sessions):
     await asyncio.gather(*coroutines)
 
 
-async def work_with_account(session_path: str):
+async def work_with_account(session_path: str, connection_retries: int = 3):
     async with semaphore:
         try:
             client = await TelethonCustom.create_client(session_path)
-            await client.connect()
+            try:
+                await client.connect()
+            except Exception as AnyConnectionException:
+                print(f'Left retries {connection_retries}: {AnyConnectionException}')
+                if connection_retries > 0:
+                    connection_retries -= 1
+                    return await work_with_account(session_path, connection_retries)
+                else:
+                    print(f'Account {session_path} has been terminated in case of not connected state')
+                    return False
+
             phone_number = session_path.rsplit('/', 1)[1].split('.')[0]
 
             json_path = session_path.replace('.session', '.json')
@@ -126,11 +136,20 @@ async def get_sms_code(account_name: str):
         asyncio.run(run_get_sms(account_name, session_path))
 
 
-async def run_get_sms(account_name: str, session_path: str):
+async def run_get_sms(account_name: str, session_path: str, connection_retries: int = 3):
     async with semaphore:
         try:
             client = await TelethonCustom.create_client(session_path)
-            await client.connect()
+            try:
+                await client.connect()
+            except Exception as AnyConnectionException:
+                print(f'Left retries {connection_retries}: {AnyConnectionException}')
+                if connection_retries > 0:
+                    connection_retries -= 1
+                    return await run_get_sms(account_name, session_path, connection_retries)
+                else:
+                    print(f'Account {session_path} has been terminated in case of not connected state')
+                    return False
             phone_number = session_path.rsplit('/', 1)[1].split('.')[0]
 
             json_path = session_path.replace('.session', '.json')
