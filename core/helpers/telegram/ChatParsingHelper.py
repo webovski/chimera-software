@@ -81,18 +81,23 @@ async def work_with_account(
                 me = await client.get_me()
                 print(f'Successfully connected: {me.phone}')
                 async_eel.writeLog("result-users-text-area", f"Аккаунт {me.phone} успешно подключен.")
+                async_eel.autoScroll('result-users-text-area')
                 if dialog_parsing:
                     dialogs = await get_dialogs(client)
                     temp_ = [dialog for dialog in dialogs if dialog.title == chat]
                     if len(temp_) > 0:
                         chat_entity = temp_[0]
                     else:
+                        async_eel.writeLog("result-users-text-area", f"Диалог с таким названием не найден!")
+                        async_eel.autoScroll('result-users-text-area')
                         raise Exception("Диалог с таким названием не найден!")
                 else:
                     # get info about chat such as is_private and username
                     info_chat = await check_link(chat)
                     chat_entity = await get_entity_chat(client, info_chat)
                     if chat_entity is None:
+                        async_eel.writeLog("result-users-text-area", f"Не удалось найти чат!")
+                        async_eel.autoScroll('result-users-text-area')
                         raise Exception("Не удалось найти чат")
                 for target_letter in target_letters:
                     try:
@@ -150,14 +155,15 @@ async def work_with_account(
                                                                            was_online, phone, is_admin,
                                                                            is_premium, is_scam, is_bot)
 
-                        print(f'Percents: {int(100 * parser_iteration / len(ALPHABET))}%')
+                        async_eel.writeLog("result-users-text-area", f"Прогресс: {int(100 * parser_iteration / len(ALPHABET))}%")
+                        async_eel.autoScroll('result-users-text-area')
                         parser_iteration = parser_iteration + 1
                     except Exception as AnyParsingException:
                         # display toast or another action
                         print(f'{session_path} | An error on symbol parsing occurred: {AnyParsingException}')
                         pass
-                print(f'All done: {me.phone}')
-                # after parsing here we will do something with parsed users or just disconnect account
+                async_eel.writeLog("result-users-text-area", f"Аккаунт {me.phone} закончил парсинг!")
+                async_eel.autoScroll('result-users-text-area')
                 await client.disconnect()
             else:
                 print(f'Unauthorized | {session_path}')
@@ -173,6 +179,7 @@ async def work_with_account(
                 pass
             account_phone = session_path.rsplit('/', 1)[1].split('.')[0].replace("+","")
             async_eel.writeLog("result-users-text-area", f"Во время парсинга на аккаунте {account_phone} произошла ошибка: {Unexpected}")
+            async_eel.autoScroll('result-users-text-area')
 
             print(f'Unexpected | {session_path} {Unexpected}')
 
@@ -184,7 +191,9 @@ def all_done(connection):
     async_eel.startRotating(0, 'false', 'icon-sync-parsing')
     async_eel.unblockButton('start-parsing-btn', 'start-parsing-btn-text', 'Начать парсинг')
     async_eel.switchIcons('icon-sync-parsing', 'icon-search-parsing')
-
+    users = len(SQLiteHelper.get_users(connection))
+    async_eel.writeLog("result-users-text-area", f"Парсинг завершён на 100%. Всего пользователей в базе {users} человек!")
+    async_eel.autoScroll('result-users-text-area')
     close_connection(connection)
     loop = asyncio.get_running_loop()
     if loop and loop.is_running():
@@ -224,7 +233,8 @@ async def run_parsing(accounts_names, parameters):
         except RuntimeError:
             loop = None
 
-        print('Starting parsing!')
+        async_eel.writeLog("result-users-text-area", f"Парсинг запущен, подключаем аккаунты к API Telegram. Ожидайте!")
+        async_eel.autoScroll('result-users-text-area')
 
         if loop and loop.is_running():
             task = loop.create_task(start_accounts(sessions, chunked_letters, connection, parameters))

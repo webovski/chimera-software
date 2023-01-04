@@ -82,6 +82,5 @@ def get_users(connection):
     rows = cursor.fetchall()
     return rows
 
-
 def close_connection(connection):
     connection.close()

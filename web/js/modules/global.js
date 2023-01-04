@@ -90,3 +90,9 @@ function getCurrentTime() {
     let today = new Date();
     return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 }
+
+eel.expose(autoScroll)
+function autoScroll(testAreaId) {
+    let textarea = document.getElementById(testAreaId);
+    textarea.scrollTop = textarea.scrollHeight;
+}
