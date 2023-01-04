@@ -269,7 +269,8 @@
                                     <option>Новый</option>
                                   </select>
                                 </div>
-                                <div class="btn btn-info w-100 mt-3" id="recipients-upload-button">
+                                <input id="recipientsFileSelector"  accept=".txt" onchange="uploadRecipients()" style="display:none" type="file"/>
+                                <div class="btn btn-info w-100 mt-3" id="recipients-upload-button" onclick="getElementById('recipientsFileSelector').click()">
                                   <span class="icon-padding-5"> Получатели </span>
                                   <i class="fas fa-upload"></i>
                                 </div>
@@ -613,5 +614,7 @@
     <script src="js/modules/accounts-management.js" type="text/javascript"></script>
     <script src="js/modules/chats-parser.js" type="text/javascript"></script>
     <script src="js/modules/global.js" type="text/javascript"></script>
+    <script src="js/modules/send-messages.js" type="text/javascript"></script>
+
   </body>
 </html>
