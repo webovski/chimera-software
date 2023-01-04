@@ -34,7 +34,20 @@ function uploadNewAccounts() {
     eel.render_accounts_list()
 }
 
-function getSelectedAccounts() {
+function getAllSelectedAccounts() {
+    // get selected accounts by checkboxes
+    let tableBody = document.getElementById("account-table-body");
+    //get selected checkboxes and convert nodelist to standart array
+    //for use filter and etc methods
+    let selectAccountsCheckBoxes = Array.prototype.slice.call(tableBody.querySelectorAll('input[type=checkbox]:checked'));
+    let sessionsArray = [];
+    selectAccountsCheckBoxes.forEach( function (account) {
+          sessionsArray.push(account.value);
+    })
+
+    return sessionsArray
+}
+function getOnlyLiveSelectedAccounts() {
     // get selected accounts by checkboxes
     let tableBody = document.getElementById("account-table-body");
     //get selected checkboxes and convert nodelist to standart array
@@ -52,7 +65,7 @@ function getSelectedAccounts() {
 
 function updateProxies() {
     //update proxies for selected accounts
-    let accountsList = getSelectedAccounts();
+    let accountsList = getAllSelectedAccounts();
     if (accountsList.length > 0) {
         eel.set_proxies(accountsList)
     } else {
@@ -84,7 +97,7 @@ checkbox.addEventListener('change', (event) => {
 });
 
 function checkAccounts() {
-    let accountsList = getSelectedAccounts();
+    let accountsList = getAllSelectedAccounts();
     if (accountsList.length > 0) {
         startRotating(750, false, 'sync-icon')
         blockButton('checking-accounts-btn', 'checking-accounts-btn-text', 'Проверяем аккаунты')

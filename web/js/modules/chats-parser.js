@@ -61,7 +61,7 @@ function runChatsScraping() {
     if (chatLink.value === "") {
         displayToast('Вы не указали чат!', 'error')
     } else {
-        let sessions = getSelectedAccounts()
+        let sessions = getOnlyLiveSelectedAccounts()
         if (sessions.length < 1) {
             displayToast('Вы не выбрали аккаунты для парсинга!', 'error')
         } else {
@@ -102,5 +102,9 @@ function removeScrapingDB() {
 }
 
 function convertDBtoExcel() {
+    writeLog("result-users-text-area", "Создание отчета начато!")
+    blockButton('start-parsing-btn')
     eel.convert_db_to_excel()
+     blockButton("download-parsing-results");
+    blockButton("clear-parsing-database");
 }

@@ -29,12 +29,12 @@ def create_excel_doc(users_query: list[dict]):
         index = 2
         for user in users_query:
             try:
-                user_id = user['user_id']
-                full_name = user['full_name']
+                user_id = f"{user['user_id']}"
+                full_name = f"{user['full_name']}"
                 username = user['username']
                 has_avatar = '+' if user['has_avatar'] == 1 else '-'
                 online_status = user['was_online']
-                phone = user['phone'] if user['phone'] else ''
+                phone = f"{user['phone']}" if user['phone'] else ''
                 # is_admin or not
                 user_role = 'Администратор' if user['is_admin'] == 1 else 'Участник'
                 is_scammer = '+' if user['is_scam'] == 1 else '-'

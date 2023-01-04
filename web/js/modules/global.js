@@ -88,7 +88,7 @@ function writeLog(textAreaId, text) {
 
 function getCurrentTime() {
     let today = new Date();
-    return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    return today.getHours() + ":" + ('0'+today.getMinutes()).slice(-2)+':'+ ('0'+today.getSeconds()).slice(-2);
 }
 
 eel.expose(autoScroll)

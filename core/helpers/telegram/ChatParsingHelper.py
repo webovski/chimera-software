@@ -283,11 +283,19 @@ async def convert_db_to_excel():
         result = create_excel_doc(query_set_users)
         close_connection(connection)
         if result is not None and not isinstance(result, Exception):
-            async_eel.displayToast(f'Сохранение отчета в {result} завершено!', 'success')
+            async_eel.displayToast(f'Отчет с названием {result} сохранен!', 'success')
+            async_eel.writeLog("result-users-text-area", f"Отчет с названием {result} сохранен!")
+
         else:
             async_eel.displayToast(f'Сохранить отчет не удалось - {result}', 'error')
+            async_eel.writeLog("result-users-text-area", f'Сохранить отчет не удалось - {result}')
+
     else:
         async_eel.displayToast(f'Пользователи для генерации отчета отсутствуют!', 'error')
+    async_eel.unblockButton("download-parsing-results")
+    async_eel.unblockButton("clear-parsing-database")
+    async_eel.unblockButton('start-parsing-btn')
+
 
 
 @async_eel.expose
