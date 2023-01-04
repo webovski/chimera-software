@@ -263,3 +263,7 @@ input[type=number] {
 .only-photo-parsing {
     margin-top: 8px;
 }
+
+#icon-sync-parsing {
+    display: none;
+}

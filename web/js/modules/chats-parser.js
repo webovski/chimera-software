@@ -49,8 +49,6 @@ function parseDialogs() {
 
 function runChatsScraping() {
 
-    startRotating(750, false, 'icon-sync-parsing', 0)
-
     let onlyPhotos = document.getElementById("parse-only-photo");
     let chatLink = document.getElementById('chat-link');
     let dialogsParsing = document.getElementById('parse-dialogs');
@@ -81,22 +79,28 @@ function runChatsScraping() {
                     "parsePhones": parsePhones.checked,
                     "parseOnlyAdmins": parseOnlyAdmins.checked,
                     "parseOnlyBots": parseOnlyBots.checked,
-                    "onlyPhotos":onlyPhotos.checked,
+                    "onlyPhotos": onlyPhotos.checked,
                 }
                 eel.run_parsing(sessions, parsingParameters);
                 blockButton("clear-parsing-database");
                 blockButton("download-parsing-results");
+                let iconSearchParsing = document.getElementById('icon-search-parsing')
+                iconSearchParsing.style.display = 'none'
+                let iconSyncParsing = document.getElementById('icon-sync-parsing')
+                iconSyncParsing.style.display = 'inherit'
 
+                startRotating(750, false, 'icon-sync-parsing')
+                blockButton('start-parsing-btn', 'start-parsing-btn-text', 'Парсинг запущен')
             }
         }
     }
 }
 
 
-function removeScrapingDB(){
+function removeScrapingDB() {
     eel.remove_scraping_db()
 }
 
-function convertDBtoExcel(){
+function convertDBtoExcel() {
     eel.convert_db_to_excel()
 }

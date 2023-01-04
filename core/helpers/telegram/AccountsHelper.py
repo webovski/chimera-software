@@ -90,7 +90,7 @@ async def work_with_account(session_path: str, connection_retries: int = 3):
 
 def all_done(sessions):
     async_eel.displayToast(f'Проверка {len(sessions)} аккаунтов завершена!', 'success')
-    async_eel.startRotating(0, 'false')
+    async_eel.startRotating(0, 'false', 'sync-icon')
     async_eel.unblockButton('checking-accounts-btn', 'checking-accounts-btn-text', 'ПРОВЕРИТЬ АККАУНТЫ')
 
     loop = asyncio.get_running_loop()

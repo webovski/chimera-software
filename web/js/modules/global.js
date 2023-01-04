@@ -36,9 +36,10 @@ $('#pro-li').click(function () {
 
 
 eel.expose(blockButton)
-function blockButton(buttonId, buttonTextId= null, textOnButton= "") {
+
+function blockButton(buttonId, buttonTextId = null, textOnButton = "") {
     let selectedButton = document.getElementById(buttonId)
-    if (buttonTextId !==null) {
+    if (buttonTextId !== null) {
         let buttonText = document.getElementById(buttonTextId)
         buttonText.innerText = textOnButton
     }
@@ -47,10 +48,9 @@ function blockButton(buttonId, buttonTextId= null, textOnButton= "") {
 }
 
 eel.expose(unblockButton)
-
 function unblockButton(buttonId, buttonTextId = null, textOnButton = "") {
     let selectedButton = document.getElementById(buttonId)
-    if (buttonTextId !==null) {
+    if (buttonTextId !== null) {
         let buttonText = document.getElementById(buttonTextId)
         buttonText.innerText = textOnButton
     }
@@ -58,25 +58,35 @@ function unblockButton(buttonId, buttonTextId = null, textOnButton = "") {
     selectedButton.style.opacity = '1';
 }
 
+eel.expose(switchIcons)
+function switchIcons(currentIconId, newIconId) {
+    let iconSearchParsing = document.getElementById(currentIconId)
+    iconSearchParsing.style.display = 'none'
+    let iconSyncParsing = document.getElementById(newIconId)
+    iconSyncParsing.style.display = 'contents'
+}
 
-function copyTextToClipboard(elementId){
+
+function copyTextToClipboard(elementId) {
     //for copy text from objects by id
     let element = document.getElementById(elementId);
-    if (element !==null) {
+    if (element !== null) {
         element.setSelectionRange(0, 99999999);
         navigator.clipboard.writeText(element.value);
     }
 }
+
 eel.expose(writeLog)
-function writeLog(textAreaId, text){
+
+function writeLog(textAreaId, text) {
     let textArea = document.getElementById(textAreaId);
-    if (textArea !==null) {
+    if (textArea !== null) {
         let time = getCurrentTime();
         textArea.value += `\n[${time}]: ${text}`;
     }
 }
 
-function getCurrentTime(){
+function getCurrentTime() {
     let today = new Date();
     return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 }

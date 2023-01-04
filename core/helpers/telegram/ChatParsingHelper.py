@@ -80,7 +80,7 @@ async def work_with_account(
             if await client.is_user_authorized():
                 me = await client.get_me()
                 print(f'Successfully connected: {me.phone}')
-                async_eel.writeLog("result-users-text-area",f"Аккаунт {me.phone} успешно подключен.")
+                async_eel.writeLog("result-users-text-area", f"Аккаунт {me.phone} успешно подключен.")
                 if dialog_parsing:
                     dialogs = await get_dialogs(client)
                     temp_ = [dialog for dialog in dialogs if dialog.title == chat]
@@ -181,6 +181,10 @@ def all_done(connection):
     async_eel.displayToast(f'Парсинг завершен!', 'success')
     async_eel.unblockButton("clear-parsing-database")
     async_eel.unblockButton("download-parsing-results")
+    async_eel.startRotating(0, 'false', 'icon-sync-parsing')
+    async_eel.unblockButton('start-parsing-btn', 'start-parsing-btn-text', 'Начать парсинг')
+    async_eel.switchIcons('icon-sync-parsing', 'icon-search-parsing')
+
     close_connection(connection)
     loop = asyncio.get_running_loop()
     if loop and loop.is_running():
