@@ -65,7 +65,7 @@ function getOnlyLiveSelectedAccounts() {
 
 function updateProxies() {
     //update proxies for selected accounts
-    let accountsList = getAllSelectedAccounts();
+    let accountsList = getOnlyLiveSelectedAccounts();
     if (accountsList.length > 0) {
         eel.set_proxies(accountsList)
     } else {
