@@ -23,7 +23,6 @@ function updateAccountsBadges(accounts_all, accounts_valid, accounts_not_checked
 }
 
 function uploadNewAccounts() {
-    console.log("fuck");
     //get invisible object for load directory
     let directoryPicker = document.getElementById('fileselector');
     let directoryPath = directoryPicker.files[0].path.match(/(.*)[\/\\]/)[1] || '';
@@ -199,4 +198,24 @@ function clearAddingAccountForm() {
     let userInfoContainer = document.getElementById('adding-account-process-container')
     userInfoContainer.value = ''
     userInfoContainer.classList.remove('active')
+}
+
+function removeAccounts(){
+    let accountsList = getAllSelectedAccounts();
+    if (accountsList.length > 0) {
+        //blockButton('remove-accounts-btn');
+        eel.delete_accounts(accountsList)
+    } else {
+        displayToast('Вы не выбрали аккаунты!', 'error')
+    }
+}
+
+
+function createAccountsArchive(){
+    let accountsList = getAllSelectedAccounts();
+    if (accountsList.length > 0) {
+        eel.create_zip(accountsList)
+    } else {
+        displayToast('Вы не выбрали аккаунты!', 'error')
+    }
 }

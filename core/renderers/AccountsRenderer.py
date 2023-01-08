@@ -1,7 +1,8 @@
 import glob
 import json
 import os
-from os.path import exists
+import zipfile
+from os.path import exists, basename
 
 import async_eel
 import pathlib
@@ -188,5 +189,50 @@ async def copy_accounts(dir_path: str) -> int:
         files = [shutil.copy2(filepath.absolute(), f"{main_dir_path}{filepath.name}") for filepath in
                  chain(pathlib.Path(dir_path).glob('*.session'), pathlib.Path(dir_path).glob('*.json'))]
         return int(len(files) / 2) if len(files) > 0 else len(files)
+    except Exception as e:
+        print(e)
+
+@async_eel.expose
+async def delete_accounts(accounts: list):
+    try:
+        base_dir = os.getcwd()
+        main_dir_path = rf"{base_dir}/accounts/input/"
+        account_remove_counter = 0
+        for account in accounts:
+            account_json_path = f"{main_dir_path}{account.replace('session','json')}"
+            account_session_path = f"{main_dir_path}{account}"
+            try:
+                os.remove(account_json_path)
+                account_remove_counter = account_remove_counter + 1
+            except:
+                pass
+            try:
+                os.remove(account_session_path)
+            except:
+                pass
+        async_eel.displayToast(f'Аккаунтов удалено: {account_remove_counter} ', 'success')
+        await render_accounts_list()
+    except Exception as e:
+        await render_accounts_list()
+        print(e)
+
+
+@async_eel.expose
+async def create_zip(accounts: list):
+    try:
+        now = datetime.now()
+        file_zip_name = f'{now.strftime("%d_%m_%Y_%H_%M_%S")}_archive.zip'
+        desktop =pathlib.Path.home() / 'Desktop'
+        archive_path = f"{desktop}/{file_zip_name}"
+        zip_achive = zipfile.ZipFile(archive_path, 'w')
+        base_dir = os.getcwd()
+        main_dir_path = rf"{base_dir}/accounts/input/"
+        for account in accounts:
+            account_json_path = os.path.join(main_dir_path,account.replace('session','json'))
+            account_session_path = os.path.join(main_dir_path,account)
+            zip_achive.write(account_session_path, basename(account_session_path))
+            zip_achive.write(account_json_path,basename(account_json_path))
+        zip_achive.close()
+        async_eel.displayToast(f'Архив {file_zip_name} с {len(accounts)} аккаунтами создан на рабочем столе. ', 'success')
     except Exception as e:
         print(e)
