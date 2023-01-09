@@ -124,13 +124,15 @@
                                 </button>
                             </div>
                             <div class="col-2">
-                                <button class="btn btn-info shadow-4-strong" id="zip-accounts-btn" onclick="createAccountsArchive()">
+                                <button class="btn btn-info shadow-4-strong" id="zip-accounts-btn"
+                                        onclick="createAccountsArchive()">
                                     <span class="icon-padding-5"> Скачать аккаунты .zip </span>
                                     <i class="fas fa-download"></i>
                                 </button>
                             </div>
                             <div class="col-2">
-                                <button class="btn btn-danger shadow-4-strong"  id="remove-accounts-btn" onclick="removeAccounts()">
+                                <button class="btn btn-danger shadow-4-strong" id="remove-accounts-btn"
+                                        onclick="removeAccounts()">
                                     <span class="icon-padding-5"> Удалить аккаунты</span>
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -148,7 +150,7 @@
                                     </th>
                                     <th>Аккаунт</th>
                                     <th>Дополнительно</th>
-                                    <th id="account-status">Статус </th>
+                                    <th id="account-status">Статус</th>
                                     <th>Прокси</th>
                                     <th>Возраст</th>
                                     <th>СМС Код</th>
@@ -322,7 +324,7 @@
                                                                onchange="uploadRecipients()" style="display:none"
                                                                type="file"/>
                                                         <div class="btn btn-info w-100 mt-3"
-                                                             id="recipients-upload-button"
+                                                             id="sending-recipients-upload-button"
                                                              onclick="getElementById('recipientsFileSelector').click()">
                                                             <span class="icon-padding-5"> Получатели </span>
                                                             <i class="fas fa-upload"></i>
@@ -330,7 +332,7 @@
                                                     </div>
                                                     <div class="col-3">
                                                         <div class="form-outline">
-                                                            <select class="form-select" id="message-type"
+                                                            <select class="form-select" id="sending-message-type"
                                                                     onclick="validateMessageType()">
                                                                 <option disabled selected>Вид сообщения</option>
                                                                 <option>Текст</option>
@@ -338,16 +340,16 @@
                                                                 <option>Медиа файл</option>
                                                             </select>
                                                         </div>
-                                                        <div class="btn btn-info w-100" id="add-file-button"
+                                                        <div class="btn btn-info w-100" id="sending-add-file-button"
                                                              style="display: none;">
                                                             <span class="icon-padding-5">Добавить файлы</span>
                                                             <i class="fa fa-images"></i>
                                                         </div>
-                                                        <div class="form-outline w-100" id="link-forward-input">
+                                                        <div class="form-outline w-100" id="sending-link-forward-input">
                                                             <input class="form-control form-select" disabled
-                                                                   id="forward-from-link" type="text">
+                                                                   id="sending-forward-from-link" type="text">
                                                             <label class="form-label" for="forward-from-link"
-                                                                   id="forward-from-link-label"
+                                                                   id="sending-forward-from-link-label"
                                                                    style="margin-left: 0px;"> Ссылка на пост </label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
@@ -453,7 +455,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-outline mt-2">
-                                                            <select class="form-select" id="sending-chat-type-dropdown"
+                                                            <select class="form-select" id="inviting-chat-type-dropdown"
                                                                     onclick="validateChatType()">
                                                                 <option disabled selected>Тип чата</option>
                                                                 <option>Чат</option>
@@ -461,17 +463,19 @@
                                                             </select>
                                                         </div>
                                                         <div class="btn btn-info w-100 mt-3"
-                                                             id="recipients-upload-button">
+                                                             id="inviting-recipients-upload-button">
                                                             <span class="icon-padding-5">Пользователи</span>
                                                             <i class="fas fa-upload"></i>
                                                         </div>
                                                     </div>
                                                     <div class="col-3">
                                                         <div class="form-outline">
-                                                            <input class="form-control form-select" id="account-limit"
+                                                            <input class="form-control form-select"
+                                                                   id="inviting=account-limit"
                                                                    type="text">
                                                             <label class="form-label" for="account-limit"
-                                                                   id="account-limit-label" style="margin-left: 0px;">Аккаунт-лимит</label>
+                                                                   id="inviting-account-limit-label"
+                                                                   style="margin-left: 0px;">Аккаунт-лимит</label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
                                                                      style="width: 9px;"></div>
@@ -481,10 +485,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-outline" style="margin-top: 15px;">
-                                                            <input class="form-control form-select" id="account-limit"
+                                                            <input class="form-control form-select"
+                                                                   id="inviting-account-limit"
                                                                    type="text">
                                                             <label class="form-label" for="account-limit"
-                                                                   id="account-limit-label" style="margin-left: 0px;">Инвайтить
+                                                                   id="inviting=account-limit-label"
+                                                                   style="margin-left: 0px;">Инвайтить
                                                                 за раз </label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
@@ -530,7 +536,7 @@
                                                                 <div class="form-notch-trailing margin-right-input"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="btn btn-success mt-3" id="start-sending-dm"
+                                                        <div class="btn btn-success mt-3" id="start-inviting"
                                                              style="width: 200%!important;">
                                                             <span class="icon-padding-5"> Запустить инвайтинг </span>
                                                             <i class="fas fa-play"></i>
@@ -539,9 +545,9 @@
                                                     <div class="col-3">
                                                         <div class="form-outline delays">
                                                             <input class="form-control form-select"
-                                                                   id="delay-between-sms-from" type="text">
+                                                                   id="delay-between-invites-from" type="text">
                                                             <label class="form-label" for="delay-between-sms-from"
-                                                                   id="delay-between-sms-from-label"
+                                                                   id="delay-between-invites-from-label"
                                                                    style="margin-left: 0px;"> Задержа ОТ (сек.) </label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
@@ -553,9 +559,9 @@
                                                         </div>
                                                         <div class="form-outline mb-3">
                                                             <input class="form-control form-select"
-                                                                   id="delay-between-sms-to" type="text">
+                                                                   id="delay-between-invites-to" type="text">
                                                             <label class="form-label" for="delay-between-sms-to"
-                                                                   id="delay-between-sms-to-label"
+                                                                   id="delay-between-invites-to-label"
                                                                    style="margin-left: 0px;"> Задержа ДО (сек.) </label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
@@ -571,13 +577,14 @@
                                         </div>
                                     </div>
                                     <div class="card-header p-0 logs-card-header">
-                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                                        <div class="btn btn-info textarea-actions" id="download-inviting-history">
                                             <i class="fa fa-download"></i>
                                         </div>
-                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                                        <div class="btn btn-info textarea-actions" id="copy-inviting-history">
                                             <i class="fa fa-copy"></i>
                                         </div>
-                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
+                                        <textarea class="form-control rounded" disabled
+                                                  id="result-user-inviting-logs-textarea"
                                                   rows="10" style="resize: none;">История инвайтинга&#13;</textarea>
                                     </div>
                                 </div>
@@ -604,12 +611,12 @@
                                             <div class="container-fluid">
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <div class="btn btn-info w-100" id="recipients-upload-button">
+                                                        <div class="btn btn-info w-100" id="proxies-file-upload-button">
                                                             <span class="icon-padding-5">Файл прокси</span>
                                                             <i class="fas fa-wifi"></i>
                                                         </div>
                                                         <div class="btn btn-info w-100 mt-3"
-                                                             id="recipients-upload-button">
+                                                             id="set-working-directory-folder">
                                                             <span class="icon-padding-5">Рабочая папка</span>
                                                             <i class="fas fa-folder-open"></i>
                                                         </div>
@@ -617,7 +624,7 @@
                                                     <div class="col-4">
                                                         <div class="form-outline">
                                                             <select class="form-select"
-                                                                    id="target-invite-user-type-dropdown">
+                                                                    id="proxies-type-dropdown">
                                                                 <option disabled selected>Тип прокси</option>
                                                                 <option>HTTP</option>
                                                                 <option>SOCS5</option>
@@ -630,7 +637,7 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <textarea class="form-control rounded"
-                                                                  id="result-user-logs-textarea"
+                                                                  id="app-id-app-hash-textarea"
                                                                   style="resize: none; height: 89px; width: 98%;">1:b6b154c3707471f5339bd661645ed3d6</textarea>
                                                     </div>
                                                 </div>
@@ -638,13 +645,14 @@
                                         </div>
                                     </div>
                                     <div class="card-header p-0 logs-card-header">
-                                        <div class="btn btn-info textarea-actions" id="download-sending-history">
+                                        <div class="btn btn-info textarea-actions" id="all-download-history">
                                             <i class="fa fa-download"></i>
                                         </div>
-                                        <div class="btn btn-info textarea-actions" id="copy-sending-history">
+                                        <div class="btn btn-info textarea-actions" id="all-copy-history">
                                             <i class="fa fa-copy"></i>
                                         </div>
-                                        <textarea class="form-control rounded" disabled id="result-user-logs-textarea"
+                                        <textarea class="form-control rounded" disabled
+                                                  id="all=result-user-logs-textarea"
                                                   rows="10" style="resize: none;">Лог работы программы&#13;</textarea>
                                     </div>
                                 </div>
