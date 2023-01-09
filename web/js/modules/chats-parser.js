@@ -1,43 +1,3 @@
-function validateChatType() {
-    let sendingChatTypeDropdown = document.getElementById("sending-chat-type-dropdown");
-    let sendingUserTypeDropdown = document.getElementById("target-user-type-dropdown");
-    let recipientsUploadButton = document.getElementById("recipients-upload-button");
-    if (sendingChatTypeDropdown.value === "Диалог") {
-        sendingUserTypeDropdown.disabled = true
-        recipientsUploadButton.style.pointerEvents = 'none'
-        recipientsUploadButton.style.opacity = '0.5'
-    } else {
-        sendingUserTypeDropdown.disabled = false
-        recipientsUploadButton.style.pointerEvents = 'all'
-        recipientsUploadButton.style.opacity = '1'
-    }
-}
-
-function validateMessageType() {
-    let messageTypeDropdown = document.getElementById("message-type")
-    let forwardFromLinkInput = document.getElementById("forward-from-link")
-    let messageTextArea = document.getElementById('message-text-area')
-
-    let linkForwardContainer = document.getElementById('link-forward-input')
-    let addFileButton = document.getElementById('add-file-button')
-
-    if (messageTypeDropdown.value === "Репост") {
-        forwardFromLinkInput.disabled = false
-        messageTextArea.disabled = true
-        linkForwardContainer.style.display = 'block'
-        addFileButton.style.display = 'none'
-    } else if (messageTypeDropdown.value === "Медиа файл") {
-        addFileButton.style.display = 'block'
-        linkForwardContainer.style.display = 'none'
-        messageTextArea.disabled = false
-    } else {
-        forwardFromLinkInput.value = ''
-        forwardFromLinkInput.classList.remove('active')
-        forwardFromLinkInput.disabled = true
-        messageTextArea.disabled = false
-    }
-}
-
 function parseDialogs() {
     let parseDialogsCheckboxIsChecked = document.getElementById('parse-dialogs').checked
     if (parseDialogsCheckboxIsChecked) {
@@ -46,7 +6,6 @@ function parseDialogs() {
         document.getElementById('chat-link-label').innerText = 'Ссылка на чат';
     }
 }
-
 function runChatsScraping() {
 
     let onlyPhotos = document.getElementById("parse-only-photo");
@@ -95,12 +54,9 @@ function runChatsScraping() {
         }
     }
 }
-
-
 function removeScrapingDB() {
     eel.remove_scraping_db()
 }
-
 function convertDBtoExcel() {
     writeLog("result-users-text-area", "Создание отчета начато!")
     blockButton('start-parsing-btn')

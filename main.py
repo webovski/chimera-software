@@ -4,7 +4,7 @@ from core.config import System
 from core.handlers import AuthHandler
 from core.handlers.StorageHanlder import init_directories
 from core.renderers import AccountsRenderer
-from core.helpers.telegram import AccountsHelper, ChatParsingHelper
+from core.helpers.telegram import AccountsHelper, ChatParsingHelper, SenderHelper
 from core.System import ProxyManagment
 
 loop = asyncio.new_event_loop()

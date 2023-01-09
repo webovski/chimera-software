@@ -125,12 +125,12 @@ li > a.active {
     margin-right: 8px !important;
 }
 
-#link-forward-input {
+#sending-link-forward-input {
     margin-top: 11px;
     width: 103% !important;
 }
 
-#add-file-button {
+#sending-add-file-button {
     margin-top: 11px;
 }
 
