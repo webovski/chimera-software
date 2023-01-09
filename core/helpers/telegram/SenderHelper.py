@@ -120,7 +120,7 @@ async def run_sending(accounts_names, parameters):
 
 
 @async_eel.expose
-async def remove_scraping_db():
+async def remove_sending_db():
     try:
         if os.path.exists('temp-sending.db'):
             os.remove('temp-sending.db')

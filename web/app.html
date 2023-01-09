@@ -305,7 +305,7 @@
                                                     </div>
                                                     <div class="col-3">
                                                         <div class="form-outline">
-                                                            <select class="form-select" id="target-user-type-dropdown">
+                                                            <select class="form-select" id="target-sending-user-type-dropdown">
                                                                 <option disabled selected>Тип получателя</option>
                                                                 <option>По юзернейму</option>
                                                                 <option>По ID</option>
@@ -314,13 +314,13 @@
                                                         </div>
                                                         <div class="form-outline mt-2">
                                                             <select class="form-select" id="sending-chat-type-dropdown"
-                                                                    onclick="validateChatType()">
+                                                                    onchange="validateChatType()">
                                                                 <option disabled selected>Тип чата</option>
                                                                 <option>Диалог</option>
                                                                 <option>Новый</option>
                                                             </select>
                                                         </div>
-                                                        <input accept=".txt" id="recipientsFileSelector"
+                                                        <input accept=".txt" id="recipients-file-selector"
                                                                onchange="uploadRecipients()" style="display:none"
                                                                type="file"/>
                                                         <div class="btn btn-info w-100 mt-3"
@@ -333,7 +333,7 @@
                                                     <div class="col-3">
                                                         <div class="form-outline">
                                                             <select class="form-select" id="sending-message-type"
-                                                                    onclick="validateMessageType()">
+                                                                    onchange="validateMessageType()">
                                                                 <option disabled selected>Вид сообщения</option>
                                                                 <option>Текст</option>
                                                                 <option>Репост</option>
@@ -342,7 +342,7 @@
                                                         </div>
                                                         <div class="btn btn-info w-100" id="sending-add-file-button"
                                                              style="display: none;">
-                                                            <span class="icon-padding-5">Добавить файлы</span>
+                                                            <span class="icon-padding-5">Добавить файл</span>
                                                             <i class="fa fa-images"></i>
                                                         </div>
                                                         <div class="form-outline w-100" id="sending-link-forward-input">
@@ -394,9 +394,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-outline delays">
-                                                            <input class="form-control form-select" id="account-limit"
+                                                            <input class="form-control form-select" id="users-per-account-limit"
                                                                    type="text">
-                                                            <label class="form-label" for="account-limit"
+                                                            <label class="form-label" for="users-per-account-limit"
                                                                    id="account-limit-label" style="margin-left: 0px;">Аккаунт-лимит</label>
                                                             <div class="form-notch">
                                                                 <div class="form-notch-leading"
