@@ -1,4 +1,5 @@
 eel.expose(displayToast)
+
 function displayToast(text, event_type) {
     switch (event_type) {
         case 'success':
@@ -17,12 +18,14 @@ function displayToast(text, event_type) {
 
 
 eel.expose(backToLogin)
+
 function backToLogin() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('auth').style.display = 'block';
 }
 
 eel.expose(openApp)
+
 function openApp() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';

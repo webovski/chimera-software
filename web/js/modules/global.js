@@ -48,6 +48,7 @@ function blockButton(buttonId, buttonTextId = null, textOnButton = "") {
 }
 
 eel.expose(unblockButton)
+
 function unblockButton(buttonId, buttonTextId = null, textOnButton = "") {
     let selectedButton = document.getElementById(buttonId)
     if (buttonTextId !== null) {
@@ -59,6 +60,7 @@ function unblockButton(buttonId, buttonTextId = null, textOnButton = "") {
 }
 
 eel.expose(switchIcons)
+
 function switchIcons(currentIconId, newIconId) {
     let iconSearchParsing = document.getElementById(currentIconId)
     iconSearchParsing.style.display = 'none'
@@ -88,10 +90,11 @@ function writeLog(textAreaId, text) {
 
 function getCurrentTime() {
     let today = new Date();
-    return today.getHours() + ":" + ('0'+today.getMinutes()).slice(-2)+':'+ ('0'+today.getSeconds()).slice(-2);
+    return today.getHours() + ":" + ('0' + today.getMinutes()).slice(-2) + ':' + ('0' + today.getSeconds()).slice(-2);
 }
 
 eel.expose(autoScroll)
+
 function autoScroll(testAreaId) {
     let textarea = document.getElementById(testAreaId);
     textarea.scrollTop = textarea.scrollHeight;
