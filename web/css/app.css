@@ -271,3 +271,6 @@ input[type=number] {
 #account-status {
 
 }
+.clickable-element {
+    cursor: pointer;
+}

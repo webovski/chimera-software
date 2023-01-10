@@ -40,12 +40,13 @@ function getAllSelectedAccounts() {
     //for use filter and etc methods
     let selectAccountsCheckBoxes = Array.prototype.slice.call(tableBody.querySelectorAll('input[type=checkbox]:checked'));
     let sessionsArray = [];
-    selectAccountsCheckBoxes.forEach( function (account) {
-          sessionsArray.push(account.value);
+    selectAccountsCheckBoxes.forEach(function (account) {
+        sessionsArray.push(account.value);
     })
 
     return sessionsArray
 }
+
 function getOnlyLiveSelectedAccounts() {
     // get selected accounts by checkboxes
     let tableBody = document.getElementById("account-table-body");
@@ -53,9 +54,9 @@ function getOnlyLiveSelectedAccounts() {
     //for use filter and etc methods
     let selectAccountsCheckBoxes = Array.prototype.slice.call(tableBody.querySelectorAll('input[type=checkbox]:checked'));
     let sessionsArray = [];
-    selectAccountsCheckBoxes.forEach( function (account) {
+    selectAccountsCheckBoxes.forEach(function (account) {
         if (account.dataset.accountStatus !== "Удалён") {
-          sessionsArray.push(account.value);
+            sessionsArray.push(account.value);
         }
     })
 
@@ -105,9 +106,6 @@ function checkAccounts() {
         displayToast('Вы не выбрали аккаунты!', 'error')
     }
 }
-
-
-
 
 
 eel.expose(blockTableRow)
@@ -200,7 +198,7 @@ function clearAddingAccountForm() {
     userInfoContainer.classList.remove('active')
 }
 
-function removeAccounts(){
+function removeAccounts() {
     let accountsList = getAllSelectedAccounts();
     if (accountsList.length > 0) {
         //blockButton('remove-accounts-btn');
@@ -211,11 +209,22 @@ function removeAccounts(){
 }
 
 
-function createAccountsArchive(){
+function createAccountsArchive() {
     let accountsList = getAllSelectedAccounts();
     if (accountsList.length > 0) {
         eel.create_zip(accountsList)
     } else {
         displayToast('Вы не выбрали аккаунты!', 'error')
+    }
+}
+
+function getAccountsByFilter(filterName) {
+    console.log(filterName);
+    if(filterName==='all'){
+        eel.render_accounts_list();
+    } else if(filterName==='not-checked') {
+        eel.render_accounts_list(render_message=null, custom_filter_status = null);
+    } else{
+        eel.render_accounts_list(render_message=null, custom_filter_status = filterName);
     }
 }
