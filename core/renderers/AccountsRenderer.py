@@ -41,7 +41,7 @@ async def read_account_json(json_file_path: str):
 
 
 @async_eel.expose
-async def render_accounts_list(render_message=None, accounts_names=[], custom_filter_status = None):
+async def render_accounts_list(render_message=None, accounts_names=[]):
     input_accounts_names = accounts_names
     accounts_names = []
     for account_name in input_accounts_names:
@@ -76,7 +76,6 @@ async def render_accounts_list(render_message=None, accounts_names=[], custom_fi
                 account_proxy = f'{account_json_config[1]["proxy"][1]}:{account_json_config[1]["proxy"][2]}'
                 username = account_json_config[1]["username"]
                 chimera_status = account_json_config[1]["chimera_status"]
-                account_front_status_filter = account_json_config[1]["chimera_status"]
 
                 first_name = account_json_config[1]["first_name"]
                 last_name = account_json_config[1]["last_name"]
@@ -125,10 +124,9 @@ async def render_accounts_list(render_message=None, accounts_names=[], custom_fi
                 user_fl_names = 'Неизвестно'
                 register_time_in_days = 'NaN дней'
             print(account_front_status_filter)
-            if account_front_status_filter == custom_filter_status or custom_filter_status is None:
-                accounts_all += 1
-                session_name = os.path.basename(os.path.normpath(session_path))
-                account_item = f'<tr id="tr_{session_name}">' \
+            accounts_all += 1
+            session_name = os.path.basename(os.path.normpath(session_path))
+            account_item = f'<tr id="tr_{session_name}">' \
                                f'<td>' \
                                f'<div class="form-check">' \
                                f'<input class="form-check-input" type="checkbox" {"checked" if session_name in accounts_names else ""} value="{session_name}" data-account-status="{chimera_status[2]}"/>' \
@@ -166,7 +164,7 @@ async def render_accounts_list(render_message=None, accounts_names=[], custom_fi
                                f'<button id="{session_name}" onclick=getSmsCode("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;' \
                                f'</td>' \
                                f'</tr>'
-                accounts_html += account_item
+            accounts_html += account_item
     except Exception as Ass:
         print(Ass)
 
@@ -242,16 +240,16 @@ async def create_zip(accounts: list):
 
 
 @async_eel.expose
-async def render_accounts_by_filter(accounts:list):
-    accounts_names = accounts
+async def render_accounts_by_filter(search_filter = None):
     try:
         input_sessions_folder = 'accounts/input/'
-        sessions = [f"{input_sessions_folder}{session}" for session in accounts]
+        sessions = [f for f in glob.glob(f"{input_sessions_folder}*.session")]
+
         for session in sessions:
             if session:
-                if not exists(f"{session.replace('session', 'json')}"):
+                if not exists(session.replace('session', 'json')):
                     os.remove(session)
-                    accounts.remove(session)
+                    sessions.remove(session)
 
         accounts_html = ''
 
@@ -262,7 +260,7 @@ async def render_accounts_by_filter(accounts:list):
         accounts_deleted = 0
 
         for session_path in sessions:
-
+            account_front_status_filter = None
             try:
                 json_path = session_path.replace('session', 'json')
                 account_json_config = await read_account_json(json_path)
@@ -301,6 +299,7 @@ async def render_accounts_by_filter(accounts:list):
                     chimera_status = ['dark', 'Аккаунт удалён', 'Удалён']
                 else:
                     chimera_status = ['default', 'Не удалось распознать', 'Неизвестно']
+                account_front_status_filter = chimera_status
 
                 if gender == 0:
                     account_picture = 'https://icons-for-free.com/iconfiles/png/512/female+person+user+woman+young+icon-1320196266256009072.png'
@@ -315,55 +314,55 @@ async def render_accounts_by_filter(accounts:list):
                 account_picture = 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png'
                 account_proxy = '0.0.0.0'
                 username = 'Неизвестно'
-                chimera_status = ['danger', 'Ошибка чтнеия аккаунта', 'Ошибка']
+                chimera_status = ['danger', 'Ошибка чтения аккаунта', 'Ошибка']
                 user_fl_names = 'Неизвестно'
                 register_time_in_days = 'NaN дней'
-
-            accounts_all += 1
-            session_name = os.path.basename(os.path.normpath(session_path))
-            account_item = f'<tr id="tr_{session_name}">' \
-                           f'<td>' \
-                           f'<div class="form-check">' \
-                           f'<input class="form-check-input" type="checkbox" value="{session_name}" data-account-status="{chimera_status[2]}"/>' \
-                           f'</div>' \
-                           f'</td>' \
-                           f'<td>' \
-                           f'<div class="d-flex align-items-center">' \
-                           f'<img alt="" class="rounded-circle account-picture" src="{account_picture}"></>' \
-                           f'<div class="ms-3">' \
-                           f'<p class="fw-bold mb-1 overflow-hidden-p">{user_fl_names}</p>' \
-                           f'<p class="text-muted mb-0 overflow-hidden-p">@{username}</p>' \
-                           f'</div>' \
-                           f'</div>' \
-                           f'</td>' \
-                           f'<td>' \
-                           f'<p class="fw-normal mb-1">{phone_number}</p>' \
-                           f'<p class="text-muted mb-0">{readable_gender}</p>' \
-                           f'</td>' \
-                           f'<td>' \
-                           f'<span class="badge badge-{chimera_status[0]} rounded-pill d-inline" data-mdb-toggle="tooltip" rel="tooltip" title="{chimera_status[1]}">' \
-                           f'{chimera_status[2]}' \
-                           f'</span>' \
-                           f'</td>' \
-                           f'<td>' \
-                           f'<span class="badge badge-info rounded-pill d-inline">' \
-                           f'{account_proxy}' \
-                           f'</span>' \
-                           f'</td>' \
-                           f'<td>' \
-                           f'<span data-mdb-toggle="tooltip" rel="tooltip"title="Возраст взят из .json файла">' \
-                           f'{register_time_in_days}' \
-                           f'</span>' \
-                           f'</td>' \
-                           f'<td>' \
-                           f'<button id="{session_name}" onclick=getSmsCode("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;' \
-                           f'</td>' \
-                           f'</tr>'
-            accounts_html += account_item
+            if account_front_status_filter[2] == search_filter or search_filter is None:
+                accounts_all += 1
+                session_name = os.path.basename(os.path.normpath(session_path))
+                account_item = f'<tr id="tr_{session_name}">' \
+                               f'<td>' \
+                               f'<div class="form-check">' \
+                               f'<input class="form-check-input" type="checkbox"  value="{session_name}" data-account-status="{chimera_status[2]}"/>' \
+                               f'</div>' \
+                               f'</td>' \
+                               f'<td>' \
+                               f'<div class="d-flex align-items-center">' \
+                               f'<img alt="" class="rounded-circle account-picture" src="{account_picture}"></>' \
+                               f'<div class="ms-3">' \
+                               f'<p class="fw-bold mb-1 overflow-hidden-p">{user_fl_names}</p>' \
+                               f'<p class="text-muted mb-0 overflow-hidden-p">@{username}</p>' \
+                               f'</div>' \
+                               f'</div>' \
+                               f'</td>' \
+                               f'<td>' \
+                               f'<p class="fw-normal mb-1">{phone_number}</p>' \
+                               f'<p class="text-muted mb-0">{readable_gender}</p>' \
+                               f'</td>' \
+                               f'<td>' \
+                               f'<span class="badge badge-{chimera_status[0]} rounded-pill d-inline" data-mdb-toggle="tooltip" rel="tooltip" title="{chimera_status[1]}">' \
+                               f'{chimera_status[2]}' \
+                               f'</span>' \
+                               f'</td>' \
+                               f'<td>' \
+                               f'<span class="badge badge-info rounded-pill d-inline">' \
+                               f'{account_proxy}' \
+                               f'</span>' \
+                               f'</td>' \
+                               f'<td>' \
+                               f'<span data-mdb-toggle="tooltip" rel="tooltip"title="Возраст взят из .json файла">' \
+                               f'{register_time_in_days}' \
+                               f'</span>' \
+                               f'</td>' \
+                               f'<td>' \
+                               f'<button id="{session_name}" onclick=getSmsCode("{session_name}") class="btn btn-info btn-sm btn-rounded" data-mdb-toggle="tooltip" rel="tooltip" title="Получить смс" type="button"><i class="fa-solid fa-phone-volume"></i></button>&nbsp;' \
+                               f'</td>' \
+                               f'</tr>'
+                accounts_html += account_item
     except Exception as Ass:
         print(Ass)
 
     if len(accounts_html) == 0:
         accounts_html = '<td class="text-center" colspan="7">Для начала работы поместите аккаунты в папку accounts/input</td>'
+
     async_eel.renderAccountsList(accounts_html)
-    async_eel.displayToast(f'Список аккаунтов обновлён!<br/>Найдено сессий: {len(sessions)} ', 'success')

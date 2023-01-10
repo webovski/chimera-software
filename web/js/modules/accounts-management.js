@@ -219,12 +219,24 @@ function createAccountsArchive() {
 }
 
 function getAccountsByFilter(filterName) {
-    console.log(filterName);
-    if(filterName==='all'){
-        eel.render_accounts_list();
-    } else if(filterName==='not-checked') {
-        eel.render_accounts_list(render_message=null, custom_filter_status = null);
-    } else{
-        eel.render_accounts_list(render_message=null, custom_filter_status = filterName);
+    switch (filterName) {
+        case 'all':
+            eel.render_accounts_by_filter();
+            break;
+        case 'not-checked':
+            eel.render_accounts_by_filter('Не проверен');
+            break;
+        case 'valid':
+            eel.render_accounts_by_filter('Проверен');
+            break;
+        case 'spam-block':
+            eel.render_accounts_by_filter('Спам-Блок');
+            break;
+        case 'spam-block':
+            eel.render_accounts_by_filter('Спам-Блок');
+            break;
+        case 'deleted':
+            eel.render_accounts_by_filter('Удалён');
+            break;
     }
 }
